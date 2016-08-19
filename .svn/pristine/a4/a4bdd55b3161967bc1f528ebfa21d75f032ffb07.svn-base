@@ -1,0 +1,12 @@
+<div class="ngdialog-message">
+    <div class="umar-a h-8h" >
+            <span class="">槽位:</span>
+            <input type="text" ng-model="oos.slot"  class="w-half" style="margin-top: 33px;" />
+            <br/><br/>
+            <span class="">端口:</span>
+            <input type="text" ng-model="oos.port" class="w-half" style="margin-top: 3px;" />
+    </div>
+</div>
+<div class="ngdialog-buttons mt">
+	<button  type="button"  class="ngdialog-button ngdialog-button-primary btn-xs" ng-click="subPs(oos)">确认</button>
+</div>

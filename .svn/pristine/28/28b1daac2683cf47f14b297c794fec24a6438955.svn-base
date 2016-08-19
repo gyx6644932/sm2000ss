@@ -1,0 +1,88 @@
+;(function(app){
+    app.controller('topbarCtrl',['$scope','$rootScope','$http','$state',"$timeout" , "publicService",function($scope,$rootScope,$http,$state,$timeout,publicService){
+        publicService.doRequest("GET", 1, {}).success(function(data){
+            $scope.oneMenu = data;
+        });
+        $scope.loginOut = function() {
+            if(confirm("确定要退出吗？")){
+                $state.go('login');
+            }
+        }
+        $scope.fers = function(dom){ // 一级菜单触发事件
+            $rootScope.twoMenu = null;
+            $rootScope.twoMenu = dom.subMenu;
+            var appElement = document.querySelector('[ng-controller=twoMenuCtrl]'),
+                scope= angular.element(appElement).scope();
+            if(scope) scope.clo = 0;
+        }
+
+        function playOrPaused(){ //声音
+            var audio = document.getElementById('audio');
+            if(audio.paused){
+                audio.play();
+                return;
+            }
+            audio.pause();
+        }
+        var GJTS, GJT,
+            otherSound = JSON.parse(localStorage.getItem("otherSound"));
+
+
+        var GJTS, GJT,
+            otherSound = JSON.parse(localStorage.getItem("otherSound")),
+            soo = (otherSound && otherSound.soundOffOn === "on") ? "on" : "off";
+        $scope.soundMo = soo;
+        $scope.soundInterval = (otherSound && (+otherSound.soundInterval) * 1000) || 30000;//间隔时间 
+        $scope.soundLength = (otherSound && (+otherSound.soundLength) * 1000) || 6000; //单次
+
+        function setIsta(){//输回声音
+            function test(){
+                sWitch();
+                GJTS = $timeout(test,$scope.soundInterval);
+            }
+            test();
+        }
+
+        function sWitch() {//根据时间来控制告警开关
+            var sum = 0, g = 3000, 
+                f = Math.floor($scope.soundLength / g);
+            function test1(){
+                sum++;
+                console.log(sum);
+                //playOrPaused();
+                GJT = $timeout(test1,g);
+                if(sum === f){
+                    $timeout.cancel(GJT)
+                }
+            }
+            test1();
+        }  
+        var watch = $scope.$watch('soundMo',function(newValue,oldValue, scope){
+            $timeout.cancel(GJTS);
+            $timeout.cancel(GJT);
+            if(newValue === "on"){
+                setIsta();
+            }
+            var sou = JSON.parse(localStorage.getItem("otherSound"));
+            if(sou){
+                sou.soundOffOn = newValue;
+            }else{
+                sou = {soundOffOn : newValue}
+            }
+            localStorage.setItem("otherSound", angular.toJson(sou))
+        });
+        
+        $scope.$on("otherSoundMod",function (event, msg) { //监听来自父controller的信息
+            if(msg){
+                $scope.soundMo = msg.soundOffOn === "on" ? "on" : "off";
+                $scope.soundLength = (+msg.soundLength) * 1000;
+                $scope.soundInterval = ((+msg.soundInterval) + (+msg.soundLength)) * 1000;
+            }
+        });
+
+        $scope.sound =function(m){
+            $scope.soundMo = $scope.soundMo === "on" ? "off" : "on";
+        }     
+
+    }]);
+})(routerApp)

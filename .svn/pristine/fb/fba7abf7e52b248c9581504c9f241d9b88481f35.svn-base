@@ -1,0 +1,40 @@
+;(function(app){
+    app.config(['$stateProvider', '$urlRouterProvider',function($stateProvider, $urlRouterProvider) {
+        $stateProvider
+        .state('index', {
+            url: '/index',
+            views: {
+                '': {
+                    templateUrl: 'template/index.html',
+                    controller : 'indexCtrl'
+                },
+                'topbar@index': {
+                    templateUrl: 'template/topbar.html',
+                    controller:'topbarCtrl'
+                }
+                ,'center@index': {
+                    templateUrl: 'template/tuopu.html',
+                    controller:'tuopuCtrl',
+                    resolve: {
+                        areaData:function(publicService){
+                            publicService.loading('start');
+                            return publicService.doRequest("GET", 18, {})
+                        }
+                    }
+                },
+                'footer@index': {
+                    templateUrl: 'template/footer.html'
+                }
+            }
+        })
+        .state('index.tuopuDeviceAddEdit', {
+            url: '/tuopuDeviceAddEdit',
+            views: {
+                'center@index': {
+                    templateUrl: 'template/device/deviceManageEditAdd.html',
+                    controller : "deviceManageEditAddCtrl"
+                }
+            }
+        })
+    }]);
+})(routerApp)

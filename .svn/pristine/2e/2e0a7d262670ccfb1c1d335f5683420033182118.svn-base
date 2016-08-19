@@ -1,0 +1,57 @@
+<div class="content-s" style="overflow: hidden;padding: 0 25px;">
+    <div class="row">
+        <div class="col-md-12 querySeach">
+            <h3>实时告警</h3>
+            <div class="boxH"></div>
+        </div>
+    </div>
+    <div class="row tableTs" style="height: 100%;">
+        <div class="col-md-12" >
+            <button type="button"  ng-click="alwaysAlarmBack()" class="btn btn-warning pull-right btn-sm" aria-label="Left Align">返回</button>    
+        </div>
+        
+        <div class="col-md-12" style="height: 95%;overflow:auto;width: 100%;">
+            <table class="table table-bordered table-hover table-condensed">
+                <thead>
+                    <tr>
+                        <th>告警ID</th>
+                        <th>告警子ID</th>
+                        <th>告警模块</th>
+                        <th>告警等级</th>
+                        <th>告警时间</th>
+                        <th>告警内容</th>
+                        <th class="text-center">状态</th>
+                        <th width="9%"  class="text-center">确认查看</th>
+                        <th width="9%" class="text-center">确认清除</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="item in alwaysAlarmList">
+                        <td>{{item.activeAlarmId}}</td>
+                        <td>{{item.activeAlarmSubId}}</td>
+                        <td>{{item.activeAlarmModule}}</td>
+                        <td>{{item.activeAlarmLevel}}</td>
+                        <td>{{item.activeAlarmTime | date:"yyyy-MM-dd HH:mm:ss"}}</td>
+                        <td>{{item.activeAlarmDesc}}</td>
+                        <td class="text-center">{{item.state}}</td>
+                        <td class="text-center">
+                            <button type="button" ng-click="alwaysAlarmSub(item)" class="btn btn-warning btn-xs" aria-label="Left Align">
+                                <span ria-hidden="true" ng-show="item.state !=2" class="glyphicon glyphicon-eye-open" ></span>
+                                <span ria-hidden="true" ng-show="item.state ==2" class="glyphicon glyphicon-ok" style="color:green"></span>
+                                {{item.state == 2 ? '确认' : '查看'}}
+                            </button>
+                        </td>
+                        <td class="text-center">
+                            <button type="button" ng-click="alwaysAlarmClear(item)" class="btn btn-danger btn-xs" aria-label="Left Align">
+                                <span ria-hidden="true"  class="glyphicon glyphicon-remove-sign" ></span>
+                                清除
+                            </button>
+                        </td>
+                    </tr>
+                    <tr ng-if="alwaysAlarmList.length == 0"><td colspan="9" class="textCenter"><span>暂无数据！</span></td></tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+

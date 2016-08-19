@@ -1,0 +1,59 @@
+;(function(app){
+	app.controller('systemDatabasManualCtrl', ['$scope','$rootScope','$http','$state', 'publicService',  function($scope, $rootScope, $http, $state, publicService){
+		$scope.manualType = "archive";
+		$scope.modelManual = {};
+		
+
+		$scope.tableNameManualChange = function(){
+			if($scope.manualType === "archive"){
+				var f = true;
+				angular.forEach($scope.databaseTableName,function(data){
+					if($scope.modelManual.tableName === data.objectName && data.subList){
+						$scope.subTypeManualList = data.subList;
+						f = false;
+					}
+				})
+				f && ($scope.subTypeManualList = []);
+			}
+		}
+		publicService.loading('start');
+		publicService.doRequest("GET", 12, {}).success(function(r){
+            publicService.loading('end');
+    		$scope.databaseTableName = r.data;
+    	})
+    	$scope.subManual = function(m,t){
+    		var self = this,
+                url = "/nms/spring/databaseBackup/" + self.manualType;
+    		if(self.manualType === "archive"){
+    			if(!self.modelManual.tableName){
+    				publicService.ngAlert('表名不能为空！', "warning")
+    				return;
+    			}
+    			if(!self.modelManual.archiveEndDate){
+    				publicService.ngAlert('数据截止日期不能为空!', "warning")
+    				return;
+    			}
+    		}else if(self.manualType === "backup"){
+    			if(!self.modelManual.tableName){
+    				publicService.ngAlert('表名不能为空！', "warning")
+    				return;
+    			}
+    			if(!self.modelManual.backupLocation){
+    				publicService.ngAlert('文件路径不能为空！', "warning")
+    				return;
+    			}
+    		}else if(self.manualType === "restore"){
+				if(!self.modelManual.backupLocation){
+    				publicService.ngAlert('文件路径不能为空！', "warning")
+    				return;
+    			}
+    		}
+            self.disabledFlag = true;
+            publicService.loading('start');
+    		publicService.doRequest("PUT", url, m, self).success(function(r){
+    			publicService.ngAlert('提交成功', "success");
+                self.disabledFlag = false;
+	    	})
+		}
+	}]);
+})(routerApp)

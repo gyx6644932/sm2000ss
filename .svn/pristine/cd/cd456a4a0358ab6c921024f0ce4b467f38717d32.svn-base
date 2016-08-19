@@ -1,0 +1,49 @@
+<div class="content-s">
+    <div class="row">
+        <div class="col-md-12 querySeach">
+            <h3 translate="SYSTEM_LOG">系统日志</h3>
+            <div class="boxH"></div>
+            <div>
+                <span translate="activeAlarmModule">告警源</span>: 
+                <select ng-model="seachMod.activeEventModule">
+                    <option value="" translate="PLEASE_SELECT">请选择</option>
+                    <option value="MC">MC</option>
+                    <option value="CC1">CC1</option>
+                    <option value="CC2">CC2</option>
+                    <option value="INPUT1">INPUT1</option>
+                    <option value="INPUT2">INPUT2</option>
+                </select>
+                <span  translate="DESCRIBE" >描述</span> :<input type="text" ng-model="seachMod.activeEventDesc" >
+                <span  translate="BEGIN_TIME" >开始时间</span>:<input class="Wdate" ng-model="seachMod.activeEventTimeBgn" type="text" onClick="WdatePicker()" onchange="" >
+                <span  translate="END_TIME" >结束时间</span>:<input class="Wdate" ng-model="seachMod.activeEventTimeEnd" type="text" onClick="WdatePicker()" onchange="" >
+                <button class="btn btn-warning btn-md" translate="SEARCH" ng-click="seach(seachMod)">搜索</button>
+            </div>
+            <br>
+        </div>
+    </div>
+    <div class="row tableTs" >
+        <div class="col-md-12">
+            <table class="table table-bordered table-hover table-condensed">
+                <thead>
+                    <tr>
+                        <th class="t-middle" style="width:15%" translate="activeAlarmModule">告警源</th>
+                        <th class="t-middle" style="width:15%" translate="OPERATION_TIME">操作时间</th>
+                        <th class="t-middle" style="width:70%" translate="DESCRIBE">描述</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="item in systemLogList">
+                        <td>{{item.activeEventModule}}</td>
+                        <td>{{item.activeEventTime | date:"yyyy-MM-dd HH:mm:ss"}}</td>
+                        <td>{{item.activeEventDesc}}</td>
+                    </tr>
+                    <tr ng-if="systemLogList.length == 0"><td colspan="2" class="textCenter" ><span translate="NULL_DATA">暂无数据！</span></td></tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+<div style="float: right;">
+    <tm-pagination conf="paginationConf"></tm-pagination>
+</div>
+

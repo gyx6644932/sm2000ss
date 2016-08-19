@@ -1,0 +1,29 @@
+<div class="content-s">
+		    <div class="row">
+		        <div class="col-md-12 querySeach">
+		            <h3>菜单管理</h3>
+		            <div class="boxH"></div>
+		            <br>
+		        </div>
+		    </div>
+		    <div class="row tableTs" >
+		        <div class="col-md-12">
+		          <div class="treeDom">
+				<treecontrol class="tree-light" id="tree" tree-model="deviceTreeData" options="opts" on-selection="showSelected(node)" xpanded-nodes="expandedNodes">
+					<span ng-switch on="node.type">
+					    <img ng-switch-when="green" src="images/greent.gif" style="width:17px;height:17px;"  aria-hidden="true">
+					    <img ng-switch-when="red" src="images/redt.gif" style="width:17px;height:17px;"  aria-hidden="true">
+					    <img ng-switch-when="yellow" src="images/yellow.gif" style="width:17px;height:17px;"  aria-hidden="true">
+					    <img ng-switch-when="pink" src="images/pink.gif" style="width:17px;height:17px;"  aria-hidden="true">
+					    <img ng-switch-when="gery" src="images/gery.png" style="width:17px;height:17px;"  aria-hidden="true">
+					    <img ng-switch-when="box" src="" style="width:17px;height:17px;"  aria-hidden="true">
+					</span> 
+					<span class="bys" obj="{{node}}" treeid="{{node.ip}}" name="{{node.label}}" ng-click="treeFun(node)">{{node.label}}</span>
+				</treecontrol>
+			</div>
+		        </div>
+		    </div>
+		</div>
+		<div style="float: right;">
+			<tm-pagination conf="paginationConf"></tm-pagination>
+		</div>

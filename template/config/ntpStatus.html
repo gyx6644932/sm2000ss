@@ -1,0 +1,64 @@
+    <div class="content-s">
+      <div class="row tableTs" >
+        <div class="container-fluid umar-a h-8h padding-a" style="margin-top:10px;">
+          <div class="bc-bg w-9h float-l fa15x  uba bc-border3  b-radius padding-l padding-r padding-b15 ">
+            <div class="float-l w-half ">
+              <span class="umar-a8">选择</span>
+              <select id="ntpStatusPortId" class="umar-a8" onchange="changentpntpStatusPortId()">
+                <option value="1">端口1</option>
+                <option value="2">端口2</option>
+              </select>
+            </div>
+            <div class="w-47h float-l fa15x  b-radius padding-l padding-r padding-b15 t-right clear">
+
+              <div class="padding-a5 uba bc-border1 umar-t15">
+                <span >Status 使能</span>
+                &nbsp;&nbsp;
+                <input id="ntpStatusPortEnabled" type="text" disabled="disabled" style="width:30%;margin-right: 13%;"/>    
+                &nbsp;&nbsp;
+              </div>
+              <div class="padding-a5 uba bc-border1 umar-t15">
+                <span >ntpStatus Version</span>
+                &nbsp;&nbsp;
+                <input id="ntpStatusVersion"  disabled="disabled" type="text" style="width:30%;margin-right: 13%;"/>    
+                &nbsp;&nbsp;
+              </div>
+              <div class="padding-a5 uba bc-border1 umar-t15">
+                <span >ntpStatus Mode</span>
+                &nbsp;&nbsp;
+                <input id="ntpStatusMode"  disabled="disabled" type="text" style="width:30%;margin-right: 13%;"/>    
+                &nbsp;&nbsp;
+              </div>
+              <div class="padding-a5 uba bc-border1 umar-t15">
+                <span >ntpStatus LeapStatus</span>
+                &nbsp;&nbsp;
+                <input type="text"  disabled="disabled" id="ntpStatusLeapStatus" style="width:30%;margin-right: 13%;"/>    
+                &nbsp;&nbsp;
+              </div>
+
+              <div class="padding-a5 uba bc-border1 umar-t15">
+                <span >ntpStatus StratumLevel</span>
+                &nbsp;&nbsp;
+                <input type="text"  disabled="disabled" id="ntpStatusStratumLevel" style="width:30%;margin-right: 13%;"/>    
+                &nbsp;&nbsp;
+              </div>
+              <div class="padding-a5 uba bc-border1 umar-t15">
+                <span >ntpStatus RootDispersion</span>
+                &nbsp;&nbsp;
+                <input id="ntpStatusRootDispersion" type="text" disabled="disabled" style="width:30%;margin-right: 13%;"/>    
+                &nbsp;&nbsp;
+              </div>
+              <div class="padding-a5 uba bc-border1 umar-t15">
+                <span >ntpStatus PacketLoad</span>
+                &nbsp;&nbsp;
+                <input id="ntpStatusPacketLoad" type="text" disabled="disabled" style="width:30%;margin-right: 13%;"/>    
+                &nbsp;&nbsp;
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div style="float: right;">
+      <tm-pagination conf="paginationConf"></tm-pagination>
+    </div>

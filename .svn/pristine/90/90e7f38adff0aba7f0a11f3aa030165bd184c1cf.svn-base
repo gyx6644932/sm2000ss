@@ -1,0 +1,50 @@
+    <div class="content-s">
+		    <div class="row tableTs" >
+   <div class="container-fluid umar-a h-8h padding-a" style="margin-top:10px;">
+            <div class="bc-bg w-9h float-l fa15x  uba bc-border3  b-radius padding-l padding-r padding-b15 ">
+                 <div class="float-l w-half ">
+                <span class="umar-a8">端口选择</span>
+                <select id="ptpActiveProbeTableId" class="umar-a8" onchange="changeptpActiveProbeTable()">
+                   <option value="1">端口1</option>
+                    <option value="2">端口2</option>
+                </select>
+                   </div>
+            <div class="w-47h float-l fa15x  b-radius padding-l padding-r padding-b15 t-right clear">
+            <div class="w-full fa15x b-radius padding-b15" >
+                    <div class="padding-a5 uba bc-border1 umar-t">
+                          <span >Grandmaster IP</span>&nbsp;&nbsp;<input id="ptpActiveProbeGMIpAddr" type="text"  style="width:40%;margin-right: 13%;"/> 
+                       </div>
+                    <div class="padding-a5 uba bc-border1 umar-t">
+                          <span >VLAN ID</span>&nbsp;&nbsp;<input id="ptpActiveProbeVlanID" type="text"  style="width:40%;margin-right: 13%;"/> 
+                       </div>
+
+                    <div class="padding-a5 uba bc-border1 umar-t">
+                          <span >Grandmaster Clock ID</span>&nbsp;&nbsp;<input id="ptpActiveProbeGMClockID" type="text" style="width:40%;margin-right: 13%;" /> 
+                       </div>
+                    <div class="padding-a5 uba bc-border1 umar-t">
+                          <span >Interval</span>&nbsp;&nbsp;<input id="ptpActiveProbeInterval" type="text"  style="width:40%;margin-right: 13%;"/> 
+                       </div>
+                    <div class="padding-a5 uba bc-border1 umar-t">
+                          <span >Lease Duration</span>&nbsp;&nbsp;<input id="ptpActiveProbeDuration" type="text"  style="width:40%;margin-right: 13%;"/> 
+                       </div>
+                    <div class="padding-a5 uba bc-border1 umar-t">
+                          <span >Profile</span>&nbsp;&nbsp; 
+                       <select id="ptpActiveProbeProfile"   style="width:40%;margin-right: 13%;">
+                          <option value="0">telecom-2008</option>
+                           <option value="1">defult</option>
+                           <option value="2">ethernet-default</option>
+                       </select>
+                       </div>
+            </div>
+            </div>
+         <div class="modal-footer" style="border-top:0;text-align: left;position: absolute;bottom: 2%;left: 45%;">
+                   <button id="ProbeSub" type="button" class="btn btn-primary" style="width: 70px;margin-left: 20px;">设置</button>
+                   <button type="button" class="btn btn-danger" style="width: 70px;margin-left: 20px;" data-dismiss="modal">退出</button>
+                    <span id="mesSub" class="padding-a red fa12x" style="margin-top:10px;"></span>
+                </div>
+        </div>
+		    </div>
+		</div>
+		<div style="float: right;">
+			<tm-pagination conf="paginationConf"></tm-pagination>
+		</div>

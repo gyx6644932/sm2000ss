@@ -1,0 +1,14 @@
+;(function(app){
+	app.config(['$stateProvider', '$urlRouterProvider',function($stateProvider, $urlRouterProvider) {
+    	$stateProvider
+        .state('index.alarm', {
+            url: '/alarm',
+            views: {
+                'center@index': {
+                    templateUrl: 'template/alarm.html',
+                    controller : "alarmCtrl"
+                }
+            }
+        })
+	}]);
+})(routerApp)

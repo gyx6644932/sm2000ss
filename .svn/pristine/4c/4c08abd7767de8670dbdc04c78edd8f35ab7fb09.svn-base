@@ -1,0 +1,67 @@
+;(function(app){
+	app.controller('deviceManageCtrl', ['$scope', "$state", "$rootScope",'publicService', "areaData", function($scope, $state, $rootScope, publicService, areaData){
+		$scope.areaData = areaData.data.data;
+		$rootScope.areaData = $scope.areaData;
+		$scope.alloca = 0;
+		publicService.doRequest("GET", 19, {}).success(function(r){
+			$scope.deviceMangeList = r.data;
+		})
+		$scope.seach = function(){
+			if(this.alloca == 0){
+				publicService.doRequest("GET", 19, {}).success(function(r){
+					$scope.deviceMangeList = r.data;
+				})
+			}else{
+				if(!this.area){
+					$scope.deviceMangeList = [];
+				}
+				publicService.doRequest("GET", "/nms/spring/devices/parents/" + this.area, {}).success(function(r){
+					$scope.deviceMangeList = r.data || [];
+				})
+			}
+		}
+		$scope.deviceMangeEditAdd = function(m){
+			$rootScope.deviceManageModel = null;
+			if(m){
+				$rootScope.deviceManageModel = m;
+			}
+			$state.go('index.device.deviceManageEditAdd')
+		}
+		$scope.deviceMangeDel = function(m){
+			var self = this;
+			if(confirm('确认删除？')){
+				self.deviceMangeList.splice(self.deviceMangeList.indexOf(m),1)
+				publicService.loading('start');
+				publicService.doRequest("DELETE", "/nms/spring/devices/" + m.id, {}).success(function(r){
+					publicService.loading('end');
+					publicService.ngAlert('删除成功！', "success");
+				})
+				var o = {};
+                    o.areaId = m.parentId;
+                    o.userid = localStorage.getItem("curUserId");
+ 				publicService.doRequest("GET", 5, o).success(function(r){//同时删除与设备有关的拓扑图位置和信号;
+                    if(r.data.length > 0){
+                    	var tup = r.data[0],
+                    		obj = JSON.parse(tup.data);
+	                   	for(var j in obj){
+		                    if(j === m.ip){
+		                        delete obj[j];
+		                    }else if(obj[j]["targetIds"]){
+		                        var tag = obj[j]["targetIds"];
+		                        if(tag.length > 0){
+		                            for (var f = 0; f < tag.length; f++) {
+		                                if(tag[f].ip === m.ip){
+		                                    tag.splice(f, 1);
+		                                }
+		                            }
+		                        }
+		                    }
+		                }
+		                tup.data = JSON.stringify(obj);
+		                publicService.doRequest("POST", 5, tup);
+                    }
+                })
+			}
+		}
+	}]);
+})(routerApp)

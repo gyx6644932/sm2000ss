@@ -1,0 +1,33 @@
+;(function(app){
+	app.controller('deviceManageEditAddCtrl', ['$scope', "$state", 'publicService', function($scope, $state, publicService){
+		$scope.backDevice = function(){
+			window.history.back();
+		}
+		$scope.deviceModel = {};
+		$scope.deviceModel.deviceType = "SM2000";
+		$scope.deviceManageSub = function(m){
+			m.nodeType = 1;
+			m.status = 0;
+			m.ownerId = "";
+			publicService.loading('start');
+			publicService.doRequest("POST", 20, m).success(function(r){
+			})
+		}
+	}]);
+	app.directive('devicemanagedirective', function ($timeout) {
+	    return {
+	        restrict: 'A',
+	        link: function(scope, element, attr) {
+	            if (scope.$last === true) {
+	            	var self = scope.$parent;
+	               	if(self.deviceManageModel){
+						self.deviceTitle = "修改";
+						self.deviceModel = self.deviceManageModel;
+					}else{
+						self.deviceTitle = "添加";
+					}
+	            }
+	        }
+	    };
+	});
+})(routerApp)

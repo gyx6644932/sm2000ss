@@ -1,0 +1,52 @@
+    <div class="content-s">
+      <div class="row tableTs" >
+        <div class="container-fluid umar-a h-8h padding-a" style="margin-top:10px;">
+          <div class="w-47h float-l fa15x  b-radius padding-l padding-r padding-b15 t-right">
+            <div class="w-9h fa15x  uba bc-border3 b-radius padding-a bc-bg" >
+              <span class="umar-a8" style="padding-right: 40%;">端口2</span>
+              <br>    
+
+              <div class="padding-a5 uba bc-border1 umar-t15">
+                <span >端口使能</span>
+                &nbsp;&nbsp;
+                <select id="ppsTODState"  style="width:45%;margin-right: 20%;">
+                  <option value="0">disable</option>
+                  <option value="1">enable</option>
+                </select>
+              </div>
+
+              <div class="padding-a5 uba bc-border1 umar-t15">
+                <span >Priority</span>
+                &nbsp;&nbsp;
+                <input id="ppsTODPriority" type="text" style="width:45%;margin-right: 20%;"/>    
+              </div>
+              <div class="padding-a5 uba bc-border1 umar-t15">
+                <span >Cable Delay</span>
+                &nbsp;&nbsp;
+                <input id="ppsTODCableDelay" type="text" style="width:45%;margin-right: 20%;"/>    
+              </div>
+              <div class="padding-a5 uba bc-border1 umar-t15">
+                <span >PQL状态</span>
+                <select id="ppsTODPQLState" style="width:45%;margin-right: 20%;">
+                  <option value="0">disable</option>
+                  <option value="1">enable</option>
+                </select>
+              </div>
+              <div class="padding-a5 uba bc-border1 umar-t15">
+                <span >PQL值</span>
+                &nbsp;&nbsp;
+                <input id="ppsTODPQL" type="text" style="width:45%;margin-right: 20%;"/>    
+              </div>
+            </div>
+          </div>
+          <div class="modal-footer" style="border-top:0;text-align: left;position: absolute;bottom: 2%;left: 44%;">
+            <button id="PPS_TODSub" type="button" class="btn btn-primary" style="width: 70px;margin-left: 20px;">设置</button>
+            <button type="button" class="btn btn-danger" style="width: 70px;margin-left: 20px;" data-dismiss="modal">退出</button>
+            <span id="mesSub" class="padding-a red fa12x" style="margin-top:10px;"></span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div style="float: right;">
+      <tm-pagination conf="paginationConf"></tm-pagination>
+    </div>

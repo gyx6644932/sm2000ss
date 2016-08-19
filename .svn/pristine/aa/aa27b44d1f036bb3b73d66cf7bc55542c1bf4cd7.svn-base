@@ -1,0 +1,45 @@
+;(function(app){
+	app.controller('databaseAutoAddEditCtrl', ['$scope','$rootScope','$http','$state', 'publicService',  function($scope, $rootScope, $http, $state, publicService){
+		$scope.$watch("modelAuto.tableName", function(n,o){
+			if($scope.modelAuto && $scope.modelAuto.backupStrategy === 0){
+				var f = true;
+				angular.forEach($scope.databaseTableName,function(data){
+					if(n === data.objectName && data.subList){
+						$scope.subTypeList = data.subList;
+						f = false;
+					}
+				})
+				f && ($scope.subTypeList = []);
+			}
+		})
+		$scope.dababaseAutoSub = function(m){
+			m.isDelete = 0;
+			publicService.loading('start');
+			publicService.doRequest("POST", 13, m).success(function(data){
+				publicService.ngAlert($scope.autoT + '成功！',"success")
+			})
+		}
+
+		$scope.backAuto = function(){
+			window.history.back();
+		}
+
+	}]);
+	app.directive('databasetablend', function ($timeout) {
+	    return {
+	        restrict: 'A',
+	        link: function(scope, element, attr) {
+	            if (scope.$last === true) {
+	               	if(scope.$parent.databaseAutoModle){
+						scope.$parent.modelAuto = scope.$parent.databaseAutoModle.modelAuto;
+						scope.$parent.autoT = '修改';
+					}else{
+						scope.$parent.autoT = "添加";
+						scope.$parent.modelAuto = {};
+						scope.$parent.modelAuto.backupStrategy = 0;
+					}
+	            }
+	        }
+	    };
+	});
+})(routerApp)

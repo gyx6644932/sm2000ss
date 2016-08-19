@@ -1,0 +1,24 @@
+<div class="jumbotron" style="overflow: auto;height: 100%;width: 100%;">
+	<h3>软件进程信息</h3>
+    <div class="boxH"></div>
+	<table class="table" style="width: 100%;table-layout:fixed" >
+		<tr>
+			<th class="t-middle"  style="width: 5%;"  >用户</th>
+    		<th class="t-middle"  style="width: 8%;"  >进程ID</th>
+    		<th class="t-middle"  style="width: 10%;"  >CUP使用率</th>
+    		<th class="t-middle"  style="width: 10%;"  >内存使用率</th>
+    		<th class="t-middle"  style="width: 10%;"  >虚拟内存大小</th>
+    		<th class="t-middle"  style="width: 8%;"  >内存大小</th>
+    		<th class="t-middle"  style="width: 8%;"  >运行状态</th>
+    		<th class="t-middle"  style="width: 8%;"  >启动时间</th>
+    		<th class="t-middle"  style="width: 8%;"  >运行时间</th>
+    		<th class="t-middle" style="width: 25%;" >命令</th>
+		</tr>
+		<tbody>
+            <tr ng-repeat="item in processList" >
+                <td  class="t-middle ng-block tdDian" class="tdDian" title="{{i}}" ng-repeat="i in (item.processMsg | processDomfilter) track by $index">{{i}}</td>
+            </tr>
+            <tr ng-if="processList.length == 0"><td colspan="9" class="textCenter"><span>暂无数据！</span></td></tr>
+        </tbody>
+	</table>
+</div>

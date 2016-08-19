@@ -1,0 +1,67 @@
+    <div class="content-s">
+      <div class="row tableTs" >
+        <div class="container-fluid umar-a h-9h padding-a t-middle" style="margin-top:10px;">
+
+          <div class="w-full fa15x  b-radius padding-l padding-r padding-b15 t-middle clear" style="height:330px;overflow: auto;">
+            <div class="w-full fa15x b-radius padding-b15" >
+              '
+              <table id="" class="display w-full h-full bc-bg"  border="1" cellspacing="0">
+                <thead>
+                  <tr>
+                    <th class="t-middle">告警号</th>
+                    <th class="t-middle">告警等级</th>
+                    <th class="t-middle">告警延迟</th>
+                    <th class="t-middle">告警使能</th>
+                    <th class="t-middle">告警描述</th>
+                  </tr>
+                </thead>
+                <tbody id="alarmConfigTableList"></tbody>
+              </table>
+            </div>
+          </div>
+          <div class="w-full fa15x  uba bc-border3 b-radius bc-bg t-left umar-a15">
+            <span style="position: relative;top: -5px;left: 10px;background: #fff;">告警模板设置</span>
+            &nbsp;&nbsp;
+            <br>    
+            <div class="padding-a">
+              <li class="w-25h float-l">
+                <span >ID :</span>
+                &nbsp;&nbsp;
+                <input type="text" disabled="disabled" id="alarmID"  style="width:62%;"/>    
+              </li>
+              <li class="w-25h float-l">
+                <span >等级 :</span>
+                <select id="alarmLevel"  style="width:62%;height:25px;">
+                  <option value="2">critical</option>
+                  <option value="3">major</option>
+                  <option value="4">minor</option>
+                  <option value="5">event</option>
+                </select>
+              </li>
+              <li class="w-25h float-l">
+                <span >延迟 :</span>
+                <input id="alarmDelay" type="text"  style="width:62%;"/>    
+              </li>
+
+            </div>
+            <div class="w-full fa15x b-radius padding-a umar-t" >
+              <li class="w-full">
+                <span >描述 :</span>
+                &nbsp;&nbsp;
+                <input id="alarmDescription" disabled="disabled" type="text"  style="width: 90.5%;margin-top: 10px;"/>    
+              </li>
+
+            </div>
+          </div>
+
+          <div class="modal-footer" style="padding:0;border-top:0;text-align: left;position: absolute;bottom: 0%;left: 50%;">
+            <button id="alarmConfig" type="button" class="btn btn-primary" style="width: 70px;margin-left: 20px;">设置</button>
+            <button type="button" class="btn btn-danger" style="width: 70px;margin-left: 20px;" data-dismiss="modal">退出</button>
+            <span id="mesSub" class="padding-a red fa12x" style="margin-top:10px;"></span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div style="float: right;">
+      <tm-pagination conf="paginationConf"></tm-pagination>
+    </div>

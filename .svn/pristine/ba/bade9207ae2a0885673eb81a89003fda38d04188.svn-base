@@ -1,0 +1,53 @@
+<div class="content-s">
+    <div class="row">
+        <div class="col-md-12 querySeach">
+            <h3 translate="DEVICE_MANAGE">设备管理</h3>
+            <div class="boxH"></div>
+            <div>
+                <label class="control-label" translate="ALLOCATION">分配</label>:
+                <select ng-model="alloca" class="form-inline input-sm">
+                    <option value="0" selected translate="ALREADY_ASSIGEND">未分配</option>
+                    <option value="1" translate="Not_ASSIGNED">己分配</option>
+                </select> 
+                <label class="control-label" translate="ARER">区域:</label>
+                <select ng-model="area" class="form-inline input-sm">
+                    <option value="" translate="PLEASE_SELECT">请选择</option>
+                    <option value="{{m.id}}" ng-repeat="m in areaData">{{m.name}}</option>
+                </select>
+                <button class="btn btn-warning btn-md" translate="SEARCH" ng-click="seach(seachMod)">搜索</button>
+                <button class="btn btn-warning btn-md pull-right" translate="ADD" ng-click="deviceMangeEditAdd()" style="margin-top: 20px;">添加
+                </button>
+            </div>
+        </div>
+    </div>
+    <div class="row tableTs" >
+        <div class="col-md-12">
+            <table class="table table-bordered table-hover table-condensed">
+                <thead>
+                    <tr>
+						<th translate="NE_NAME" >网元名称</th>
+						<th translate="NE_IP" >网元IP</th>
+						<th translate="NE_DESCRIBE" >网元描述</th>
+						<th translate="NE_VERSION" >网元版本</th>
+						<th translate="NE_TIME" >网元时间</th>
+						<th class="text-center"  translate="OPERATION" >操作</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="item in deviceMangeList">
+                        <td>{{item.name}}</td>
+                        <td>{{item.ip}}</td>
+                        <td>{{item.description}}</td>
+                        <td>{{item.imageVersion}}</td>
+                        <td>{{item.timestamp | date:"yyyy-MM-dd HH:mm:ss"}}</td>
+                        <td class="text-center">
+                            <span title="edit" ng-click="deviceMangeEditAdd(item)" class="glyphicon glyphicon-cog editBtn" style=""></span> |
+                            <span title="delete" ng-click="deviceMangeDel(item)" class="glyphicon glyphicon-trash deleteBtn" style=""></span>
+                        </td>
+                    </tr>
+                    <tr ng-if="deviceMangeList.length == 0"><td colspan="6" class="textCenter"><span translate="NULL_DATA">暂无数据！</span></td></tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,25 @@
+<div class="topbar" style="">
+	<div class="logo"><img src="images/logo.png" alt=""><span>SM2000管理平台</span></div>
+	<div style="" class="userOut">
+		<p>登录用户：liuliu</p>
+		&nbsp;&nbsp;
+		<button type="button" title="声音"  class="btn btn-success btn-xs" ng-click="sound(soundMo)" aria-label="Left Align">
+		  	<span title="声音" ng-model="soundMo" ng-class="{'glyphicon-volume-up soundOn' : soundMo == 'on','glyphicon-volume-off soundOff' : soundMo == 'off'}" ria-hidden="true" class="glyphicon glyphicon-volume-up"></span>
+			声音
+		</button>
+		<button type="button" title="退出" ng-click="loginOut()" class="btn btn-danger btn-xs" aria-label="Left Align">
+		  	<span title="退出" ria-hidden="true" class="glyphicon glyphicon-off">
+		  	</span>
+			退出
+		</button>
+
+	</div>
+	<div class="oMenu">
+        <ul class="oneMenu" >
+            <li ng-repeat="item in oneMenu"  class="active">
+            <a ng-class="{activeOneMenu : item.url == 'index'}" toggle-class="" ng-click="fers(item)" ui-sref="{{item.url}}" >{{item.name}}</a>
+            </li>
+        </ul>
+	</div>
+</div>
+<audio id="audio" src="{{soundSrc}}" ng-src="soundSrc" style="display:none"></audio>

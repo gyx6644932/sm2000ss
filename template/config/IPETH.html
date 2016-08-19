@@ -1,0 +1,272 @@
+    <div class="content-s">
+      <div class="row tableTs h-full" >
+        <div class="container-fluid umar-a h-90h" style="margin-top:10px;overflow:auto;">
+          <span style="position: relative;top: 10px;left: 10px;background: #fff;">管理卡</span>
+          &nbsp;&nbsp;
+          <div class="w-9h fa15x  uba bc-border3 b-radius bc-bg" style="height:27%;">
+            <div class="w-half float-l fa15x b-radius t-right padding-a5">
+              <div class="w-9h fa15x b-radius bc-bg">
+                <div class="padding-a5">
+                  <span>IP模式</span>
+                  &nbsp;&nbsp;
+                  <select id="ipMCMode" style="width:62%;margin-right: 3%;height:25px;">
+                    <option value="0">static</option>
+                    <option value="1">dhcp</option>
+                  </select>
+                  &nbsp;&nbsp;
+                </div>
+                <div class="padding-a5">
+                  <span>IP端口状态</span>
+                  &nbsp;&nbsp;
+                  <select id="ipPortState1" style="width:62%;margin-right: 3%;height:25px;">
+                    <option value="0">disable</option>
+                    <option value="1">enable</option>
+                  </select>
+                  &nbsp;&nbsp;
+                </div>
+                <div class="padding-a5">
+                  <button id="restart1" style="width:62%;margin-right:11.5%;height:25px;">重启端口</button>
+                </div>
+              </div>
+            </div>
+            <div class="w-half float-l fa15x  b-radius t-right padding-a5">
+              <div class="w-9h fa15x b-radius bc-bg">
+                <div class="padding-a5">
+                  <span>IP地址</span>
+                  &nbsp;&nbsp;
+                  <input id="ipAddress1" type="text" style="width:45%;margin-right: 35%;"></div>
+                <div class="padding-a5">
+                  <span>掩码</span>
+                  &nbsp;&nbsp;
+                  <input type="text" id="maskAddress1" style="width:45%;margin-right: 35%;"></div>
+                <div class="padding-a5">
+                  <span>网关</span>
+                  &nbsp;&nbsp;
+                  <input type="text" id="gatewayAddress1" style="width:45%;margin-right: 35%;"></div>
+              </div>
+            </div>
+          </div>
+          &nbsp;&nbsp;
+          <span style="position: relative;top: 10px;left: -83%;background: #fff;">钟卡</span>
+          &nbsp;&nbsp;
+          <div class="w-9h fa15x  uba bc-border3 b-radius bc-bg umar-t" style="height:70%;">
+
+            <div class="w-45h float-l fa15x b-radius t-right padding-a5">
+              <div class="w-9h fa15x b-radius bc-bg" >
+                <div class="padding-a5" style="text-align: center;padding-left: 90px;">cc1-1</div>
+                <div class="padding-a5">
+                  <span >IP地址</span>
+                  &nbsp;&nbsp;
+                  <input id="ipAddress2" type="text"  style="width:194px;margin-right: 3%;"/>    
+                </div>
+                <div class="padding-a5">
+                  <span >掩码</span>
+                  &nbsp;&nbsp;
+                  <input id="maskAddress2" type="text"  style="width:194px;margin-right: 3%;"/>    
+                </div>
+                <div class="padding-a5">
+                  <span >网关</span>
+                  &nbsp;&nbsp;
+                  <input id="gatewayAddress2" type="text"  style="width:194px;margin-right: 3%;"/>    
+                </div>
+                <div class="padding-a5">
+                  <span >当前速率</span>
+                  &nbsp;&nbsp;
+                  <input id="ethLinkSpeed1" type="text" disabled="disabled"  disabled="disabled"   style="width:194px;margin-right: 3%;"/>    
+                </div>
+                <div class="padding-a5">
+                  <span >自动协商使能</span>
+                  <select id="ethAutoNegState"   style="width:194px;height:25px;">
+                    <option value="0">disable</option>
+                    <option value="1">enable</option>
+                  </select>
+                  &nbsp;&nbsp;
+                </div>
+
+                <div class="padding-a5">
+                  <span >自动协商速率</span>
+                  <select id="ethAutoNegSpeed"   style="width:194px;height:25px;">
+                    <option value="0">all</option>
+                    <option value="1">100</option>
+                    <option value="2">1000</option>
+                  </select>
+                  &nbsp;&nbsp;
+                </div>
+                <div class="padding-a5">
+                  <span >IP端口状态</span>
+                  <select id="ipPortState2"   style="width:194px;height:25px;">
+                    <option value="0">disable</option>
+                    <option value="1">enable</option>
+                  </select>
+                  &nbsp;&nbsp;
+                </div>
+                <div class="padding-a5">
+                  <button id="restart2"  style="width:194px;margin-right:2.5%;height:25px;">重启端口</button>
+                </div>
+              </div>
+            </div>
+            <div class="w-half float-l fa15x  b-radius t-left padding-a5">
+              <div class="w-half float-l fa15x b-radius bc-bg" >
+                <div class="padding-a5" style="text-align: center;">cc1-2</div>
+                <div class="padding-a5">
+                  <input id="ipAddress3" type="text"  style="width:194px;"/>    
+                </div>
+                <div class="padding-a5">
+                  <input id="maskAddress3" type="text"  style="width:194px;"/>    
+                </div>
+                <div class="padding-a5">
+                  <input id="gatewayAddress3" type="text"  style="width:194px;"/>    
+                </div>
+                <div class="padding-a5">
+                  <input disabled="disabled" id="ethLinkSpeed2" type="text"  style="width:194px;"/>    
+                </div>
+                <div class="padding-a5">
+                  <select id="ethAutoNegState2"   style="width:194px;height:25px;">
+                    <option value="0">disable</option>
+                    <option value="1">enable</option>
+                  </select>
+                </div>
+                <div class="padding-a5">
+                  <select id="ethAutoNegSpeed2"   style="width:194px;height:25px;">
+                    <option value="0">all</option>
+                    <option value="1">100</option>
+                    <option value="2">1000</option>
+                  </select>
+                </div>
+                <div class="padding-a5">
+                  <select id="ipPortState3"   style="width:194px;height:25px;">
+                    <option value="0">disable</option>
+                    <option value="1">enable</option>
+                  </select>
+                </div>
+                <div class="padding-a5">
+                  <button id="restart3" style="width:194px;margin-right:2.5%;height:25px;">重启端口</button>
+                </div>
+              </div>
+              <div class="w-half float-l fa15x b-radius bc-bg" >
+                <div class="w-9h uba bc-border1  b-radiusfa15x b-radius bc-bg t-middle" style="margin-top:15px;margin-left: 15px;">
+                  <div class="padding-a5">
+                    <p style="margin:0;">状态</p>
+                    <p style=" margin: 0 0 5px;">端口1 业务模式:</p>
+                    &nbsp;
+                    <select class="selectq umar-a" id="pktServiceCCPortA" disabled style="width:62%;">
+                      <option value="0">ptp-gm</option>
+                      <option value="1">ptp-probe</option>
+                      <option value="2">ntp-server</option>
+                      <option value="3">ntp-probe</option>
+                    </select>
+                    &nbsp;&nbsp;
+                    <p style=" margin: 0 0 5px;">端口2 业务模式:</p>
+                    &nbsp;
+                    <select class="selectq umar-a" id="pktServiceCCPortB" disabled style="width:62%;">
+                      <option value="0">ptp-gm</option>
+                      <option value="1">ptp-probe</option>
+                      <option value="2">ntp-server</option>
+                      <option value="3">ntp-probe</option>
+                    </select>
+                    &nbsp;
+                  </div>
+                </div>
+                <div class="w-9h uba bc-border1  b-radius fa15x b-radius bc-bg t-middle" style="margin-top:15px; margin-left: 15px;" >
+                  <div class="padding-a5">
+                    <p style="margin:0;">设置</p>
+                    端口:
+                    <select class="umar-a" id="pktServiceCCPort"  style="width:62%;">
+                      <option value="1">端口1</option>
+                      <option value="2">端口2</option>
+                    </select>
+                    &nbsp;&nbsp;
+                    <br>    
+                    模式:
+                    <select id="pktServiceCCMode" class="umar-a"  style="width:62%;height:25px;margin-bottom: 25px;">
+                      <option value="0">ptp-gm</option>
+                      <option value="1">ptp-probe</option>
+                      <option value="2">ntp-server</option>
+                      <option value="3">ntp-probe</option>
+                    </select>
+                    &nbsp;&nbsp;
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <span style="position: relative;top: 10px;left: 10px;background: #fff;">防火墙</span>
+          &nbsp;&nbsp;
+          <div class="w-9h fa15x  uba bc-border3 b-radius bc-bg umar-t" style="height:25%;">
+            <div class="w-47h float-l fa15x  b-radius t-right padding-a5">
+              <div class="w-9h fa15x b-radius bc-bg" >
+                <div class="padding-a5">
+                  <span >TELNET</span>
+                  &nbsp;&nbsp;
+                  <select id="firewallState1"   style="width:62%;margin-right: 3%;height:25px;">
+                    <option value="0">block</option>
+                    <option value="1">allow</option>
+                  </select>
+                  &nbsp;&nbsp;
+                </div>
+                <div class="padding-a5">
+                  <span >SSH</span>
+                  &nbsp;&nbsp;
+                  <select id="firewallState2"   style="width:62%;margin-right: 3%;height:25px;">
+                    <option value="0">block</option>
+                    <option value="1">allow</option>
+                  </select>
+                  &nbsp;&nbsp;
+                </div>
+                <div class="padding-a5">
+                  <span >SNMP</span>
+                  &nbsp;&nbsp;
+                  <select id="firewallState5"   style="width:62%;margin-right: 3%;height:25px;">
+                    <option value="0">block</option>
+                    <option value="1">allow</option>
+                  </select>
+                  &nbsp;&nbsp;
+                </div>
+              </div>
+            </div>
+            <div class="w-45h float-l fa15x b-radius t-right padding-a5">
+              <div class="w-9h fa15x b-radius bc-bg" >
+                <div class="padding-a5">
+                  <span >FTP</span>
+                  &nbsp;&nbsp;
+                  <select id="firewallState3"   style="width:62%;margin-right: 3%;height:25px;">
+                    <option value="0">block</option>
+                    <option value="1">allow</option>
+                  </select>
+                  &nbsp;&nbsp;
+                </div>
+                <div class="padding-a5">
+                  <span >SFTP</span>
+                  &nbsp;&nbsp;
+                  <select id="firewallState4"   style="width:62%;margin-right: 3%;height:25px;">
+                    <option value="0">block</option>
+                    <option value="1">allow</option>
+                  </select>
+                  &nbsp;&nbsp;
+                </div>
+                <div class="padding-a5">
+                  <span >ICMP</span>
+                  &nbsp;&nbsp;
+                  <select id="firewallState6"   style="width:62%;margin-right: 3%;height:25px;">
+                    <option value="0">block</option>
+                    <option value="1">allow</option>
+                  </select>
+                  &nbsp;&nbsp;
+                </div>
+              </div>
+            </div>
+
+          </div>
+          <div class="modal-footer" style="border-top:0;text-align: left;position: absolute;bottom: -2%;left: 44%;">
+            <button type="button" id="ipETHSub" class="btn btn-primary" style="width: 70px;margin-left: 20px;">设置</button>
+            <button type="button" class="btn btn-danger" style="width: 70px;margin-left: 20px;" data-dismiss="modal">退出</button>
+            <span id="mesSub" class="padding-a red fa12x" style="margin-top:10px;"></span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+    </div>
+    <div style="float: right;">
+    <tm-pagination conf="paginationConf"></tm-pagination>
+    </div>

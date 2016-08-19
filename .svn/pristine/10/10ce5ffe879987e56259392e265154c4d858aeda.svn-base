@@ -1,0 +1,28 @@
+;(function(app){
+	app.controller('alarmRuleEditAddCtrl', ['$scope','$rootScope','$http','$state', "$window", 'publicService',  function($scope, $rootScope, $http, $state,$window, publicService){
+		if($scope.mauto){
+			$scope.alarmRuleTitle = "修改";
+		}else{
+			$scope.alarmRuleTitle = "添加";
+		}
+		$scope.alarmRuleEditAddsub = function(m){
+			m.activeAlarmSubId = 0;
+			publicService.doRequest("POST", 25, m).success(function(data){
+				publicService.loading('end');
+				if (data.errCode) {
+					publicService.ngAlert(data.message, "danger");
+				}else{
+					publicService.ngAlert($scope.alarmRuleTitle + '成功！',"success");
+					if($scope.alarmRuleTitle === "添加"){
+						delete $scope.mauto;
+					}
+				}
+			})
+		}
+		$scope.backRule = function(){
+			$rootScope.mauto && delete $rootScope.mauto;
+			window.history.back();
+			//$state.go('index.alarm',{}, {reload: true});
+		}
+	}]);
+})(routerApp);

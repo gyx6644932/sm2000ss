@@ -1,0 +1,59 @@
+<div class="row">
+    <div class="col-md-12">
+        <h3>{{autoT}}</h3>
+        <div class="boxH"></div>
+        <form class="form-horizontal formBiao">
+            <div class="form-group">
+                <label for="inputEmail3" class="col-sm-3 col-sm-offset-1 control-label">备份类型: </label>
+                <div class="col-sm-2 ">
+                    <select ng-model="modelAuto.backupStrategy" ng-change="backupStrategyFun(modelAuto.backupStrategy)" class="form-control input-sm">
+                        <option value="0">归档</option>
+                        <option value="1">备份</option>
+                    </select>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="inputEmail3" class="col-sm-3 col-sm-offset-1 control-label">表名: </label>
+                <div class="col-sm-2 " ng-cloak>
+                    <select ng-model="modelAuto.tableName" class="form-control input-sm">
+                        <option value="">请选择</option>
+                        <option ng-repeat="m in databaseTableName" databaseTableND value="{{m.objectName}}">{{m.objectCnname}}</option>
+                    </select>
+                </div>
+            </div>
+            <div class="form-group" ng-if="modelAuto.backupStrategy == '0'">
+                <label for="inputEmail3" class="col-sm-3 col-sm-offset-1 control-label">子类: </label>
+                <div class="col-sm-2">
+                    <select ng-model="modelAuto.subType" class="form-control input-sm">
+                        <option value="">请选择</option>
+                        <option ng-repeat="m in subTypeList" value="{{m.objectName}}">{{m.objectName}}</option>
+                    </select>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="inputEmail3" class="col-sm-3 col-sm-offset-1 control-label">最大数据量: </label>
+                <div class="col-sm-5 ">
+                    <input type="text" class="form-control" ng-model="modelAuto.maxSize" >
+                </div>
+            </div>
+            <div class="form-group"> 
+                <label for="inputEmail3" class="col-sm-3 col-sm-offset-1 control-label">最大存储月数: </label>
+                <div class="col-sm-5 ">
+                    <input type="text" class="form-control" ng-model="modelAuto.maxMonth" >
+                </div>
+            </div>
+            <div class="form-group" ng-if="modelAuto.backupStrategy == '1'">
+                <label for="inputEmail3" class="col-sm-3 col-sm-offset-1 control-label">存储路径: </label>
+                <div class="col-sm-7 ">
+                    <input type="text" class="form-control" ng-model="modelAuto.backupLocation" >
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-sm-offset-5 col-sm-4">
+                    <input type="button" class="btn btn-warning btn-md" value="返回" ng-click="backAuto()">
+                    <input type="button" class="btn btn-warning btn-md" value="确认" ng-click="dababaseAutoSub(modelAuto)">
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,160 @@
+    <div class="content-s">
+      <div class="row tableTs" >
+        <div class="container-fluid umar-a h-8h" style="margin-top:10px;">
+          <div class="bc-bg w-9h float-l fa15x  uba bc-border3  b-radius padding-l padding-r padding-b15 ">
+            <div class="float-l w-half ">
+              <span class="umar-a8">端口选择</span>
+              <select id="ptpCommonStateId" class="umar-a8" onchange="changeptpCommonState()" >
+                <option value="1">端口1</option>
+                <option value="2">端口2</option>
+              </select>
+            </div>
+            <div class="w-47h float-l fa15x  b-radius padding-l padding-r padding-b15 t-right clear">
+              <div class="w-full fa15x b-radius padding-b15" >
+                <div class="padding-a5 uba bc-border1 umar-t">
+                  <span >端口使能</span>
+                  &nbsp;&nbsp;
+                  <select id="ptpCommonState" style="width:40%;margin-right: 13%;">
+                    <option value="0">disable</option>
+                    <option value="1">enable</option>
+                  </select>
+                </div>
+                <div class="padding-a5 uba bc-border1 umar-t">
+                  <span >最大客户端数</span>
+                  &nbsp;&nbsp;
+                  <input id="ptpCommonMaxClient" type="text"style="width:40%;margin-right: 13%;"/>    
+                </div>
+                <div class="padding-a5 uba bc-border1 umar-t">
+                  <span >Profile</span>
+                  &nbsp;&nbsp;
+                  <select id="ptpCommonProfile" style="width:40%;margin-right: 13%;">
+                    <option value="0">telecom-2008</option>
+                    <option value="1">defult</option>
+                    <option value="2">hybird</option>
+                    <option value="3">itu-g8265-1</option>
+                  </select>
+                </div>
+                <div class="padding-a5 uba bc-border1 umar-t">
+                  <span >Clock ID</span>
+                  &nbsp;&nbsp;
+                  <input id="ptpCommonClockID" type="text"style="width:40%;margin-right: 13%;"/>    
+                </div>
+                <div class="padding-a5 uba bc-border1 umar-t">
+                  <span >Domain</span>
+                  &nbsp;&nbsp;
+                  <input id="ptpCommonDomain" type="text"style="width:40%;margin-right: 13%;" />    
+                </div>
+                <div class="padding-a5 uba bc-border1 umar-t">
+                  <span >Sync Limit</span>
+                  &nbsp;&nbsp;
+                  <input id="ptpCommonSyncLimit" type="text"style="width:40%;margin-right: 13%;"/>    
+                </div>
+                <div class="padding-a5 uba bc-border1 umar-t">
+                  <span >Delay Limit</span>
+                  &nbsp;&nbsp;
+                  <input id="ptpCommonDelayLimit" type="text"style="width:40%;margin-right: 13%;"/>    
+                </div>
+                <div class="padding-a5 uba bc-border1 umar-t">
+                  <span >Two Step</span>
+                  &nbsp;&nbsp;
+                  <select id="ptpCommonTwoStep" style="width:40%;margin-right: 13%;">
+                    <option value="0">disable</option>
+                    <option value="1">enable</option>
+                  </select>
+                </div>
+                <div class="padding-a5 uba bc-border1 umar-t">
+                  <span >管理寻址模式</span>
+                  &nbsp;&nbsp;
+                  <select id="ptpCommonMgmtAddrMode" style="width:40%;margin-right: 13%;">
+                    <option value="0">unicast</option>
+                    <option value="1">Multicast</option>
+                  </select>
+                </div>
+                <div class="padding-a5 uba bc-border1 umar-t">
+                  <span >Unicast Negotiation</span>
+                  &nbsp;&nbsp;
+                  <select id="ptpUnicastNegotiate" style="width:40%;margin-right: 13%;">
+                    <option value="0">disable</option>
+                    <option value="1">enable</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+            <div class="w-half float-l fa15x  b-radius padding-l padding-r padding-b15 t-right">
+              <div class="w-full fa15x b-radius padding-b15" >
+                <div class="padding-a5 uba bc-border1 umar-t">
+                  <span >Time Scale</span>
+                  &nbsp;&nbsp;
+                  <select id="ptpCommonTimescale" style="width:40%;margin-right: 13%;">
+                    <option value="0">auto</option>
+                    <option value="1">arb</option>
+                    <option value="2">ptp</option>
+                  </select>
+                </div>
+                <div class="padding-a5 uba bc-border1 umar-t">
+                  <span >优先级1</span>
+                  &nbsp;&nbsp;
+                  <input id="ptpCommonPriority1" type="text"style="width:40%;margin-right: 13%;"/>    
+                </div>
+                <div class="padding-a5 uba bc-border1 umar-t">
+                  <span >优先级2</span>
+                  &nbsp;&nbsp;
+                  <input id="ptpCommonPriority2" type="text"style="width:40%;margin-right: 13%;"/>    
+                </div>
+                <div class="padding-a5 uba bc-border1 umar-t">
+                  <span >DSCP</span>
+                  &nbsp;&nbsp;
+                  <input id="ptpCommonDSCP" type="text"style="width:40%;margin-right: 13%;"/>    
+                </div>
+                <div class="padding-a5 uba bc-border1 umar-t">
+                  <span >DSCP使能</span>
+                  &nbsp;&nbsp;
+                  <select id="ptpCommonDSCPState" style="width:40%;margin-right: 13%;">
+                    <option value="0">disable</option>
+                    <option value="1">enable</option>
+                  </select>
+                </div>
+                <div class="padding-a5 uba bc-border1 umar-t">
+                  <span >Announce Limit</span>
+                  &nbsp;&nbsp;
+                  <input id="ptpCommonAnnounceLimit" type="text"style="width:40%;margin-right: 13%;"/>    
+                </div>
+                <div class="padding-a5 uba bc-border1 umar-t">
+                  <span >Dither</span>
+                  &nbsp;&nbsp;
+                  <select id="ptpCommonDither" style="width:40%;margin-right: 13%;">
+                    <option value="0">disable</option>
+                    <option value="1">enable</option>
+                  </select>
+                </div>
+                <div class="padding-a5 uba bc-border1 umar-t">
+                  <span >TTL</span>
+                  &nbsp;&nbsp;
+                  <input id="ptpCommonTTL" type="text"style="width:40%;margin-right: 13%;"/>    
+                </div>
+                <div class="padding-a5 uba bc-border1 umar-t">
+                  <span >Alternate Master</span>
+                  &nbsp;&nbsp;
+                  <select id="ptpCommonAlternateMaster" style="width:40%;margin-right: 13%;">
+                    <option value="0">disable</option>
+                    <option value="1">enable</option>
+                  </select>
+                </div>
+                <div class="padding-a5 uba bc-border1 umar-t">
+                  <span >Unicast Lease Duration</span>
+                  &nbsp;&nbsp;
+                  <input id="ptpUnicastLeaseDuration" type="text"style="width:40%;margin-right: 13%;"/>    
+                </div>
+              </div>
+            </div>
+            <div class="modal-footer" style="border-top:0;text-align: left;position: absolute;bottom: 2%;left: 44.7%;">
+              <button id="CommonSub" type="button" class="btn btn-primary" style="width: 70px;margin-left: 20px;">设置</button>
+              <button type="button" class="btn btn-danger" style="width: 70px;margin-left: 20px;" data-dismiss="modal">退出</button>
+              <span id="mesSub" class="padding-a red fa12x" style="margin-top:10px;"></span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div style="float: right;">
+        <tm-pagination conf="paginationConf"></tm-pagination>
+      </div>

@@ -1,0 +1,762 @@
+;(function(app){
+    app.controller('tuopuCtrl',['$scope','$rootScope','$state', "$timeout", 'publicService',"ngDialog", "areaData", "mapData",function($scope, $rootScope, $state, $timeout, publicService,ngDialog,areaData,mapData){
+        //滚动鼠标地图放大缩小
+        window.zoozImg = function(){
+            zoomImgObj.init(document.getElementById('canvas'));
+        }
+        zoomImgObj = {
+            sum: 1,
+            scale: 0.05,
+            init: function(dom) {
+                var x = event.clientX - dom.parentElement.offsetLeft,
+                    y = event.clientY - dom.parentElement.offsetTop;
+                if (event.wheelDelta > 0) {
+                    this.sum += this.scale;
+                } else {
+                    this.sum -= this.scale;
+                    if (this.sum < 1) this.sum = 1;
+                }
+                dom.style.transform = "scale(" + this.sum + ")";
+                dom.style.transformOrigin = x + 'px ' + y + 'px';
+                dom.style.transition = 'transform 0.5s';
+            }
+        }
+        function webSocketFun() {
+            websocket = new WebSocket('ws://' + location.hostname + ':8080/nms/socket');
+            websocket.onopen = function(evt) {
+                onOpen(evt)
+            };
+            websocket.onclose = function(evt) {
+                onClose(evt)
+            };
+            websocket.onmessage = function(evt, num) {
+                onMessage(evt)
+            };
+            websocket.onerror = function(evt) {
+                onError(evt)
+            };
+        }
+        webSocketFun();
+
+        var devicePipei = {
+            "CRITI":{
+                u : "images/sound/3.mp3",
+                s : 0,
+                c : "red"
+            },
+            "MAJOR":{
+                u : "images/sound/2.mp3",
+                s : 3,
+                c : "pink"
+            },
+            "MINOR":{
+                u : "images/sound/1.mp3",
+                s : 4,
+                c : "yellow"
+            },
+            "onLine":{
+                u : "",
+                s : 6,
+                c : "greent"
+            },
+            "offLine":{
+                u : "images/sound/3.mp3",
+                s : 0,
+                c : "gery"
+            },
+        };
+        function onOpen(evt) {
+            //console.log("onOpene:", evt)
+        }
+        function onClose(evt) {
+            //console.log("onClose:", evt)
+        }
+        function onMessage(evt) {
+            if (!evt || !evt.data || evt.data.length < 0) return;
+            var res = evt.data,
+                obj = JSON.parse(res),
+                code = obj.code;
+            if (code == "100000") {
+                console.log(obj.data)
+                var ooo = obj.data;
+                if(ooo.activeAlarmDesc){
+                    var desc_ = ooo.activeAlarmDesc;
+                    if(desc_.indexOf("loss of signal") > -1 || desc_.indexOf("disqualified as system reference") > -1){
+                        var sp = desc_.split(/\s/)[0],
+                            slotAndport = sp.split('-'),
+                            port_ = slotAndport[1],
+                            slot_ = slotAndport[0],
+                            slot_ = slot_.substring(slot_.indexOf('t') + 1, slot_.length),
+                            it = $scope.instance,
+                            tpData = $scope.tuopoData
+                        if(tpData && tpData.data){
+                            var tpd = tpData.data;
+                            for(var j in tpd){
+                                if(tpd[j]["targetIds"] && tpd[j]["targetIds"].length > 0){
+                                    var oso = tpd[j]["targetIds"];
+                                    for (var q = 0; q < oso.length; q++) {
+                                        if(oso[q].port === port_ && oso[q].slot === slot_){
+                                            delBetweenCon(it, $scope, publicService, j, oso[q].ip);
+                                            break;
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+                $timeout(function(){
+                    if(ooo.ip && ooo.activeAlarmLevel){
+                        //这个是数据最新
+                        treeColor(ooo.ip, devicePipei[ooo.activeAlarmLevel]["c"]);
+                    }
+                    $timeout(function(){
+                        //等树加载完之后，，查数上的设备级别 找出最高的。
+                        maxAlarmSound();
+                    },1000)
+                },1000)
+                if(publicService.alwaysAlarmLoad && window.location.hash.indexOf("#/index/alwaysAlarm") !== -1 && obj.data.deviceId && obj.data.deviceId === $scope.curDeviceId) publicService.alwaysAlarmLoad($scope.curDeviceId); // 时实更新告警;
+            }
+        }
+
+        //过滤设备树最高级别的告警声音
+        function maxAlarmSound(){
+            var m = treeColor();
+            if(m.length > 0){
+                var maxAlarm = Math.min.apply(null, m);
+                for(var s in devicePipei){
+                    if(devicePipei[s]["s"] === maxAlarm){
+                        document.getElementById("audio").src = devicePipei[s]["u"];
+                    }
+                }
+            }
+        }
+
+
+        $scope.but = function(){
+            //treeColor("192.168.81.53", "yellow")
+        }
+
+        var treeColor = function(ip, t){
+            var treeList = $scope.deviceTreeData;
+            if(treeList.length > 0){
+                $rootScope.alarmLevelArray = [];
+                for (var i = 0; i < treeList.length; i++) {
+                    var devices = treeList[i].children;
+                    if(devices.length > 0){
+                        for (var y = 0; y < devices.length; y++) {
+                            if(ip === devices[y].ip && devices[y].type !== t){
+                                //devices[y].type = "gery"
+                                // IP相同，但上报来的消息级别与原来设备的告警级别不同，拉取新接口换最新的颜色
+                            }else{
+                                $rootScope.alarmLevelArray.push(clo(devices[y].type));
+                            }
+                            
+                        }
+                    }
+                }
+                $rootScope.alarmLevelArray = $rootScope.alarmLevelArray.unique();
+            }
+            return $rootScope.alarmLevelArray;
+        }
+        function clo(t){
+            for(var j in devicePipei){
+                if(devicePipei[j]["c"] === t) return devicePipei[j]["s"]
+            }
+        }
+
+
+
+        function delBetweenCon(instance, scope, service, sourceId, targetId){
+            var cons = instance.getConnections();
+            if(cons.length > 0){
+                for (var i = 0; i < cons.length; i++) {
+                    if(cons[i].sourceId === sourceId && cons[i].targetId === targetId){
+                        instance.detach(cons[i]);
+                        deleteLine(scope, cons[i], service);
+                        break;
+                    }
+                }
+            }
+        }
+
+        function onError(evt) {
+            console.log("onerror:", evt)
+        }
+        // $scope.opts = { // 点击节点展开树；
+        //     dirSelectable: false
+        // };
+        $scope.sounds = function(){
+            $scope.$emit("otherSoundUrlMsg", "images/sound/alarm.mp3")
+        }
+        $scope.sounds1 = function(){
+            $scope.$emit("otherSoundUrlMsg", 12000)
+        }
+
+
+        $scope.showSelected = function(sel) {
+            $scope.selectedNode = sel;
+        };
+
+        //地图
+        $scope.mapList = mapData.data.data;
+        $scope.checkMap = function(sel) {
+            var cans = angular.element(document.getElementById("canvas"));
+            if(cans){
+                cans.css({
+                    "background": "url(" + 'http://' + location.host + '/mapImg/' + sel + ") no-repeat",
+                    'background-size': "100% 100%"
+                });
+                localStorage.setItem("mapUlr", sel);
+            }
+        };
+        //拓扑定位
+        $scope.posDinfun = function(){
+            var d = document.getElementsByName($scope.posDin)[0];
+            if(d){
+                //treecontrol.tree-light li .tree-selected span:last-child
+                var ss = angular.element(d).parent().parent().parent();
+                if(ss ||　ss[0].nodeName === "UL"){
+
+                    angular.element($q(".tree-selected")).removeClass('tree-selected');
+                    angular.element(d).parent().addClass('tree-selected');
+                    ss.removeClass('ops1');
+                    d.scrollIntoView();
+                    $scope.treeFun(JSON.parse(angular.element(ss.parent().parent().find("span")[1]).attr("obj")));
+
+                    $timeout(function(){
+                        var dd = angular.element(d).attr('treeid');
+                        angular.element($q(".tuopuSpan")).removeClass('tuopuSpan');
+                        angular.element($(dd)).find("span").eq(1).addClass("tuopuSpan");
+                    },300)
+                   
+                }
+            }else{
+                publicService.ngAlert('没有查到该设备！');
+            }
+        }
+
+        $scope.dMouseDown = function(){
+            this.xy = {x : event.pageX, y : event.pageY};
+        }
+        //修改添加拓扑图设备
+        $scope.tuopuDigEditAdd = function(m){
+            var self = this;
+            if(m){
+                $rootScope.mauto = self.deviceManageModel
+            }else{
+                $rootScope.mauto && delete $rootScope.mauto;
+            }
+            ngDialog.close('ngdialog1');
+            $state.go("index.tuopuDeviceAddEdit")
+        }
+        //实施告警
+        $scope.alwaysAlarm = function(m){
+            var self = this;
+            $rootScope.curDeviceId = self.deviceManageModel.id;
+            ngDialog.close('ngdialog1');
+            $state.go("index.alwaysAlarm", {id : self.deviceManageModel.id});
+        }
+        //删除拓扑图设备
+        $scope.tuopuDigDel = function(m){
+            var self = this;
+            if(confirm('确认删除？')){
+                ngDialog.close('ngdialog1');
+                var ip = self.deviceManageModel.ip,
+                    dom = $(ip),
+                    tup = self.tuopoData.data;
+                self.tuopu.splice(self.tuopu.indexOf(self.deviceManageModel),1);//删除拓扑图设备;
+                self.instance.detachAllConnections(dom);//删除拓扑连线
+                self.instance.removeAllEndpoints(dom);//删除拓扑连线的点
+                for(var j in tup){
+                    if(j === ip){
+                        delete tup[j];
+                    }else if(tup[j]["targetIds"]){
+                        var tag = tup[j]["targetIds"];
+                        if(tag.length > 0){
+                            for (var f = 0; f < tag.length; f++) {
+                                if(tag[f].ip === ip){
+                                    tag.splice(f, 1);
+                                }
+                            }
+                        }
+                    }
+                }
+                self.tuopoData.data = JSON.stringify(self.tuopoData.data);
+                publicService.loading('start')
+                publicService.doRequest("POST", 5, self.tuopoData.data).success(function(){//连线定位表里删除
+                    self.tuopoData.data = JSON.parse(self.tuopoData.data);
+                    publicService.doRequest("DELETE", "/nms/spring/devices/" + self.deviceManageModel.id, {});//设备表里删除
+                    publicService.loading('end');
+                    publicService.ngAlert('删除成功！', "success");
+                })
+            }
+        }
+        //拓扑图设备操作事件
+        $scope.ddbclick = function(item){
+            var self = this;
+            ngDialog.open({ 
+                template : "template/dialog/tpcDialog.html",
+                className : 'ngdialog-theme-flat ngdialog-theme-custom',
+                scope : self,
+                width: 407,
+                controller : function($scope,publicService){
+                    //delete item.children;
+                    $scope.$parent.deviceManageModel = item;
+                    $scope.tuopuDeviceIp = item.ip;
+                },
+                preCloseCallback : function($scope){
+                    // if(!scope.dialogClose){
+                    //     instance.detach(connection);
+                    //     scope.dialogClose = false;
+                    // }
+                } 
+            });
+        }
+        ////拓扑图排序
+        $scope.tuopuSort = function(){
+            var self = this;
+            self.tuopu = [];
+            publicService.doRequest("GET", "/nms/spring/devices/parents/" + this.tuopuAreaId, {}).success(function(r){
+                self.tuopu = r.data;
+                if(r.data && r.data.length > 0){
+                    publicService.loads(function(){
+                        jsPlumbas($scope, publicService, ngDialog, true);
+                    })
+                }
+            })
+        }
+        
+        
+        
+        //拓扑图位置
+        $scope.dMouseUp = function(item){
+            if(this.xy && event.pageX === this.xy.x && event.pageY === this.xy.y) return;
+            var areaId = $scope.tuopuAreaId,
+                userid = localStorage.getItem("curUserId");
+            publicService.doRequest("GET", 5, {areaId : areaId,userid : userid}).success(function(r){
+                $scope.tuopoData = r.data.length === 0 ? {} : r.data[0];
+                $scope.tuopoData.data && ($scope.tuopoData.data = JSON.parse($scope.tuopoData.data));
+                if($scope.tuopoData.areaId === undefined){
+                    $scope.tuopoData.areaId = areaId;
+                    $scope.tuopoData.userid = userid;
+                    $scope.tuopoData.data = {};
+                    $scope.tuopoData.data[item.ip] = {};
+                    $scope.tuopoData.data[item.ip]["possion"] = {};
+                }else{
+                    if(!$scope.tuopoData.data[item.ip]){
+                        $scope.tuopoData.data[item.ip] = {}
+                        $scope.tuopoData.data[item.ip]["possion"] = {};
+                    }else{
+                        if(!$scope.tuopoData.data[item.ip]["possion"]){
+                            $scope.tuopoData.data[item.ip]["possion"] = {};
+                        }
+                    }
+                }
+                $scope.tuopoData.data[item.ip]["possion"]["left"] = ($(item.ip).style.left);
+                $scope.tuopoData.data[item.ip]["possion"]["top"] =($(item.ip).style.top);
+                $scope.tuopoData.data = JSON.stringify($scope.tuopoData.data);
+                publicService.doRequest("POST", 5, $scope.tuopoData).success(function(){
+                    $scope.tuopoData.data = JSON.parse($scope.tuopoData.data)
+                })
+            })
+        }
+       
+        //加载拓扑与设备树
+        publicService.doRequest("GET", 4, {type : "all"}).success(function(data){
+            if(data.data && data.data.length > 0){
+                $scope.deviceTreeData = data.data;
+                for (var i = 0; i < data.data.length; i++) {
+                    if(data.data[i].children && data.data[i].children.length > 0){
+                        $scope.tuopu = data.data[i].children;
+                        $scope.tuopuAreaId = data.data[i].id;
+                        $scope.flag = data.data[i].flag;
+                        break;
+                    }
+                }
+                var o = {};
+                    o.areaId = $scope.tuopuAreaId;
+                    o.userid = localStorage.getItem("curUserId");
+                publicService.doRequest("GET", 5, o).success(function(r){
+                    $scope.tuopoData = r.data.length === 0 ? {} : r.data[0];
+                    $scope.tuopoData.data && ($scope.tuopoData.data = JSON.parse($scope.tuopoData.data));
+                    //publicService.loads(function(){
+                    $timeout(function(){
+                        //加载拓扑图
+                        jsPlumbas($scope, publicService, ngDialog);
+                        //初使化声音加载
+                        maxAlarmSound();
+                    })
+                })
+            }
+        });
+
+        //区域切换
+        $scope.treeFun = function(sel) {
+            var self = this;
+            $scope.flag = sel.flag;//切换标识
+            if(sel.flag && sel.flag === "area"){ //第二个条件为了解决同一区域点击两次
+                $scope.instance.unbind('dblclick');//处理绑定事件
+                $scope.tuopu = [];
+                $scope.instance.deleteEveryEndpoint();
+                $timeout(function(){
+                    $scope.tuopu = sel.children;
+                    $scope.tuopuAreaId = sel.id;
+                    var f ={};
+                        f.areaId = $scope.tuopuAreaId,
+                        f.userid = localStorage.getItem("curUserId");
+                    publicService.doRequest("GET", 5, f).success(function(r){
+                        $scope.tuopoData = r.data.length === 0 ? {} : r.data[0];
+                        $scope.tuopoData.data && ($scope.tuopoData.data = JSON.parse($scope.tuopoData.data));
+                        jsPlumbas($scope, publicService, ngDialog);
+                    })
+                })
+            }
+            if(sel.flag && sel.flag === "device"){
+                $scope.tuopuAreaId = sel.parentId;
+                var r = sel.children;
+                var arr = [];
+                if (r && r.length > 0) {
+                    for (var i = 0; i < r.length; i++) {
+                        if (r[i].name !== "MainShelf") {
+                            arr.push(r[i].name)
+                        }
+                    }
+                }
+                $timeout(function(){
+                    loadTopoData(arr);
+                },0)
+            }
+        };
+    }]);
+
+
+    function jsPlumbas(scope, service, ngDialog, flag) {
+        var instance = window.jsp = jsPlumb.getInstance({
+            DragOptions: { cursor: 'pointer', zIndex: 2000},
+            ConnectionOverlays: [
+                ["Arrow", { location: 1}],
+                ["Label", { location: 0.5, id: "label", cssClass: "aLabel"}]
+            ],
+            Container: "canvas"
+        });
+        var mos = document.querySelectorAll(".jsplumb-endpoint.jsplumb-endpoint-anchor,.jsplumb-overlay,svg");
+        for (var i = 0; i < mos.length; i++) {
+            var _p = mos[i].parentNode;
+            if(_p){
+                _p.removeChild(mos[i]);  
+            }
+        }
+        var basicType = {
+            connector: "StateMachine",
+            paintStyle: {
+                strokeStyle: "white" /*, lineWidth: 1*/
+            },
+            hoverPaintStyle: {
+                strokeStyle: "white"
+            },
+            overlays: [
+                "Arrow"
+            ]
+        };
+        instance.registerConnectionType("basic", basicType);
+        var connectorPaintStyle = {
+                lineWidth: 1,
+                strokeStyle: "#fff",
+                joinstyle: "round",
+                outlineColor: "white",
+                outlineWidth: 2
+            },
+            connectorHoverStyle = {
+                lineWidth: 4,
+                strokeStyle: "#216477",
+                outlineWidth: 2,
+                outlineColor: "white"
+            },
+            endpointHoverStyle = {
+                fillStyle: "#216477",
+                strokeStyle: "#216477"
+            },
+            sourceEndpoint = {
+                endpoint: "Dot",
+                paintStyle: {
+                    strokeStyle: "#fff",
+                    fillStyle: "transparent",
+                    radius: 5,
+                    lineWidth: 1
+                },
+                isSource: true,
+                connector: ["Flowchart", {
+                    stub: [40, 60],
+                    gap: 10,
+                    cornerRadius: 1,
+                    alwaysRespectStubs: true
+                }],
+                maxConnections: 200,
+                connectorStyle: connectorPaintStyle,
+                hoverPaintStyle: endpointHoverStyle,
+                connectorHoverStyle: connectorHoverStyle,
+                dragOptions: {},
+                overlays: [
+                    ["Label", {
+                        location: [0.5, 1.5],
+                        label: "",
+                        cssClass: "endpointSourceLabel"
+                    }]
+                ]
+            },
+            targetEndpoint = {
+                endpoint: "Dot",
+                paintStyle: {
+                    fillStyle: "#fff",
+                    radius: 5 //实心圆点大小
+                },
+                hoverPaintStyle: endpointHoverStyle,
+                maxConnections: 200,
+                dropOptions: {
+                    hoverClass: "hover",
+                    activeClass: "active"
+                },
+                isTarget: true,
+                overlays: [
+                    ["Label", {
+                        location: [0.5, -0.5],
+                        label: "",
+                        cssClass: "endpointTargetLabel"
+                    }]
+                ]
+            },
+            init = function(connection) {
+                connection.getOverlay("label").setLabel(connection.sourceId + "-->" + connection.targetId);
+            };
+
+        var _addEndpoints = function(toId, sourceAnchors, targetAnchors) {
+            for (var i = 0; i < sourceAnchors.length; i++) {
+                var sourceUUID = toId + sourceAnchors[i];
+                instance.addEndpoint(toId, sourceEndpoint, {
+                    anchor: sourceAnchors[i],
+                    uuid: sourceUUID
+                });
+            }
+            for (var j = 0; j < targetAnchors.length; j++) {
+                var targetUUID = toId + targetAnchors[j];
+                instance.addEndpoint(toId, targetEndpoint, {
+                    anchor: targetAnchors[j],
+                    uuid: targetUUID
+                });
+            }
+        };
+
+        instance.batch(function() {
+            //$('.jsplumb-endpoint.jsplumb-endpoint-anchor,.jsplumb-overlay,svg').remove();
+
+            // var arrays = [];
+            // angular.forEach($scope.tuopu, function(data,index,array){
+            //     arrays.push(data.ip)
+            // });
+            for (var i = 0; i < scope.tuopu.length; i++) {
+               _addEndpoints(scope.tuopu[i]["ip"], ["TopCenter"], ["Center"]);
+                /*初始化连线标题*/
+                instance.bind("connection", function(connInfo, originalEvent) {
+                    init(connInfo.connection);
+                });
+            }
+            if(scope && scope.tuopoData && scope.tuopoData.data){
+                var r = scope.tuopoData.data;
+                for(var s in r){
+                    if(!flag && r[s]["possion"]){
+                        var dom = $(s);
+                        if(dom){
+                            r[s]["possion"]["left"] && (dom.style.left = r[s]["possion"]["left"]);
+                            r[s]["possion"]["top"] && (dom.style.top = r[s]["possion"]["top"]);
+                        }
+                    }
+                    if(r[s]["targetIds"]){
+                        var s = tuopoz(s, arrayObjs(r[s].targetIds));
+                        line(s);
+                    }
+                }
+            }
+            if(flag){
+                if(!scope.tuopoData.data) scope.tuopoData.data = {};
+                var ooj = scope.tuopoData.data,
+                    tp = scope.tuopu,
+                    _l = 0,  _h = 150;
+                if(tp.length > 0){
+                    for (var i = 0; i < tp.length; i++) {
+                        _l = _l + 160;
+                        $(tp[i].ip).style.left = _l + "px";
+                        $(tp[i].ip).style.top = _h + "px";
+
+                        if(!ooj[tp[i].ip]) ooj[tp[i].ip] = {};
+                        if(!ooj[tp[i].ip]["possion"]) ooj[tp[i].ip]["possion"] = {};
+                        ooj[tp[i].ip]["possion"]["left"] = _l + "px";
+                        ooj[tp[i].ip]["possion"]["top"] = _h + "px";
+                        if((i + 1) % 4 === 0){
+                            _l = 0;
+                            _h = _h + 90;
+                        }
+                    }
+                }
+                scope.tuopoData.data = JSON.stringify(ooj)
+                service.doRequest("POST", 5, scope.tuopoData).success(function(){
+                    scope.tuopoData.data = JSON.parse(scope.tuopoData.data)
+                })
+            }
+
+
+            function arrayObjs(arr){
+                var _a = [];
+                if(arr.length > 0){
+                    for (var i = 0; i < arr.length; i++) {
+                        _a.push(arr[i].ip);
+                    }
+                }
+                return _a.join(',');
+            }
+
+            function tuopoz(s,t){
+                var arr = [],
+                    ss = t.split(",")
+                for (var i = 0; i < ss.length; i++) {
+                    arr.push(s + ',' + ss[i])
+                }
+                return arr;
+            }
+
+            function line(arr){
+                for (var i = 0; i < arr.length; i++) {
+                    var j = arr[i].split(",");
+                    instance.connect({
+                        uuids: [j[0] + "TopCenter", j[1] + "Center"],
+                        editable: true
+                    });
+                }
+            }
+
+            instance.bind("connection", function(connInfo, originalEvent) {
+                init(connInfo.connection);
+            });
+
+            instance.draggable(jsPlumb.getSelector(".flowchart-demo .window"), {
+                grid: [20, 20]
+            });
+            instance.bind("dblclick", function(conn, originalEvent) {
+                if(conn.sourceId && conn.targetId){
+                    if(confirm("确认删除吗？")){
+                        deleteLine(scope, conn, service)
+                        instance.detach(conn);
+                    }
+                    //conn.toggleType("basic");
+                }
+
+            });
+            instance.bind("connectionDrag", function(connection) {
+                if(connection.targetId.indexOf("jsPlumb") === -1){
+                    //deleteLine(connection)
+                }
+                console.log("connection " + connection.id + " is being dragged. suspendedElement is ", connection.suspendedElement, " of type ", connection.suspendedElementType);
+            });
+            instance.bind("connectionDragStop", function(connection) {
+                if(connection.targetId.indexOf("jsPlumb") > -1){
+                    return;
+                }
+                if(connection.target === null){
+                    deleteLine(scope, connection, service);
+                    return;
+                }
+                scope.connection = connection;
+                ngDialog.open({ 
+                    template : "template/dialog/tuopuDialog.html",
+                    className : 'ngdialog-theme-default ngdialog-theme-custom',
+                    scope : scope,
+                    controller : function($scope,publicService){
+                        $scope.subPs = function(oos){
+                            if(!oos || !oos.slot){
+                                publicService.ngAlert('槽位不能为空！',"warning");
+                                return;
+                            }
+                            if(oos.port === ""){
+                                publicService.ngAlert('端口不能为空！',"warning");
+                                return;
+                            }
+                            scope.dialogClose = true;
+                            ngDialog.close('ngdialog1');
+
+                            var areaId = $scope.tuopuAreaId,
+                                userid = localStorage.getItem("curUserId");
+                                targetId = scope.connection.targetId,
+                                sourceId = scope.connection.sourceId,
+                                res = scope.tuopoData;
+                            if(res){
+                                o1 = res.data;
+                                if(o1[sourceId]){
+                                    if(o1[sourceId].targetIds && o1[sourceId].targetIds.length > 0){
+                                        var _ars = o1[sourceId].targetIds, ja =[];
+                                        for (var i = 0; i < _ars.length; i++) {
+                                            ja.push(_ars[i].ip);
+                                        }
+                                        if(ja.indexOf(targetId) !== -1) return;
+                                        o1[sourceId].targetIds.push({port : oos.port, slot : oos.slot, ip : targetId});
+                                    }else{
+                                        var f = o1[sourceId].targetIds instanceof Array;
+                                        !f && (o1[sourceId].targetIds = []);
+                                        o1[sourceId].targetIds.push({port : oos.port, slot : oos.slot, ip : targetId});
+                                    }
+                                }else{
+                                    o1[sourceId] = {};
+                                    o1[sourceId].targetIds = [];
+                                    o1[sourceId].targetIds.push({port : oos.port, slot : oos.slot, ip : targetId})
+                                }
+                            }else{
+                                res.data = {};
+                                res.data[sourceId] = {};
+                                res.data[sourceId].targetIds = [];
+                                res.data[sourceId].targetIds.push({port : oos.port, slot : oos.slot, ip : targetId});
+                                
+                            }
+                            res.data = JSON.stringify(res.data);
+                            publicService.doRequest("POST", 5, scope.tuopoData).success(function(){
+                                scope.tuopoData.data = JSON.parse(scope.tuopoData.data)
+                            })
+                        }
+                    },
+                    preCloseCallback : function($scope){
+                        if(!scope.dialogClose){
+                            instance.detach(connection);
+                            scope.dialogClose = false;
+                        }
+                    } 
+                });
+            });
+
+            instance.bind("connectionMoved", function(params) {
+                console.log("connection " + params.connection.id + " was moved");
+            });
+
+
+        });
+        jsPlumb.fire("jsPlumbDemoLoaded", instance);
+        scope.instance = instance;
+    };
+    function deleteLine(scope, connection, service){
+        var areaId = scope.tuopuAreaId,
+            userid = localStorage.getItem("curUserId");
+            targetId = connection.targetId,
+            sourceId = connection.sourceId,
+            res = scope.tuopoData;
+        if(res.data[sourceId].targetIds.length > 0){
+            var t = res.data[sourceId].targetIds;
+            for (var i = 0; i < t.length; i++) {
+                if(connection.targetId === t[i].ip){
+                    t.splice(i, 1);
+                }
+            }
+        }
+        res.data = JSON.stringify(res.data)
+        service.doRequest("POST", 5, scope.tuopoData).success(function(){
+            scope.tuopoData.data = JSON.parse(scope.tuopoData.data)
+        })
+    }
+
+})(routerApp)

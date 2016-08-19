@@ -1,0 +1,57 @@
+    <div class="content-s">
+      <div class="row tableTs" >
+        <div class="container-fluid umar-a h-8h padding-a" style="margin-top:10px;">
+          <div class="bc-bg w-9h float-l fa15x  uba bc-border3  b-radius padding-l padding-r padding-b15 ">
+            <div class="float-l w-half ">
+              <span class="umar-a8">端口选择</span>
+              <select id="ptpMulticastTableId" class="umar-a8" onchange="changeptpMulticastTable()">
+                <option value="1">端口1</option>
+                <option value="2">端口2</option>
+              </select>
+            </div>
+            <div class="w-47h float-l fa15x  b-radius padding-l padding-r padding-b15 t-right clear">
+              <div class="w-full fa15x b-radius padding-b15" >
+
+                <div class="padding-a5 uba bc-border1 umar-t">
+                  <span >VLAN ID</span>
+                  &nbsp;&nbsp;
+                  <input id="ptpMulticastVlanID" type="text"   style="width:40%;margin-right: 13%;"/>    
+                </div>
+                <div class="padding-a5 uba bc-border1 umar-t">
+                  <span >Sync Interval</span>
+                  &nbsp;&nbsp;
+                  <input id="ptpMulticastSyncIntv" type="text"   style="width:40%;margin-right: 13%;"/>    
+                </div>
+                <div class="padding-a5 uba bc-border1 umar-t">
+                  <span >Announce Interval</span>
+                  &nbsp;&nbsp;
+                  <input id="ptpMulticastAnnounceIntv" type="text"  style="width:40%;margin-right: 13%;" />    
+                </div>
+                <div class="padding-a5 uba bc-border1 umar-t">
+                  <span >Delay Interval</span>
+                  &nbsp;&nbsp;
+                  <input id="ptpMulticastDelayIntv" type="text"   style="width:40%;margin-right: 13%;"/>    
+                </div>
+                <div class="padding-a5 uba bc-border1 umar-t">
+                  <span >Announce Timeout</span>
+                  &nbsp;&nbsp;
+                  <input id="ptpMulticastAnnounceTimeout" type="text"   style="width:40%;margin-right: 13%;"/>    
+                </div>
+                <div class="padding-a5 uba bc-border1 umar-t">
+                  <span >Client Timeout</span>
+                  &nbsp;&nbsp;
+                  <input id="ptpMulticastClientTimeout" type="text"   style="width:40%;margin-right: 13%;"/>    
+                </div>
+              </div>
+            </div>
+            <div class="modal-footer" style="border-top:0;text-align: left;position: absolute;bottom: 2%;left: 44.7%;">
+              <button id="MulticastSub" type="button" class="btn btn-primary" style="width: 70px;margin-left: 20px;">设置</button>
+              <button type="button" class="btn btn-danger" style="width: 70px;margin-left: 20px;" data-dismiss="modal">退出</button>
+              <span id="mesSub" class="padding-a red fa12x" style="margin-top:10px;"></span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div style="float: right;">
+        <tm-pagination conf="paginationConf"></tm-pagination>
+      </div>

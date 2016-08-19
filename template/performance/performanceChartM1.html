@@ -1,0 +1,45 @@
+
+    <div class="content-s">
+		    <div class="row">
+		        <div class="col-md-12 querySeach">
+		            <h3>用户管理</h3>
+		            <div class="boxH"></div>
+		            <div>
+		                用户名称:<input type="text" ng-model="seachMod.secuLogUser">
+		                <input type="button" class="btn btn-warning btn-md" value="搜索" ng-click="seach(seachMod)" style="">
+              		  <input type="button" class="btn btn-warning btn-md pull-right" value="添加" ng-click="userMangeAddEdit()" style="margin-top: 20px;">
+		            </div>
+		            <br>
+		        </div>
+		    </div>
+		    <div class="row tableTs" >
+		        <div class="col-md-12">
+		            <table class="table table-bordered table-hover table-condensed">
+		                <thead>
+		                    <tr>
+		                        <th class="t-middle" style="width:35%">用户名称</th>
+		                        <th class="t-middle" style="width:35%">角色</th>
+		                        <th class="t-middle text-center" style="width:30%">操作</th>
+		                    </tr>
+		                </thead>
+		                <tbody>
+                    <tr ng-repeat="item in userManageList">
+                        <td>{{item.userName}}</td>
+                        <td>
+                        <span ng-repeat="items in item.roleList">{{items.roleName}} </span>
+                        <span ng-if="item.roleList.length == 0">未分配角色</span>
+                        </td> 
+                        <td  class="text-center">
+                            <span title="修改" ng-click="userMangeAddEdit(item)" class="glyphicon glyphicon-cog editBtn" style=""></span> | 
+                            <span title="删除" ng-click="userMangeDel(item)" class="glyphicon glyphicon-trash deleteBtn" style=""></span>
+                        </td>
+                    </tr>
+                    <tr ng-if="userManageList.length == 0"><td colspan="2" class="textCenter"><span>暂无数据！</span></td></tr>
+		                </tbody>
+		            </table>
+		        </div>
+		    </div>
+		</div>
+		<div style="float: right;">
+			<tm-pagination conf="paginationConf"></tm-pagination>
+		</div>

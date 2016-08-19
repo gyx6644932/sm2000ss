@@ -1,0 +1,33 @@
+;(function(app){
+	app.controller('areaManageAddCtrl', ['$scope', "$state",'publicService', function($scope, $state, publicService){
+		$scope.backArea = function(){
+			window.history.back();
+			//$state.go('index.device',{}, {reload: true});
+		}
+		$scope.areaManageSub = function(m){
+			if(!verify.areaManageAdd(m, publicService)) return;
+			var data = {
+	            name: m,
+	            nodeType: 0,
+	            deviceType: 0,
+	            status: 0,
+	            ip: 0,
+	            parentId: 0,
+	            description: 0,
+	            ownerId: ""
+	        };
+	        publicService.loading('start');
+	        var self = this;
+	        self.disabledFlag = true;
+			publicService.doRequest("POST", 20, data, self).success(function(r){
+				if(r.errCode){
+					publicService.ngAlert(r.message, "danger");
+				}else{
+					self.areaName = "";
+					publicService.ngAlert('区域添加成功！', "success");
+				}
+				self.disabledFlag = false;
+			})
+		}
+	}]);
+})(routerApp);

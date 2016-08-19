@@ -1,0 +1,60 @@
+<div class="content-s">
+    <div class="row">
+        <div class="col-md-12 querySeach">
+            <h3 translate="ALARM_FILTER">告警过滤</h3>
+            <div class="boxH"></div>
+            <div> 
+                <label translate="activeAlarmId" class="control-label">告警编号:</label>
+                <input type="text" ng-model="seachMod.activeAlarmId"/>
+                <label translate="activeAlarmModule" class="control-label">告警源:</label>
+                <select ng-model="seachMod.activeAlarmModule" class="form-inline input-sm">
+                    <option translate="PLEASE_SELECT" value="">请选择</option>';
+                    <option value="MC">MC</option>
+                    <option value="CC1">CC1</option>
+                    <option value="CC2">CC2</option>
+                    <option value="INPUT1">INPUT1</option>
+                    <option value="INPUT2">INPUT2</option>
+                </select>
+                <label translate="activeAlarmLevel" class="control-label">告警等级:</label>
+                <select ng-model="seachMod.activeAlarmLevel" class="form-inline input-sm">
+                    <option  translate="PLEASE_SELECT" value="">请选择</option>
+                    <option translate="urgentAlarm" value="CRITI">紧急告警</option>
+                    <option translate="mainAlarm" value="MAJOR">主要告警</option>
+                    <option translate="minorAlarm" value="MINOR">次要告警</option>
+                </select>
+                <button class="btn btn-warning btn-md" translate="SEARCH" ng-click="seach(seachMod)">搜索</button>
+                <button  class="btn btn-warning btn-md pull-right" translate="ADD" ng-click="alarmFilterEditAdd()" style="margin-top: 20px;">添加</button>
+            </div>
+        </div>
+    </div>
+    <div class="row tableTs" >
+        <div class="col-md-12">
+            <table class="table table-bordered table-hover table-condensed">
+                <thead>
+                    <tr>
+                        <th translate="activeAlarmId">告警编号</th>
+                        <th translate="activeAlarmModule">告警源</th>
+                        <th translate="activeAlarmLevel">告警等级</th>
+                        <th translate="isEnable">是否启用</th>
+                        <th translate="time">时间</th>
+						<th class="text-center" translate="OPERATION">操作</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="item in alarmFilterList">
+                        <td>{{item.activeAlarmId}}</td>
+                        <td>{{item.activeAlarmModule}}</td>
+                        <td>{{item.activeAlarmLevel}}</td>
+                        <td>{{item.isEnable === 1 ? "启用" : "禁用"}}</td>
+                        <td>{{item.timestamp | date:"yyyy-MM-dd HH:mm:ss"}}</td>
+                        <td class="text-center">
+                            <span title="修改" ng-click="alarmFilterEditAdd(item)" class="glyphicon glyphicon-cog editBtn" style=""></span> |
+                            <span title="删除" ng-click="alarmFilterDel(item)" class="glyphicon glyphicon-trash deleteBtn" style=""></span>
+                        </td>
+                    </tr>
+                    <tr ng-if="alarmFilterList.length == 0"><td colspan="6" class="textCenter"><span translate="NULL_DATA">暂无数据！</span></td></tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,94 @@
+<div class="content-s">
+    <div class="row">
+        <div class="col-md-12 querySeach">
+            <h3>告警日志</h3>
+            <div class="boxH"></div>
+            <div>
+                <span >设备:</span> 
+                <select ng-model="devId" style="width:123px;" ng-options="m.ip group by m.parentInfo.name for m in deviceInfo">
+                    <option value="">请选择</option>
+                </select>
+                <span >告警源:</span> 
+                <select ng-model="seachMod.activeAlarmSource">
+                    <option value="">请选择</option>
+                    <option value="MC">MC</option>
+                    <option value="CC1">CC1</option>
+                    <option value="CC2">CC2</option>
+                    <option value="INPUT1">INPUT1</option>
+                    <option value="INPUT2">INPUT2</option>
+                </select>
+                <span >告警等级:</span> 
+                <select ng-model="seachMod.activeAlarmLevel">
+                    <option value="">请选择</option>
+                    <option value="CRITI">紧急告警</option>
+                    <option value="MAJOR">主要告警</option>
+                    <option value="MINOR">次要告警</option>
+                </select>
+                <span >状态:</span> 
+                <select ng-model="seachMod.state">
+                    <option value="">请选择</option>
+                    <option value="0">消失</option>
+                    <option value="1">产生</option>
+                    <option value="2">确认</option>
+                    <option value="3">清除</option>
+                </select>
+                <span >告警起始时间:</span> 
+                <input class="Wdate" onchange="" ng-model="seachMod.activeAlarmtimeBgn" type="text" onClick="WdatePicker()">
+                <span >告警结束时间:</span>
+                <input class="Wdate" onchange="" ng-model="seachMod.activeAlarmtimeEnd" type="text" onClick="WdatePicker()">
+                <span >清除开始时间:</span> 
+                <input class="Wdate" onchange="" ng-model="seachMod.clearTimeBgn" type="text" onClick="WdatePicker()">
+                <span >清除结束时间:</span> 
+                <input class="Wdate" onchange="" ng-model="seachMod.clearTimeEnd" type="text" onClick="WdatePicker()">
+                <span >确认开始时间:</span> 
+                <input class="Wdate" onchange="" ng-model="seachMod.confirmTimeBgn" type="text" onClick="WdatePicker()">
+                <span >确认结束时间:</span> 
+                <input class="Wdate" onchange="" ng-model="seachMod.confirmTimeEnd" type="text" onClick="WdatePicker()">
+                <span >告警原因:</span> 
+                <input ng-model="seachMod.activeAlarmReason" type="text"/>
+                <span >告警确认人:</span> 
+                <input ng-model="seachMod.confirmOperator" type="text"/>
+                <span >告警编号:</span> 
+                <input ng-model="seachMod.activeAlarmId" type="text"/>
+                <input type="button" class="btn btn-warning btn-md" value="搜索" ng-click="seach(seachMod)">
+            </div>
+            <br>
+        </div>
+    </div>
+    <div class="row tableTs" >
+        <div class="col-md-12">
+            <table class="table table-bordered table-hover table-condensed">
+                <thead>
+                    <tr>
+                        <th class="t-middle">告警编号</th>
+                        <th class="t-middle">状态</th>
+                        <th class="t-middle">告警源</th>
+                        <th class="t-middle">告警等级</th>
+                        <th class="t-middle">告警原因</th>
+                        <th class="t-middle">告警确认人</th>
+                        <th class="t-middle">告警时间</th>
+                        <th class="t-middle">清除时间</th>
+                        <th class="t-middle">确认时间</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="item in alarmlogList">
+                        <td class="t-middle">{{item.activeAlarmId}}</td>
+                        <td class="t-middle">{{item.state}}</td>
+                        <td class="t-middle">{{item.activeAlarmModule}}</td>
+                        <td class="t-middle">{{item.activeAlarmLevel}}</td>
+                        <td class="t-middle">{{item.activeAlarmDesc}}</td>
+                        <td class="t-middle">{{item.confirmOperator}}</td>
+                        <td class="t-middle">{{item.activeAlarmTime | date:"yyyy-MM-dd HH:mm:ss"}}</td>
+                        <td class="t-middle">{{item.clearTime | date:"yyyy-MM-dd HH:mm:ss"}}</td>
+                        <td class="t-middle">{{item.confirmTime | date:"yyyy-MM-dd HH:mm:ss"}}</td>
+                    </tr>
+                    <tr ng-if="alarmlogList.length == 0"><td colspan="9" class="textCenter"><span>暂无数据！</span></td></tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+<div style="float: right;">
+    <tm-pagination conf="paginationConf"></tm-pagination>
+</div>

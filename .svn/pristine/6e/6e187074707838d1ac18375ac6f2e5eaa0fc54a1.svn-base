@@ -1,0 +1,18 @@
+<div class="device-frame" >
+	<div class="device-frame-left device-frame-1 " >
+		<div class="device-frameLeft-1 device-frameLeft-3 device-frameLeft1" ></div>
+		<div class="device-frameLeft-2 device-frameLeft-3 device-frameLeft2" ></div>
+	</div>
+	<div class="device-frame-center" style="">
+		<div class="device-frame-center-1 device-frame-w1" ng-if="deviceFrameFlag == true" >
+			<div ng-repeat="x in frameList" class="device-fCenter-box" device-frame></div>
+		</div>
+		<div class="device-frame-center-1 device-frame-w2" ng-if="deviceFrameFlag == false">
+			<div ng-repeat="x in frameList" class="device-fCenter-box" device-frame></div>
+		</div>
+	</div>
+	<div class="device-frame-right device-frame-1 device-frameLeftT" >
+		<div class="device-frameRight-1 device-frameLeft-3 device-frameLeft1" ></div>
+		<div class="device-frameRight-2 device-frameLeft-3 device-frameLeft2" ></div>
+	</div>
+</div>

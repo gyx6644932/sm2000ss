@@ -1,0 +1,57 @@
+<div class="content-s">
+    <div class="row">
+        <div class="col-md-12 querySeach">
+            <h3>性能日志</h3>
+            <div class="boxH"></div>
+            <div>
+                <span >设备:</span> 
+                <select ng-model="devID" style="width:123px;" ng-options="m.ip group by m.parentInfo.name for m in deviceInfo">
+                    <option value="">请选择</option>
+                </select>
+                <span >性能类型:</span> 
+                <select ng-model="seachMod.type" ng-change="typeF()">
+                    <option value="freq">freq</option>
+                    <option value="mtie">mtie</option>
+                    <option value="tdev">tdev</option>
+                    <option value="phase1M">phase1M</option>
+                </select>
+                <span >端口:</span> 
+                <input ng-model="seachMod.port" type="text"/>
+                <span >起始时间:</span> 
+                <input class="Wdate" onchange="" ng-model="seachMod.monitorTimeBgn" type="text" onClick="WdatePicker()">
+                <span >结束时间:</span>
+                <input class="Wdate" onchange="" ng-model="seachMod.monitorTimeEnd" type="text" onClick="WdatePicker()">
+                <input type="button" class="btn btn-warning btn-md" value="搜索" ng-click="seach(seachMod)">
+            </div>
+            <br>
+        </div>
+    </div>
+    <div class="row tableTs" >
+        <div class="col-md-12">
+            <table class="table table-bordered table-hover table-condensed">
+                <thead>
+                    <tr>
+                        <th class="t-middle">类型</th>
+                        <th class="t-middle">设备</th>
+                        <th class="t-middle">端口</th>
+                        <th class="t-middle">值</th>
+                        <th class="t-middle">时间</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="item in performanceLogList">
+                        <td class="t-middle ng-block">{{item.performance_type}}</td>
+                        <td class="t-middle ng-block">{{item.deviceName}}</td>
+                        <td class="t-middle ng-block">{{item.port}}</td>
+                        <td class="t-middle ng-block">{{type1 === 'phase1M' ? item.data : item.value}}</td>
+                        <td class="t-middle ng-block">{{item.monitor_time | date:"yyyy-MM-dd HH:mm:ss"}}</td>
+                    </tr>
+                    <tr ng-if="performanceLogList.length == 0"><td colspan="9" class="textCenter"><span>暂无数据！</span></td></tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+<div style="float: right;">
+    <tm-pagination conf="paginationConf"></tm-pagination>
+</div>

@@ -1,0 +1,75 @@
+;
+(function(app) {
+	app.controller('roleManageAddEditCtrl', ['$scope', '$rootScope', "$state", "$timeout", 'publicService', function($scope, $rootScope, $state, $timeout, publicService) {
+
+		$timeout(function() {
+			if ($scope.mauto) {
+				$scope.roleTitle = "修改";
+				$scope.formData = $scope.mauto;
+				for (var i = 0; i < $scope.mauto.roleList.length; i++) {
+					$scope.mauto.roleList[i].ticked = true;
+				}
+				$scope.iformData = $scope.mauto.roleList;
+			} else {
+				$scope.roleTitle = "添加";
+				$scope.formData = {};
+
+
+
+				var obj = {
+					page: 1,
+					pageSize: 100,
+					roleName: '',
+					roleDesc: ''
+				}
+				publicService.doRequest("GET", 103, obj).success(function(r) {
+						$scope.iformData = r.data.content;
+					}) //获取菜单列表
+					//获取设备列表
+
+			}
+		}, 0)
+
+
+		$scope.backArea = function() {
+			window.history.back();
+			delete $rootScope.mauto;
+		}
+
+		$scope.roleManageSub = function(m) {
+			var self = this;
+			/*if(!verify.deviceManageEditAdd(m, publicService)) return;*/
+			publicService.loading('start');
+
+			var url, method;
+			if (self.roleTitle === "修改") {
+				url = 106;
+				method = "POST";
+			} else {
+				url = 105;
+				method = "POST";
+			}
+		/*	var roleListSS = [],
+				roleListOBJ = {};
+			for (var i = 0; i < self.oformData.length; i++) {
+				roleListSS.push({
+					'id': self.oformData[i].id
+				});
+			}
+			roleListOBJ = roleListSS;
+			m.roleList = roleListOBJ;
+			self.disabledFlag = true;*/
+			publicService.doRequest(method, url, m, self).success(function(r) {
+				if (r.errCode) {
+					publicService.ngAlert(r.message, "danger");
+				} else {
+					if (self.roleTitle === "添加") {
+						self.formData = {};
+					}
+					publicService.ngAlert(self.roleTitle + '成功！', "success");
+				}
+				self.disabledFlag = false;
+			})
+		}
+	}]);
+})(routerApp);

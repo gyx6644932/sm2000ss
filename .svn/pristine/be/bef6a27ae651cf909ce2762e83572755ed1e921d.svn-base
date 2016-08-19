@@ -1,0 +1,37 @@
+<div class="content-s">
+    <div class="row">
+        <div class="col-md-12 querySeach">
+            <h3>网管日志</h3>
+            <div class="boxH"></div>
+            <div>
+                描述:<input type="text" ng-model="seachMod.description" >
+                开始时间:<input class="Wdate" ng-model="seachMod.bgnDate" type="text" onClick="WdatePicker()" onchange="" >
+                结束时间:<input class="Wdate" ng-model="seachMod.endDate" type="text" onClick="WdatePicker()" onchange="" >
+                <input type="button" class="btn btn-warning btn-md" value="搜索" ng-click="seach(seachMod)" style="">
+            </div>
+            <br>
+        </div>
+    </div>
+    <div class="row tableTs" >
+        <div class="col-md-12">
+            <table class="table table-bordered table-hover table-condensed">
+                <thead>
+                    <tr>
+                        <th class="t-middle" style="width:20%">告警时间</th>
+                        <th class="t-middle" style="width:80%">告警内容</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="item in networkLogList">
+                        <td>{{item.timestamp | date:"yyyy-MM-dd HH:mm:ss"}}</td>
+                        <td>{{item.description}}</td>
+                    </tr>
+                    <tr ng-if="networkLogList.length == 0"><td colspan="2" class="textCenter"><span>暂无数据！</span></td></tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+<div style="float: right;">
+        <tm-pagination conf="paginationConf"></tm-pagination>
+    </div>

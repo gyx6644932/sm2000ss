@@ -1,0 +1,58 @@
+<div class="content-s">
+		    <div class="row">
+		        <div class="col-md-12 querySeach">
+		            <h3>角色管理</h3>
+		            <div class="boxH"></div>
+		            <div>
+		                角色:<input type="text" ng-model="seachMod.rolerole" >
+		                描述:<input type="text" ng-model="seachMod.roleDesc" >
+		                <input type="button" class="btn btn-warning btn-md" value="搜索" ng-click="seach(seachMod)" style="">
+              		  <input type="button" class="btn btn-warning btn-md pull-right" value="添加" ng-click="roleMangeAddEdit()" style="margin-top: 20px;">
+		            </div>
+		            <br>
+		        </div>
+		    </div>
+		    <div class="row tableTs" >
+		        <div class="col-md-12">
+		            <table class="table table-bordered table-hover table-condensed">
+		                <thead>
+		                    <tr>
+		                        <th class="t-middle" style="width:20%">角色名称</th>
+		                        <th class="t-middle" style="width:20%">菜单分配</th>
+		                        <th class="t-middle" style="width:20%">设备分配</th>
+		                        <th class="t-middle" style="width:20%">描述</th>
+		                        <th class="t-middle" style="width:20%">删除</th>
+		                    </tr>
+		                </thead>
+		                <tbody>
+		               
+                    <tr ng-repeat="item in roleManageList">
+                        <td>{{item.roleName}}</td>
+
+                        <td>
+                        <span ng-repeat="items in item.menuList">{{items.menuList}} </span>
+                        <span ng-if="item.menuList.length == 0">未分配菜单</span>
+                        </td> 
+
+                        <td>
+                        <span ng-repeat="items in item.deviceList">{{items.deviceList}} </span>
+                        <span ng-if="item.deviceList.length == 0">未分配设备</span>
+                        </td> 
+
+                        <td>{{item.roleDesc}}</td> 
+                         
+
+                        <td  class="text-center">
+                            <span title="修改" ng-click="roleMangeAddEdit(item)" class="glyphicon glyphicon-cog editBtn" style=""></span> | 
+                            <span title="删除" ng-click="roleMangeDel(item)" class="glyphicon glyphicon-trash deleteBtn" style=""></span>
+                        </td>
+                    </tr>
+                    <tr ng-if="roleManageList.length == 0"><td colspan="2" class="textCenter"><span>暂无数据！</span></td></tr>
+		                </tbody>
+		            </table>
+		        </div>
+		    </div>
+		</div>
+		<div style="float: right;">
+			<tm-pagination conf="paginationConf"></tm-pagination>
+		</div>

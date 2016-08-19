@@ -1,0 +1,56 @@
+
+<!DOCTYPE html>
+<html lang="zh" ng-app="myApp">
+<head>
+    <meta charset="UTF-8">
+    <title>AngularJS入门学习</title>
+     <script type="text/javascript" src="js/angular-1.3.0.js"></script>
+</head>
+<body>
+<div ng-app="app" ng-controller="global">
+    <select ng-model="ihg" ng-options="ihg.text for ihg in g">
+        <option value="">-- 洲际 --</option>
+    </select>
+    <select ng-if="ihg.nat" ng-model="nat" ng-options="nat.text for nat in ihg.nat">
+        <option value="">-- 国家 --</option>
+    </select>
+    <select ng-if="nat.cities" ng-model="city" ng-options="city.text for city in nat.cities">
+        <option value="">-- 城市 --</option>
+    </select>
+</div>
+</body>
+<script type="text/javascript">
+var app=angular.module("myApp",[]);
+app.controller("global",['$scope',function($scope){
+	$scope.ihg = "312"
+    $scope.g=[
+        {
+        	text:"亚洲",
+        	id:"aaa",
+	        nat:[
+	            {text:"中国",cities:[{text:"北京"}]},
+	            {text:"巴林",cities:[]},
+	            {text:"韩国",cities:[{text:"首尔"}]},
+	            {text:"黎巴嫩",cities:[]},
+	            {text:"东帝汶",cities:[]},
+	            {text:"尼泊尔",cities:[]},
+	            {text:"泰国",cities:[{text:"曼谷"}]},
+	            {text:"巴基斯坦",cities:[{text:"伊斯兰堡"}]}
+	        ]
+    	},
+        {
+        	text:"欧洲",
+        	id:"bbb",
+        	nat:[
+            {text:"德国",cities:[]},
+            {text:"英国",cities:[]}
+        ]},
+        {text:"北美洲",id:"ccc",},
+        {text:"南美洲",id:"ddd",},
+        {text:"非洲",id:"eee",},
+        {text:"大洋洲",id:"fff",},
+        {text:"南极洲",id:"ggg",}
+    ]
+}]);
+</script>
+</html>

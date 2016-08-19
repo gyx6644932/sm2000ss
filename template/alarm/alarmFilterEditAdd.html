@@ -1,0 +1,56 @@
+<div class="row scrollY" >
+    <div class="col-md-12">
+        <h3>{{alarmFilterTitle}}</h3>
+        <div class="boxH"></div>
+        <form class="form-horizontal formBiao">
+            <div class="form-group" >
+                <label for="inputEmail3" translate="activeAlarmId" class="col-sm-3 col-sm-offset-1 control-label">告警编号: </label>
+                <div class="col-sm-5 ">
+                    <input type="text" class="form-control" ng-model="mauto.activeAlarmId" >
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="inputEmail3" translate="activeAlarmModule" class="col-sm-3 col-sm-offset-1 control-label">告警源: </label>
+                <div class="col-sm-2 ">
+                    <select ng-model="mauto.activeAlarmModule" class="form-control input-sm">
+                        <option translate="PLEASE_SELECT" value="">请选择</option>';
+                        <option value="MC">MC</option>
+                        <option value="CC1">CC1</option>
+                        <option value="CC2">CC2</option>
+                        <option value="INPUT1">INPUT1</option>
+                        <option value="INPUT2">INPUT2</option>
+                    </select>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="inputEmail3" translate="activeAlarmLevel" class="col-sm-3 col-sm-offset-1 control-label">告警等级: </label>
+                <div class="col-sm-2 ">
+                    <select ng-model="mauto.activeAlarmLevel" class="form-control input-sm">
+                        <option translate="PLEASE_SELECT" value="">请选择</option>
+                        <option translate="urgentAlarm" value="CRITI">紧急告警</option>
+                        <option translate="mainAlarm" value="MAJOR">主要告警</option>
+                        <option translate="minorAlarm" value="MINOR">次要告警</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="inputEmail3" translate="MAIL" class="col-sm-3 col-sm-offset-1 control-label">邮件: </label>
+                <div class="col-sm-2 ">
+                    <select ng-model="mauto.isEnable" class="form-control input-sm">
+                        <option translate="PLEASE_SELECT" value="">请选择</option>
+                        <option translate="DISABLE" value="1">启用</option>
+                        <option translate="ENABLE" value="0">禁用</option>
+                    </select>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-sm-offset-5 col-sm-4">
+                    <button class="btn btn-warning btn-md" translate="BACK" ng-click="backFilter()">返回</button>
+                    <button class="btn btn-warning btn-md" translate="CONFIRM" ng-disabled="disabledFlag" ng-click="alarmFilterEditAddsub(mauto)">确认</button>
+       
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

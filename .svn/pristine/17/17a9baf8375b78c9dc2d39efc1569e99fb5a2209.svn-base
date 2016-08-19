@@ -1,0 +1,80 @@
+<div class="left" >
+	<div class="leftViet view">
+		<div class="treeLeft">
+			<div class="row" style="margin-left:0px;margin-right:0px;">
+
+			  	<div class="col-lg-12">
+				    <div class="input-group">
+				      	<input type="text" class="form-control" ng-model="posDin" placeholder="Search device...">
+				      	<span class="input-group-btn">
+					        <button class="btn btn-default btn-warning" ng-click="posDinfun()" type="button">
+					        	<span class="glyphicon glyphicon-search"></span>
+					        </button>
+				      	</span>
+				    </div>
+			  	</div>
+			</div>
+			<div class="treeDom">
+				<treecontrol class="tree-light" id="tree" tree-model="deviceTreeData" options="opts" on-selection="showSelected(node)" xpanded-nodes="expandedNodes">
+					<span ng-switch on="node.type">
+					    <img ng-switch-when="green" src="images/greent.gif" style="width:17px;height:17px;"  aria-hidden="true">
+					    <img ng-switch-when="red" src="images/redt.gif" style="width:17px;height:17px;"  aria-hidden="true">
+					    <img ng-switch-when="yellow" src="images/yellow.gif" style="width:17px;height:17px;"  aria-hidden="true">
+					    <img ng-switch-when="pink" src="images/pink.gif" style="width:17px;height:17px;"  aria-hidden="true">
+					    <img ng-switch-when="gery" src="images/gery.png" style="width:17px;height:17px;"  aria-hidden="true">
+					    <img ng-switch-when="box" src="" style="width:17px;height:17px;"  aria-hidden="true">
+					</span> 
+					<span class="bys" obj="{{node}}" treeid="{{node.ip}}" name="{{node.label}}" ng-click="treeFun(node)">{{node.label}}</span>
+				</treecontrol>
+			</div>
+		</div>
+	</div>
+</div>
+<div class="right">
+	<div class="rightView view">
+		<div style="position:absolute;margin:30px 70px;height:22px;width: 200px;z-index: 9999">
+			<button type="button"  ng-click="tuopuDigEditAdd()" class="btn btn-success btn-xs" aria-label="Left Align">
+		  		<span ria-hidden="true" class="glyphicon glyphicon-plus-sign">
+			  	</span>
+			  	设备添加
+			</button>
+			<button type="button"  ng-click="tuopuSort()" class="btn btn-success btn-xs" aria-label="Left Align">
+			  	<span ria-hidden="true" class="glyphicon glyphicon-align-center">
+			  	</span>
+			  	拓扑图排序
+			</button>
+		</div>
+		<!--拓扑图 -->
+		<div class="topoimg" style="height: 100%;width: 100%;">
+			<div id="canvas" ng-if="flag === 'area'" class="topo jtk-demo-canvas canvas-wide flowchart-demo jtk-surface jtk-surface-nopan" >
+				<div  style="height: 100%;width:100%;" >
+					<div ng-mouseup="dMouseUp(item)" ng-dblclick="ddbclick(item)" ng-mousedown="dMouseDown()" ng-repeat="item in tuopu" class="window sbNode jtk-node ng-cloak"  id="{{item.ip}}" onfinishrender >
+						<img src="images/sm.png" alt="" class="mypopover1" id="mypopover" data-container="body"  data-placement="right" >
+						<div ng-if="item.deviceStatus == 0" style="width:20px;position: absolute;right: -32px;top: 28px;">
+							<img style="width:20px;"  src="images/gery.gif" alt="" />
+						</div>
+						<div ng-if="item.type == 'greent'" style="width:20px;position: absolute;right: -32px;top: 28px;">
+							<img style="width:20px;"  src="images/greent.gif" alt="" />
+						</div>
+						<div ng-if="item.type == 'red'" style="width:20px;position: absolute;right: -32px;top: 28px;">
+							<img style="width:20px;"  src="images/redt.gif" alt="" />
+						</div>
+						<div ng-if="item.type == 'pink'" style="width:20px;position: absolute;right: -32px;top: 28px;">
+							<img style="width:20px;"  src="images/pink.gif" alt="" />
+						</div>
+						<div ng-if="item.type == 'yellow'" style="width:20px;position: absolute;right: -32px;top: 28px;">
+							<img style="width:20px;"  src="images/yellow.gif" alt="" />
+						</div>
+						<div style="position: relative;left: -10px;top: 10px;" class="ng-cloak" >
+						   <span style="color: white;" ng-bind="item.name"></span>
+						   <span style="color: white;" ng-bind="item.ip"></span>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!--设备 -->
+		<div ng-if="flag === 'device'" ng-include="'template/deviceImg.html'" style="height: 100%;width:100%;"></div>
+		<!-- <div ng-if="flag === 'device'" ng-include="'template/deviceImg.html'" style="height: 100%;width:100%;"></div> -->
+	</div>
+</div>

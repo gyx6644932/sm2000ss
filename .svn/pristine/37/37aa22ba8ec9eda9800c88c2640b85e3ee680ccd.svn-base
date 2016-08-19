@@ -1,0 +1,47 @@
+<div class="left" >
+    <div class="leftViet view">
+        <div ng-include="'template/twoMenu.html'" style="height: 100%;width:100%;"></div>
+    </div>
+</div>
+<div class="right">
+    <div class="rightView view" ui-view>
+    <div class="content-s">
+		    <div class="row">
+		        <div class="col-md-12 querySeach">
+		            <h3>用户管理</h3>
+		            <div class="boxH"></div>
+		            <div>
+		                用户名称:<input type="text" ng-model="seachMod.secuLogUser" >
+		                角色:<input type="text" ng-model="seachMod.secuLogDesc" >
+		                <input type="button" class="btn btn-warning btn-md" value="搜索" ng-click="seach(seachMod)" style="">
+		            </div>
+		            <br>
+		        </div>
+		    </div>
+		    <div class="row tableTs" >
+		        <div class="col-md-12">
+		            <table class="table table-bordered table-hover table-condensed">
+		                <thead>
+		                    <tr>
+		                        <th class="t-middle" style="width:35%">用户名称</th>
+		                        <th class="t-middle" style="width:35%">角色</th>
+		                        <th class="t-middle" style="width:30%">删除</th>
+		                    </tr>
+		                </thead>
+		                <tbody>
+                    <tr ng-repeat="item in userManageList"><!-- 
+                        <td>{{item.userName"}}</td>
+                        <td>{{item.roleList}}</td>  -->
+                        <td>删除</td>
+                    </tr>
+                    <tr ng-if="userManageList.length == 0"><td colspan="2" class="textCenter"><span>暂无数据！</span></td></tr>
+		                </tbody>
+		            </table>
+		        </div>
+		    </div>
+		</div>
+		<div style="float: right;">
+			<tm-pagination conf="paginationConf"></tm-pagination>
+		</div>
+	</div>
+</div>

@@ -1,0 +1,99 @@
+    <div class="content-s">
+      <div class="row tableTs" >
+        <div class="container-fluid umar-a h-8h padding-a" style="margin-top:10px;">
+          <div class="bc-bg w-9h float-l fa15x  uba bc-border3  b-radius padding-l padding-r padding-b15 ">
+            <div class="float-l w-half ">
+              <span class="umar-a8">选择</span>
+              <select id="inputCardConfigId" class="umar-a8" onchange="changeinputCardConfigTable()">
+                <option value="1">槽位1</option>
+                <option value="2">槽位2</option>
+              </select>
+              <select id="inputCardConfigPortId" class="umar-a8" onchange="changeinputCardConfigTable()">
+                <option value="1">端口1</option>
+                <option value="2">端口2</option>
+                <option value="3">端口3</option>
+                <option value="4">端口4</option>
+              </select>
+            </div>
+            <div class="float-l w-half">
+              <span class="umar-a8">当前输入卡</span>
+              &nbsp;&nbsp;
+              <input id="ioSignal" type="text" disabled="disabled" class="umar-a8"/>    
+            </div>
+            <br>    
+            <br>    
+            <br>    
+            <div class="w-47h float-l fa15x  b-radius padding-l padding-r padding-b15 t-right clear">
+              <div class="w-full fa15x b-radius padding-b15" >
+                <div class="padding-a5 uba bc-border1 umar-t">
+                  <span >端口使能</span>
+                  &nbsp;&nbsp;
+                  <select id="inputCardState"   style="width:40%;margin-right: 13%;">
+                    <option value="0">disable</option>
+                    <option value="1">enable</option>
+                  </select>
+                </div>
+                <div class="padding-a5 uba bc-border1 umar-t">
+                  <span >优先级</span>
+                  &nbsp;&nbsp;
+                  <input id="inputCardPriority" type="text"  style="width:40%;margin-right: 13%;"/>    
+                </div>
+                <div class="padding-a5 uba bc-border1 umar-t">
+                  <span >帧类型</span>
+                  &nbsp;&nbsp;
+                  <select id="inputCardFrameType"   style="width:40%;margin-right: 13%;">
+                    <option value="0">freq1544KHz</option>
+                    <option value="1">freq2048KHz</option>
+                    <option value="2">ccs</option>
+                    <option value="3">cas</option>
+                    <option value="4">d4</option>
+                    <option value="5">esf</option>
+                  </select>
+                </div>
+                <div class="padding-a5 uba bc-border1 umar-t">
+                  <span >CRC状态</span>
+                  &nbsp;&nbsp;
+                  <select id="inputCardCRCState"   style="width:40%;margin-right: 13%;">
+                    <option value="0">disable</option>
+                    <option value="1">enable</option>
+                  </select>
+                </div>
+                <div class="padding-a5 uba bc-border1 umar-t">
+                  <span >SSM状态</span>
+                  &nbsp;&nbsp;
+                  <select id="inputCardSSMState"   style="width:40%;margin-right: 13%;">
+                    <option value="0">disable</option>
+                    <option value="1">enable</option>
+                  </select>
+                </div>
+
+                <div class="padding-a5 uba bc-border1 umar-t">
+                  <span >SSM Bit</span>
+                  &nbsp;&nbsp;
+                  <input id="inputCardSSMBit" type="text"  style="width:40%;margin-right: 13%;"/>    
+                </div>
+                <div class="padding-a5 uba bc-border1 umar-t">
+                  <span >质量等级</span>
+                  &nbsp;&nbsp;
+                  <select id="inputCardPQL"   style="width:40%;margin-right: 13%;">
+                    <option value="1">QL_PRC</option>
+                    <option value="2">QL_UNK</option>
+                    <option value="3">QL_SSUT</option>
+                    <option value="6">QL_SSUL</option>
+                    <option value="7">QL_SEC</option>
+                    <option value="9">QL_DNU</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+            <div class="modal-footer" style="border-top:0;text-align: left;position: absolute;bottom: 2%;left: 45%;">
+              <button id="E1Sub" type="button" class="btn btn-primary" style="width: 70px;margin-left: 20px;">设置</button>
+              <button type="button" class="btn btn-danger" style="width: 70px;margin-left: 20px;" data-dismiss="modal">退出</button>
+              <span id="mesSub" class="padding-a red fa12x" style="margin-top:10px;"></span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div style="float: right;">
+        <tm-pagination conf="paginationConf"></tm-pagination>
+      </div>

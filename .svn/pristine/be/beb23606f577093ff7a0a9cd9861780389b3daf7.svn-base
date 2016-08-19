@@ -1,0 +1,52 @@
+;(function(app){
+	app.controller('deviceManageEditAddCtrl', ['$scope', 'publicService', function($scope, publicService){
+		$scope.backDevice = function(){
+			window.history.back();
+		}
+		$scope.deviceModel = {};
+		$scope.deviceModel.deviceType = "SM2000";
+		$scope.deviceManageSub = function(m){
+			var self = this;
+			m.nodeType = 1;
+			m.status = 0;
+			m.ownerId = "";
+			if(!verify.deviceManageEditAdd(m, publicService)) return;
+			publicService.loading('start');
+
+			var url, method;
+			if(self.deviceTitle === "修改"){
+				url = 21;
+				method = "PUT";
+			}else{
+				url = 20;
+				method = "POST";
+			}
+			publicService.doRequest(method, url, m).success(function(r){
+				if(r.errCode){
+					publicService.ngAlert(r.message, "danger");
+				}else{
+					publicService.ngAlert(self.deviceTitle + '成功！', "success");
+				}
+			})
+		}
+	}]);
+	app.directive('devicemanagedirective', function ($timeout) {
+	    return {
+	        restrict: 'A',
+	        link: function(scope, element, attr) {
+	            if (scope.$last === true) {
+	            	var self = scope.$parent;
+	               	if(self.deviceManageModel){
+						self.deviceTitle = "修改";
+						self.deviceModel = self.deviceManageModel;
+					}else{
+						self.deviceTitle = "添加";
+						self.deviceModel = {};
+						self.deviceModel.parentId = 1;//未分配区别的ID 1
+						self.deviceModel.deviceType = "SM2000";
+					}
+	            }
+	        }
+	    };
+	});
+})(routerApp)

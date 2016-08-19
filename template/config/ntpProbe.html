@@ -1,0 +1,82 @@
+    <div class="content-s">
+      <div class="row tableTs" >
+
+        <div class="container-fluid umar-a h-8h padding-a" style="margin-top:10px;">
+          <div class="bc-bg w-9h float-l fa15x  uba bc-border3  b-radius padding-l padding-r padding-b15 ">
+
+            <div class="float-l w-half ">
+              <span class="umar-a8">选择</span>
+              <select id="ntpProbeStatePortId" class="umar-a8" onchange="changentpProbeStatePortId()">
+                <option value="1">端口1</option>
+                <option value="2">端口2</option>
+              </select>
+            </div>
+            <div class="w-47h float-l fa15x  b-radius padding-l padding-r padding-b15 t-right clear">
+
+              <div class="padding-a5 uba bc-border1 umar-t15">
+                <span >Probe使能</span>
+                &nbsp;&nbsp;
+                <input id="ntpProbeState" type="text" disabled="disabled" style="width:30%;margin-right: 13%;"/>    
+                &nbsp;&nbsp;
+              </div>
+              <div class="padding-a5 uba bc-border1 umar-t15">
+                <span >Server IP</span>
+                &nbsp;&nbsp;
+                <input id="ntpProbeServerIP" type="text" style="width:30%;margin-right: 13%;"/>    
+                &nbsp;&nbsp;
+              </div>
+              <div class="padding-a5 uba bc-border1 umar-t15">
+                <span >Interval(2~n秒）</span>
+                &nbsp;&nbsp;
+                <input id="ntpProbeInterval" type="text" style="width:30%;margin-right: 13%;"/>    
+                &nbsp;&nbsp;
+              </div>
+              <div class="padding-a5 uba bc-border1 umar-t15">
+                <span >VLAN ID</span>
+                &nbsp;&nbsp;
+                <input type="text" id="ntpProbeVlanID" style="width:30%;margin-right: 13%;"/>    
+                &nbsp;&nbsp;
+              </div>
+
+              <div class="padding-a5 uba bc-border1 umar-t15">
+                <span >数据格式</span>
+                &nbsp;&nbsp;
+                <select id="ntpProbeDataFormat"  style="width:30%;margin-right: 13%;">
+                  <option value="0">rawstats</option>
+                  <option value="1">compact</option>
+                </select>
+                &nbsp;&nbsp;
+              </div>
+              <div class="padding-a5 uba bc-border1 umar-t15">
+                <span >TTL</span>
+                &nbsp;&nbsp;
+                <input id="ttl" type="text" disabled="disabled" style="width:30%;margin-right: 13%;"/>    
+                &nbsp;&nbsp;
+              </div>
+              <div class="padding-a5 uba bc-border1 umar-t15">
+                <span >DSCP使能</span>
+                &nbsp;&nbsp;
+                <input id="dscp" type="text" disabled="disabled" style="width:30%;margin-right: 13%;"/>    
+                &nbsp;&nbsp;
+              </div>
+              <div class="padding-a5 uba bc-border1 umar-t15">
+                <span >DSCP</span>
+                &nbsp;&nbsp;
+                <input type="text" id="dscpState" disabled="disabled" style="width:30%;margin-right: 13%;"/>    
+                &nbsp;&nbsp;
+              </div>
+            </div>
+          </div>
+
+        </div>
+        <div class="modal-footer" style="border-top:0;text-align: left;position: absolute;bottom: 0%;left: 48%;">
+          <button id="NTPprobeSub" type="button" class="btn btn-primary" style="width: 70px;margin-left: 20px;">设置</button>
+          <button type="button" class="btn btn-danger" style="width: 70px;margin-left: 20px;" data-dismiss="modal">退出</button>
+          <span id="mesSub" class="padding-a red fa12x" style="margin-top:10px;"></span>
+        </div>
+      </div>
+    </div>
+    </div>
+    <div style="float: right;">
+    <tm-pagination conf="paginationConf"></tm-pagination>
+    </div>

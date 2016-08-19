@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="zh" ng-app="myApp">
+<head>
+    <meta charset="UTF-8">
+    <title>AngularJS入门学习</title>
+     <script type="text/javascript" src="js/angular-1.3.0.js"></script>
+</head>
+<body>
+<div ng-app="app" ng-controller="parentCtr">
+     <div ng-controller="childCtr1">childCtr1 name :
+         <input ng-model="name" type="text" ng-change="change(name)" />
+    </div>
+     <div ng-controller="childCtr2">from childCtr1 name:
+         <input ng-model="ctr1Name" />
+     </div>
+</div>
+</body>
+<script type="text/javascript">
+var app = angular.module('myApp', []);
+app.controller("parentCtr",function ($scope) {
+    $scope.$on("Ctr1NameChange",function (event, msg) {//接收到来自子childCtr1的信息后再广播给所有子controller
+        console.log("parent", msg);
+        $scope.$broadcast("aa", msg);//给所有子controller广播
+    });
+});
+app.controller("childCtr1", function ($scope) {
+    $scope.change = function (name) {
+        console.log("childCtr1", name);
+        $scope.$emit("Ctr1NameChange", name);//将信息传递给父controller
+    };
+}).controller("childCtr2", function ($scope) {
+    $scope.$on("aa",function (event, msg) { //监听来自父controller的信息
+        console.log("childCtr2", msg);
+        $scope.ctr1Name = msg;
+    });
+});
+</script>
+</html>

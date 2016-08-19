@@ -1,0 +1,14 @@
+;(function(app){
+	app.config(['$stateProvider', '$urlRouterProvider',function($stateProvider, $urlRouterProvider) {
+    	$stateProvider
+        .state('index.performance', {
+            url: '/performance',
+            views: {
+                'center@index': {
+                    templateUrl: 'template/performance.html',
+                    controller : "performanceCtrl"
+                }
+            }
+        })
+	}]);
+})(routerApp)

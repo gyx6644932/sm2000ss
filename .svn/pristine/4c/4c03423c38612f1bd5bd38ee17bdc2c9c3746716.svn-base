@@ -1,0 +1,94 @@
+<div class="device-tuopu">
+	<div class="deviceTuopu-top">
+		<div class="deviceTuopuTop-left dtt">
+			<div class="device-con">
+				<div id="container">
+					<div class="container-title">
+						<span class="glyphicon glyphicon-map-marker" aria-hidden="true"></span>
+					设备拓扑图
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="deviceTuopuTop-right dtt">
+			<div class="device-con">
+				<!-- <div class="deviceTuopuTop-ll">
+					<div class="deviceTuopuTop-ll-1" >
+						<div class="col-md-12 dtt-ll">设备时间</div>
+						<div class="col-md-12 dtt-ll" style="text-align: left;">2016-07-27 08:01:02</div>
+						<div class="col-md-12 dtt-ll">设备名称</div>
+						<div class="col-md-12 dtt-ll">SM2000</div>
+						<div class="col-md-12 dtt-ll">参考源模式</div>
+						<div class="col-md-12 dtt-ll">time</div>
+						<div class="col-md-12 dtt-ll">当前参考源</div>
+						<div class="col-md-12 dtt-ll">unknown</div>
+						<div class="col-md-12 dtt-ll">查看参考源</div>
+					</div>
+				</div>
+				<div class="deviceTuopuTop-rr">
+					<div class="deviceTuopuTop-ll-1" >
+						<div class="col-md-12 dtt-ll">时钟状态</div>
+						<div class="col-md-12 dtt-ll">warm up</div>
+						<div class="col-md-12 dtt-ll">钟卡1状态</div>
+						<div class="col-md-12 dtt-ll">active-warmup</div>
+						<div class="col-md-12 dtt-ll">钟卡2状态</div>
+						<div class="col-md-12 dtt-ll">failed</div>
+						<div class="col-md-12 dtt-ll">Alarm</div>
+						<div class="col-md-12 dtt-ll">23次</div>
+						<div class="col-md-12 dtt-ll">查看告警</div>
+					</div>
+				</div> -->
+				<div class="deviceTuopuTop-ll">
+					<div class="deviceTuopuTop-ll-1" >
+						<div class="col-md-12 dtt-ll dtt-ll-1">设备时间:</div>
+						<div class="col-md-12 dtt-ll dtt-ll-1">设备名称:</div>
+						<div class="col-md-12 dtt-ll dtt-ll-1">参考源模式:</div>
+						<div class="col-md-12 dtt-ll dtt-ll-1">当前参考源:</div>
+						<div class="col-md-12 dtt-ll dtt-ll-1">时钟状态:</div>
+						<div class="col-md-12 dtt-ll dtt-ll-1">钟卡1状态:</div>
+						<div class="col-md-12 dtt-ll dtt-ll-1">钟卡2状态:</div>
+						<div class="col-md-12 dtt-ll dtt-ll-1">Alarm:</div>
+						<div class="col-md-12 dtt-ll">
+							<button type="button"  class="btn btn-info btn-xs" aria-label="Left Align">
+						  		<span ria-hidden="true" class="glyphicon glyphicon-eye-open">
+							  	</span>
+							  	查看参考源
+							</button>
+						</div>
+					</div>
+				</div>
+				<div class="deviceTuopuTop-rr">
+					<div class="deviceTuopuTop-ll-1" >
+						<div class="col-md-12 dtt-ll" style="color:red;">2016-07-27 08:01:02</div>
+						<div class="col-md-12 dtt-ll">SM2000</div>
+						<div class="col-md-12 dtt-ll">time</div>
+						<div class="col-md-12 dtt-ll">unknown</div>
+						<div class="col-md-12 dtt-ll">warm up</div>
+						<div class="col-md-12 dtt-ll">active-warmup</div>
+						<div class="col-md-12 dtt-ll">failed</div>
+						<div class="col-md-12 dtt-ll">23次</div>
+						<div class="col-md-12 dtt-ll">
+							<button type="button" class="btn btn-info btn-xs" aria-label="Left Align">
+						  		<span ria-hidden="true" class="glyphicon glyphicon-eye-open">
+							  	</span>
+							  	查看告警
+							</button>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="deviceTuopu-down">
+		<div class="deviceTuopuDown-left dtt">
+			<div class="device-con">
+				
+			</div>
+		</div>
+		<div class="deviceTuopuDown-right dtt">
+			<div class="device-con">
+				
+			</div>
+		</div>
+	</div>
+</div>

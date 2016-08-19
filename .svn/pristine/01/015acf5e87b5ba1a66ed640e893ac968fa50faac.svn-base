@@ -1,0 +1,65 @@
+<div class="left" >
+	<div class="leftViet view">
+		<div ng-include="'template/twoMenu.html'" style="height: 100%;width:100%;"></div>
+	</div>
+</div>
+<div class="right">
+	<div class="rightView view" ui-view>
+		<div class="content-s">
+			<div class="row">
+				<div class="col-md-12 querySeach">
+					<div>
+						<span >设备:</span>
+						<select ng-model="devID" style="width:123px;"  class="form-inline input-sm" ng-options="m.ip group by m.parentInfo.name for m in deviceInfo" ng-change="macChange(devID)">
+							<option value="">请选择</option>
+						</select>
+						<label class="control-label">机框:</label>
+						<select ng-model="actAlarmFrameM" ng-change="framesChange(actAlarmFrameM)" class="form-inline input-sm" style="height: 26px;">
+							<option value="0">主机框</option>
+							<option value="1">1</option>
+						</select>
+						<input type="button" class="btn btn-warning btn-md" value="搜索" ng-click="seach(seachMod,actAlarmFrameM)"></div>
+					<br></div>
+				<div class="row tableTs" >
+					<div class="col-md-12">
+						<table class="table table-bordered table-hover table-condensed">
+							<thead>
+								<tr class="table-tr-title">
+									<th class="t-middle" style="width:100px">槽位号</th>
+									<th class="t-middle">I/O类型</th>
+									<th class="t-middle">信号类型</th>
+									<th class="t-middle">冗余使能</th>
+									<th class="t-middle">主卡</th>
+									<th class="outputConfig t-middle">操作</th>
+									<th class="t-middle">版本信息</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr ng-repeat="item in frameConfigList">
+									<td>{{item.ioStatusSlotID}}</td>
+									<td>{{item.ioSignal}}</td>
+									<td>{{item.ioType}}</td>
+									<td>{{item.ioStatusRedundancy}}</td>
+									<td>{{item.ioStatusActive}}</td>
+									<td  class="text-center">
+										<span title="配置" ng-click="outPTPconfigEnt(item,actAlarmFrameM,item.ioStatusSlotID,devID)" class="glyphicon glyphicon-cog editBtn" style=""></span>
+									</td>
+									<td  class="text-center">
+										<span title="配置" ng-click="outPTPconfigEnt(item)" class="glyphicon glyphicon-cog editBtn" style=""></span>
+									</td>
+								</tr>
+								<tr ng-if="userManageList.length == 0">
+									<td colspan="2" class="textCenter">
+										<span>暂无数据！</span>
+									</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+				</div>
+			</div>
+			<div style="float: right;">
+				<tm-pagination conf="paginationConf"></tm-pagination>
+			</div>
+		</div>
+	</div>

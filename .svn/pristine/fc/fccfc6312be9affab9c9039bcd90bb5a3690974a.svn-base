@@ -1,0 +1,40 @@
+<div class="row">
+    <div class="col-md-12">
+        <h3>声音</h3>
+        <div class="boxH"></div>
+        <form class="form-horizontal formBiao">
+        	<div class="form-group" >
+                <label for="inputEmail3" class="col-sm-3 col-sm-offset-1 control-label">声音开关: </label>
+                <div class="col-sm-5 ">
+                    <switch name="enabled" ng-model="otherSoundMod.soundOffOn" ng-click="otherSoundOffOn()" class="" on="on" off="off"></switch>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="inputEmail3" class="col-sm-3 col-sm-offset-1 control-label">声音间隔: </label>
+                <div class="col-sm-2 ">
+                    <select ng-model="otherSoundMod.soundInterval" class="form-control input-sm">
+                        <option value="30">30秒</option>
+                        <option value="60">60秒</option>
+                        <option value="90">90秒</option>
+                    </select>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="inputEmail3" class="col-sm-3 col-sm-offset-1 control-label">单次响应时间: </label>
+                <div class="col-sm-2 ">
+                    <select  class="form-control input-sm" ng-model="otherSoundMod.soundLength">
+                        <option value="6">6秒</option>
+                        <option value="12">12秒</option>
+                        <option value="18">18秒</option>
+                    </select>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-sm-offset-5 col-sm-4">
+                    <input type="button" class="btn btn-warning btn-md" value="设置" ng-click="deviceManageSub(otherSoundMod)">
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

@@ -1,0 +1,26 @@
+<div class="container" style="width: 100%;">
+	  设备：<span>{{tuopuDeviceIp}}</span>
+	<div class="boxH"></div>
+	<button type="button" title="删除" ng-click="tuopuDigDel()" class="btn btn-danger btn-xs" aria-label="Left Align">
+	  	<span title="删除"  ria-hidden="true" class="glyphicon glyphicon-remove-sign"></span>
+		删除
+	</button>
+	<button type="button" title="告警" ng-click="" class="btn btn-danger btn-xs" aria-label="Left Align">
+	  	<span title="告警"  ria-hidden="true" class="glyphicon glyphicon-trash"></span>
+		告警
+	</button>
+	<button type="button" title="查看" ng-click="" class="btn btn-info btn-xs" aria-label="Left Align">
+	  	<span title="查看"  ria-hidden="true" class="glyphicon glyphicon-eye-open"></span>
+		查看
+	</button>
+	<button type="button" title="配置" ng-click="" class="btn btn-info btn-xs" aria-label="Left Align">
+	  	<span title="配置" ria-hidden="true" class="glyphicon glyphicon-cog">
+	  	</span>
+	  	配置
+	</button>
+	<button type="button" title="编辑" ng-click="tuopuDigEditAdd('a')" class="btn btn-info btn-xs" aria-label="Left Align">
+	  	<span title="编辑" ria-hidden="true" class="glyphicon glyphicon-pencil">
+	  	</span>
+	  	编辑
+	</button>
+</div>

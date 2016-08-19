@@ -1,0 +1,143 @@
+    <div class="content-s">
+      <div class="row tableTs" >
+        <div class="container-fluid  h-9h t-middle" >
+
+          <div class="w-full fa15x  t-left umar-a15" >
+            <div class="">
+              <li class="w-25h float-l">
+                <span >钟卡 :</span>
+                &nbsp;&nbsp;
+                <input type="text" id="vlanModeModuleID"  disabled="disabled"  style="width:62%;"/>    
+              </li>
+              <li class="w-25h float-l">
+                <span >端口 :</span>
+                <select id="vlanTableId"   style="width:62%;height:25px;" onchange="changevlanTable()">
+                  <option value="0">1</option>
+                  <option value="1">2</option>
+                </select>
+              </li>
+              <li class="w-40h float-l">
+                <span >VLAN模式使能 :</span>
+                <select id="vlanModePortState" style="width:62%;height:25px;">
+                  <option value="0">disable</option>
+                  <option value="1">enable</option>
+                </select>
+              </li>
+              <button id="vlanModePortStateSUB" type="button" class=" btn-primary" style="width: 70px;">设置</button>
+            </div>
+          </div>
+
+          <div class="w-full fa15x  b-radius padding-l padding-r padding-b15 t-middle clear h-9h">
+            <div class="w-full fa15x b-radius padding-b15" style="height:240px;overflow: auto;">
+              <table id="" class="display w-full h-full umar-t15 bc-bg"  border="1" cellspacing="0">
+                <thead>
+                  <tr>
+                    <th class="t-middle">编号</th>
+                    <th class="t-middle">Port</th>
+                    <th class="t-middle">Index</th>
+                    <th class="t-middle">VlanId</th>
+                    <th class="t-middle">Priority</th>
+                    <th class="t-middle">State</th>
+                    <th class="t-middle">Addr</th>
+                    <th class="t-middle">Netmask</th>
+                    <th class="t-middle">Gateway/NetxHop</th>
+                    <th class="t-middle">DestNetwork</th>
+                    <th class="t-middle">操作</th>
+                  </tr>
+                </thead>
+                <tbody id="loadvlanTableList"></tbody>
+              </table>
+            </div>
+
+            <div class="w-full fa15x  uba bc-border3 b-radius bc-bg t-left umar-a15" style="height:100px;">
+              <span style="position: relative;top: -5px;left: 10px;background: #fff;">修改VLAN</span>
+              &nbsp;&nbsp;
+              <br>    
+
+              <div class="padding-a">
+                <li class="w-25h float-l" style="padding: 4px;">
+                  <span >使能 :</span>
+                  <select id="vshow_State" style="width:62%;height:25px;">
+                    <option value="0">disable</option>
+                    <option value="1">enable</option>
+                  </select>
+                </li>
+                <li class="w-25h float-l" style="padding: 4px;">
+                  <span >IP地址 :</span>
+                  <input id="vshow_addr" type="text"  style="width:62%;"/>    
+                </li>
+                <li class="w-25h float-l" style="padding: 4px;">
+                  <span >子网掩码 :</span>
+                  <input id="vshow_netmask" type="text"  style="width:62%;"/>    
+                </li>
+                <li class="w-25h float-l" style="padding: 4px;">
+                  <span >默认网关 :</span>
+                  <input id="vshow_gateway" type="text"  style="width:62%;"/>    
+                </li>
+                <li class="w-25h float-l" style="padding: 4px;">
+                  <span >目标IP :</span>
+                  <input id="vshow_destNetwork" type="text" disabled style="width:62%;"/>    
+                </li>
+
+              </div>
+            </div>
+
+            <select style="float:right;background: #fff;" id="VlanFACid" onchange="changVlanFAC()" style="height:25px;">
+              <option value="0">格式一</option>
+              <option value="1">格式二</option>
+            </select>
+            <div class="w-full fa15x  uba bc-border3 b-radius bc-bg t-left umar-a15" style="height:100px;">
+              <span style="position: relative;top: -5px;left: 10px;background: #fff;">添加VLAN</span>
+              &nbsp;&nbsp;
+              <br>    
+
+              <div class="padding-a">
+                <li class="w-25h float-l" style="padding: 4px;">
+                  <span >编号 :</span>
+                  <input id="vadd_num" type="text"  style="width:62%;"/>    
+                </li>
+                <li class="w-25h float-l" style="padding: 4px;">
+                  <span >索引 :</span>
+                  <input id="vadd_index" type="text"  style="width:62%;"/>    
+                </li>
+                <li class="w-25h float-l" style="padding: 4px;">
+                  <span >Id :</span>
+                  <input id="vadd_id" type="text"  style="width:62%;"/>    
+                </li>
+                <li class="w-25h float-l" style="padding: 4px;">
+                  <span >优先级 :</span>
+                  <input id="vadd_priority" type="text"  style="width:62%;"/>    
+                </li>
+
+                <li class="w-25h float-l" style="padding: 4px;">
+                  <span >IP地址 :</span>
+                  <input id="vadd_addr" type="text"  style="width:62%;"/>    
+                </li>
+                <li class="w-25h float-l" style="padding: 4px;">
+                  <span >子网掩码 :</span>
+                  <input id="vadd_netmask" type="text"  style="width:62%;"/>    
+                </li>
+                <li class="w-25h float-l" style="padding: 4px;">
+                  <span >默认网关 :</span>
+                  <input id="vadd_gateway" type="text"  style="width:62%;"/>    
+                </li>
+                <li class="w-25h float-l" style="padding: 4px;">
+                  <span >目标IP :</span>
+                  <input id="vadd_destNetwork" type="text" disabled style="width:62%;"/>    
+                </li>
+              </div>
+            </div>
+
+          </div>
+          <div class="modal-footer" style="padding: 0px;border-top:0;text-align: left;position: absolute;bottom: 0%;left: 45%;">
+            <button type="button" id="vlanAdd" class="btn btn-primary" style="width: 70px;margin-left: 20px;">添加</button>
+            <button type="button" id="vlanSub" class="btn btn-primary" style="width: 70px;margin-left: 20px;">修改</button>
+            <button type="button" class="btn btn-danger" style="width: 70px;margin-left: 20px;" data-dismiss="modal">退出</button>
+            <span id="mesSub" class="padding-a red fa12x" style="margin-top:10px;"></span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div style="float: right;">
+      <tm-pagination conf="paginationConf"></tm-pagination>
+    </div>

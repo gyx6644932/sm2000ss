@@ -1,0 +1,41 @@
+<div class="left" >
+    <div class="leftViet view">
+        <div ng-include="'template/twoMenu.html'" style="height: 100%;width:100%;"></div>
+    </div>
+</div>
+<div class="right">
+    <div class="rightView view" ui-view>
+		<div class="content-s">
+		    <div class="row">
+		        <div class="col-md-12 querySeach">
+		            <h3>地图定制</h3>
+		            <div class="boxH"></div>
+		            <div style="margin: 20px 0;">
+		                <a href="" class="btn btn-warning btn-md pull-right" ui-sref="index.system.mapAdd" >添加</a>
+		            </div>
+		        </div>
+		    </div>
+		    <div class="row tableTs" >
+		        <div class="col-md-12">
+		            <table class="table table-bordered table-hover table-condensed">
+		                <thead>
+		                    <tr>
+								<th class="text-center" >名称</th>
+								<th class="text-center" >操作</th>
+		                    </tr>
+		                </thead>
+		                <tbody>
+		                    <tr ng-repeat="(key,val) in mapList">
+		                        <td class="text-center">{{key}}</td>
+		                        <td class="text-center">
+		                            <span title="删除" ng-click="mapDel(key,val)" class="glyphicon glyphicon-trash deleteBtn" style=""></span>
+		                        </td>
+		                    </tr>
+		                    <tr ng-if="mapList.length == 0"><td colspan="2" class="textCenter"><span>暂无数据！</span></td></tr>
+		                </tbody>
+		            </table>
+		        </div>
+		    </div>
+		</div>
+    </div>
+</div>

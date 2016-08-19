@@ -1,0 +1,104 @@
+    <div class="content-s">
+      <div class="row tableTs" >
+        <div class="container-fluid umar-a h-8h padding-a" style="margin-top:10px;">
+          <div class="w-full padding-a15 h-full" style="height: 20px;">
+            <div class="float-l" style="padding-right: 30px;">
+              卡槽:
+              <span id="outputConfigId">5</span>
+            </div>
+            <div class="float-l">
+              信号:
+              <span id="outputConfigName">PPS-TOD</span>
+            </div>
+          </div>
+          <div class="w-9h fa15x  uba bc-border3 b-radius padding-a bc-bg" style="height: 82px;">
+            <input style="display:none" id="ppstodOBJ" type="text">    
+            <table id="" class="display w-full h-full" cellspacing="0">
+              <thead>
+                <tr>
+                  <th class="t-middle">当前机框</th>
+                  <th class="t-middle">使能开关</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr class="t-middle padding-a5" style="height:20px;">
+                  <td>
+                    <select class="selectq" id="PPSTODId" style="width:62px;" disabled="disabled" onchange="changeIRIGTable()">
+                      <option value="0">主机框</option>
+                      <option value="1">扩展机框1</option>
+                      <option value="2">扩展机框2</option>
+                      <option value="3">扩展机框3</option>
+                      <option value="4">扩展机框4</option>
+                    </select>
+                  </td>
+                  <td>
+                    <select id="outputPPSTodState">
+                      <option value="0">disable</option>
+                      <option value="1">enable</option>
+                    </select>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="w-9h fa15x  uba bc-border3 b-radius padding-a bc-bg" style="margin-top:5px;height: 370px;overflow: auto;">
+            <table style="border-color: #948A8A;" width="100%" class="list umar-t" border="1" cellpadding="0" cellspacing="1" bgcolor="#cccccc">
+              <thead>
+                <tr>
+                  <th class="t-middle">端口名称</th>
+                  <th class="t-middle">当前状态</th>
+                </tr>
+              </thead>
+              <tbody id="ppsTodStateList">
+                <tr class="t-middle padding-a5" style="height:20px;">
+                  <td>
+                    <input placeholder="Port1" id="05Port1" type="text" value="Port1"></td>
+                  <td>enable</td>
+                </tr>
+                <tr class="t-middle padding-a5" style="height:20px;">
+                  <td>
+                    <input placeholder="Port2" id="05Port2" type="text" value="Port2"></td>
+                  <td>enable</td>
+                </tr>
+                <tr class="t-middle padding-a5" style="height:20px;">
+                  <td>
+                    <input placeholder="Port3" id="05Port3" type="text" value="Port3"></td>
+                  <td>enable</td>
+                </tr>
+                <tr class="t-middle padding-a5" style="height:20px;">
+                  <td>
+                    <input placeholder="Port4" id="05Port4" type="text" value="Port4"></td>
+                  <td>enable</td>
+                </tr>
+                <tr class="t-middle padding-a5" style="height:20px;">
+                  <td>
+                    <input placeholder="Port5" id="05Port5" type="text" value="Port5"></td>
+                  <td>enable</td>
+                </tr>
+                <tr class="t-middle padding-a5" style="height:20px;">
+                  <td>
+                    <input placeholder="Port6" id="05Port6" type="text" value="Port6"></td>
+                  <td>enable</td>
+                </tr>
+                <tr class="t-middle padding-a5" style="height:20px;">
+                  <td>
+                    <input placeholder="Port7" id="05Port7" type="text" value="Port7"></td>
+                  <td>enable</td>
+                </tr>
+                <tr class="t-middle padding-a5" style="height:20px;">
+                  <td>
+                    <input placeholder="Port8" id="05Port8" type="text" value="Port8"></td>
+                  <td>enable</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="modal-footer" style="border-top:0;text-align: left;position: absolute;bottom: 0;left: 44%;">
+            <button id="outputConfigSub" type="button" class="RedundancySub btn btn-primary" style="width: 70px;margin-left: 20px;">设置</button>
+            <button type="button" class="btn btn-danger" style="width: 70px;margin-left: 20px;" data-dismiss="modal">退出</button>
+            <span id="mesSub" class="padding-a red fa12x" style="margin-top:10px;"></span>
+          </div>
+        </div>
+
+      </div>
+    </div>

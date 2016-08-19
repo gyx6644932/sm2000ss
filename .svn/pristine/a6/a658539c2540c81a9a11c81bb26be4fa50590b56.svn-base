@@ -1,0 +1,13 @@
+<div class="indexAll" >
+    <div ui-view="topbar" class="header"></div>
+    <div class="center" ui-view="center">
+
+	    <!-- <div class="left" >
+	    	<div ui-view="left" class="leftViet view"></div>
+	    </div>
+	    <div class="right">
+	    	<div ui-view="right" class="rightView view"></div>
+	    </div> -->
+    </div>
+    <div class="footer" ui-view="footer"></div>
+</div>

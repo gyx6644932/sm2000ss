@@ -1,0 +1,53 @@
+;(function(){
+	window.verify = {
+		nullStr : "不能为空！",
+		nullStr1 :"格式错误！",
+		deviceManageEditAdd : function(m, y){
+			if(!m.parentId || m.parentId === "1"){
+				y.ngAlert('区域' + this.nullStr, "warning")
+				return false;
+			}
+			if(!m.name){
+				y.ngAlert('网元名称' + this.nullStr, "warning")
+				return false;
+			}
+			if(!m.ip){
+				y.ngAlert('网元IP' + this.nullStr, "warning")
+				return false;
+			}
+			if(!verifyFun.isIp(m.ip)){
+				y.ngAlert('网元IP' + this.nullStr1, "warning")
+				return false;
+			}
+			if(!m.description){
+				y.ngAlert('网元描述' + this.nullStr, "warning")
+				return false;
+			}
+			return true;
+		},
+		areaManageAdd : function(m, y){
+			if(!m){
+				y.ngAlert('区域' + this.nullStr, "warning")
+				return false;
+			}
+			return true;
+		}
+	}
+	window.verifyFun = { 
+		isIp : function(s){
+			var y = /^(\d{1,2}|1\d\d|2[0-4]\d|25[0-5])\.(\d{1,2}|1\d\d|2[0-4]\d|25[0-5])\.(\d{1,2}|1\d\d|2[0-4]\d|25[0-5])\.(\d{1,2}|1\d\d|2[0-4]\d|25[0-5])$/ ;
+			return y.test(s) ? true : false ;
+		},
+		isMac : function(s){
+			var y=/^[A-F\d]{2}:[A-F\d]{2}:[A-F\d]{2}:[A-F\d]{2}:[A-F\d]{2}:[A-F\d]{2}:[A-F\d]{2}:[A-F\d]{2}$/; 
+			return y.test(s) ? true : false ;
+		},
+		isNumber : function(a){
+			return (typeof +a === "number" && +a !== NaN ? true : false);
+		},
+		between : function(a, b, c){ 
+			return (typeof +a !== "undefined" && typeof +b !== "undefined" && typeof +c !== "undefined" && this.isNumber(a) && this.isNumber(b) && this.isNumber(c) && b <= a && c >= a) ? true : false;
+		}
+	}
+	
+})();

@@ -1,0 +1,31 @@
+;(function(app){
+	app.controller('deviceManageCtrl', ['$scope', "$state", "$rootScope",'publicService', "areaData", function($scope, $state, $rootScope, publicService, areaData){
+		$scope.areaData = areaData.data.data;
+		$rootScope.areaData = $scope.areaData;
+		$scope.alloca = 0;
+		publicService.doRequest("GET", 19, {}).success(function(r){
+			$scope.deviceMangeList = r.data;
+		})
+		$scope.seach = function(){
+			if(this.alloca == 0){
+				publicService.doRequest("GET", 19, {}).success(function(r){
+					$scope.deviceMangeList = r.data;
+				})
+			}else{
+				if(!this.area){
+					$scope.deviceMangeList = [];
+				}
+				publicService.doRequest("GET", "/nms/spring/devices/parents/" + this.area, {}).success(function(r){
+					$scope.deviceMangeList = r.data;
+				})
+			}
+		}
+		$scope.deviceMangeEditAdd = function(m){
+			$rootScope.deviceManageModel = null;
+			if(m){
+				$rootScope.deviceManageModel = m;
+			}
+			$state.go('index.device.deviceManageEditAdd')
+		}
+	}]);
+})(routerApp)

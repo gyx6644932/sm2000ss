@@ -1,0 +1,5 @@
+;(function(app){
+	app.controller('alarmCtrl', ['$scope','$rootScope','$http','$state', 'publicService',  function($scope, $rootScope, $http, $state, publicService){
+
+	}]);
+})(routerApp)

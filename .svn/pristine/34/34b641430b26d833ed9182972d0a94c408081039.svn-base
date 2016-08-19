@@ -1,0 +1,52 @@
+<div class="content-s">
+    <div class="row">
+        <div class="col-md-12 querySeach">
+            <h3>设备管理</h3>
+            <div class="boxH"></div>
+            <div>
+                <label class="control-label">分配:</label>
+                <select ng-model="alloca" class="form-inline input-sm">
+                    <option value="0" selected>未分配</option>
+                    <option value="1" >己分配</option>
+                </select>
+                <label class="control-label">区域:</label>
+                <select ng-model="area" class="form-inline input-sm">
+                    <option value="" >请选择</option>
+                    <option value="{{m.id}}" ng-repeat="m in areaData">{{m.name}}</option>
+                </select>
+                <input type="button" class="btn btn-warning btn-md" value="搜索" ng-click="seach(seachMod)" style="">
+                <input type="button" class="btn btn-warning btn-md pull-right" value="添加" ng-click="deviceMangeEditAdd()" style="margin-top: 20px;">
+            </div>
+        </div>
+    </div>
+    <div class="row tableTs" >
+        <div class="col-md-12">
+            <table class="table table-bordered table-hover table-condensed">
+                <thead>
+                    <tr>
+						<th>设备名称</th>
+						<th>设备IP</th>
+						<th>设备描述</th>
+						<th>设备版本</th>
+						<th>设备时间</th>
+						<th class="text-center" >操作</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="item in deviceMangeList">
+                        <td>{{item.name}}</td>
+                        <td>{{item.ip}}</td>
+                        <td>{{item.description}}</td>
+                        <td>{{item.imageVersion}}</td>
+                        <td>{{item.timestamp | date:"yyyy-MM-dd HH:mm:ss"}}</td>
+                        <td class="text-center">
+                            <span title="修改" ng-click="deviceMangeEditAdd(item)" class="glyphicon glyphicon-cog editBtn" style=""></span> |
+                            <span title="删除" ng-click="deviceMangeDel(item)" class="glyphicon glyphicon-trash deleteBtn" style=""></span>
+                        </td>
+                    </tr>
+                    <tr ng-if="deviceMangeList.length == 0"><td colspan="6" class="textCenter"><span>暂无数据！</span></td></tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

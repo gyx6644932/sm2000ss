@@ -1,0 +1,42 @@
+<div class="left" >
+    <div class="leftViet view">
+        <div ng-include="'template/twoMenu.html'" style="height: 100%;width:100%;"></div>
+    </div>
+</div>
+<div class="right">
+    <div class="rightView view" ui-view>
+		<div class="content-s">
+		    <div class="row">
+		        <div class="col-md-12 querySeach">
+		            <h3>区域管理</h3>
+		            <div class="boxH"></div>
+		            <div>
+		                <input type="button" class="btn btn-warning btn-md pull-right" value="添加" ui-sref="index.device.areaManageAdd" style="margin-top: 20px;">
+		            </div>
+		        </div>
+		    </div>
+		    <div class="row tableTs" >
+		        <div class="col-md-12">
+		            <table class="table table-bordered table-hover table-condensed">
+		                <thead>
+		                    <tr>
+								<th class="text-center" >区域名称</th>
+								<th class="text-center" >操作</th>
+		                    </tr>
+		                </thead>
+		                <tbody>
+		                    <tr ng-repeat="item in areaList">
+		                        <td class="text-center">{{item.name}}</td>
+		                        <td class="text-center">
+		                            <span title="删除" ng-click="areaMangeDel(item)" class="glyphicon glyphicon-trash deleteBtn" style=""></span>
+		                        </td>
+		                    </tr>
+		                    <tr ng-if="areaList.length == 0"><td colspan="2" class="textCenter"><span>暂无数据！</span></td></tr>
+		                </tbody>
+		            </table>
+		        </div>
+		    </div>
+		</div>
+
+    </div>
+</div>

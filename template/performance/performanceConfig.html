@@ -1,0 +1,54 @@
+
+    <div class="content-s">
+    	<div class="row">
+    		<div class="col-md-12 querySeach">
+    			<h3>用户管理</h3>
+    			<div class="boxH"></div>
+    			<div>
+    				用户名称:
+    				<input type="text" ng-model="seachMod.secuLogUser">    
+    				<input type="button" class="btn btn-warning btn-md" value="搜索" ng-click="seach(seachMod)" style="">    
+    				<input type="button" class="btn btn-warning btn-md pull-right" value="添加" ng-click="userMangeAddEdit()" style="margin-top: 20px;"></div>
+    			<br></div>
+    	</div>
+    	<div class="row tableTs" >
+    		<div class="col-md-12">
+    			<table class="table table-bordered table-hover table-condensed">
+    				<thead>
+    					<tr>
+    						<th class="t-middle" style="color:#fff;">设备</th>
+    						<th class="t-middle" style="color:#fff;">端口</th>
+    						<th class="t-middle" style="color:#fff;">类型</th>
+    						<th class="t-middle" style="color:#fff;">检测周期(s/秒)</th>
+    						<th class="t-middle" style="color:#fff;">检测状态</th>
+    						<th class="t-middle" style="color:#fff;">监测开始时间</th>
+    						<th class="t-middle" style="color:#fff;">监测结束时间</th>
+    						<th class="t-middle" style="color:#fff;">是否自动上报</th>
+    						<th class="t-middle" style="color:#fff;">操作</th>
+    					</tr>
+    				</thead>
+    				<tbody>
+    					<tr ng-repeat="item in performanceConfigList">
+    						<td>{{item.userName}}</td>
+    						<td>{{item.userName}}</td>
+    						<td>{{item.userName}}</td>
+    						<td>{{item.userName}}</td>
+    						<td>{{item.userName}}</td>
+    						<td>{{item.userName}}</td>
+    						<td>{{item.userName}}</td>
+    						<td>{{item.userName}}</td>
+    						<td>{{item.userName}}</td>
+    					</tr>
+    					<tr ng-if="performanceConfigList.length == 0">
+    						<td colspan="2" class="textCenter">
+    							<span>暂无数据！</span>
+    						</td>
+    					</tr>
+    				</tbody>
+    			</table>
+    		</div>
+    	</div>
+    </div>
+    <div style="float: right;">
+    	<tm-pagination conf="paginationConf"></tm-pagination>
+    </div>

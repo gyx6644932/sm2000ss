@@ -1,0 +1,21 @@
+<div class="ngdialog-message">
+ <span>{{gg}}</span>菜单
+ 	<button type="button" title="删除" ng-click="tuopuDigDel()" class="btn btn-danger btn-xs" aria-label="Left Align">
+	  	<span title="删除"  ria-hidden="true" class="glyphicon glyphicon-remove-sign"></span>
+		删除
+	</button>
+	<button type="button" title="添加" ng-click="menuAdd()" class="btn btn-info btn-xs" aria-label="Left Align">
+	  	<span title="添加"  ria-hidden="true" class="glyphicon glyphicon-trash"></span>
+		添加
+	</button>
+    <div class="umar-a h-8h" >
+            <span class="">槽位:</span>
+            <input type="text" ng-model="oos.slot"  class="w-half" style="margin-top: 33px;" />
+            <br/><br/>
+            <span class="">端口:</span>
+            <input type="text" ng-model="oos.port" class="w-half" style="margin-top: 3px;" />
+    </div>
+</div>
+<div class="ngdialog-buttons mt">
+	<button  type="button"  class="ngdialog-button ngdialog-button-primary btn-xs" ng-click="subPs(oos)">确认</button>
+</div>

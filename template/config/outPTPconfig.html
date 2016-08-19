@@ -1,0 +1,699 @@
+    <div class="content-s">
+      <div class="row tableTs" >
+        <div class="container-fluid umar-a h-8h" style="margin-top:30px;">
+          <div class="w-full padding-a15 h-full" style="height: 20px;">
+            <div class="float-l" style="padding-right: 30px;">
+              卡槽:
+              <span id="outputConfigId">6</span>
+            </div>
+            <div class="float-l">
+              信号:
+              <span id="outputConfigName">PTP</span>
+            </div>
+          </div>
+          <div class="row-fluid h-full">
+            <div class="tabbable h-full" >
+              <ul class="nav nav-tabs" ng-init="vm.activeTab=1">
+                <li ng-class="{active: vm.activeTab == 1}" id="PTPCommmon" class="active">
+                  <a ng-click="vm.activeTab = 1" href="javascript:;" data-toggle="tab">PTPCommmon</a>
+                </li>
+                <li ng-class="{active: vm.activeTab == 2}" id="PTPMulticast" class="">
+                  <a ng-click="vm.activeTab = 2" href="javascript:;" data-toggle="tab">PTPMulticast</a>
+                </li>
+                <li ng-class="{active: vm.activeTab == 3}" id="SyncE" class="">
+                  <a ng-click="vm.activeTab = 3" href="javascript:;" data-toggle="tab">SyncE</a>
+                </li>
+                <li ng-class="{active: vm.activeTab == 4}" id="Network" class="">
+                  <a ng-click="vm.activeTab = 4" href="javascript:;" data-toggle="tab">Network</a>
+                </li>
+                <li ng-class="{active: vm.activeTab == 5}" id="State" class="">
+                  <a ng-click="vm.activeTab = 5" href="javascript:;" data-toggle="tab">State</a>
+                </li>
+                <li ng-class="{active: vm.activeTab == 6}" id="Announce" class="">
+                  <a ng-click="vm.activeTab = 6" href="javascript:;" data-toggle="tab">Announce</a>
+                </li>
+                <li ng-class="{active: vm.activeTab == 7}" id="Authentica" class="">
+                  <a ng-click="vm.activeTab = 7" href="javascript:;" data-toggle="tab">Authentica</a>
+                </li>
+                <li ng-class="{active: vm.activeTab == 8}" id="Whitelist" class="">
+                  <a ng-click="vm.activeTab = 8" href="javascript:;" data-toggle="tab">Whitelist</a>
+                </li>
+                <li ng-class="{active: vm.activeTab == 9}" id="Blacklist" class="">
+                  <a ng-click="vm.activeTab = 9" href="javascript:;" data-toggle="tab">Blacklist</a>
+                </li>
+              </ul>
+              <div class="tab-content bc-bg  h-full">
+                <div class="tab-panel active h-full" ng-show="vm.activeTab == 1">
+                  <div class="container-fluid padding-a" style="height:420px;overflow: auto;">
+                    <div class="bc-bg w-9h float-l fa15x">
+                      <div class="w-47h float-l fa15x  b-radius  t-right clear">
+                        <div class="w-full fa15x b-radius">
+                          <div class="padding-a5 uba bc-border1 ">
+                            <span>Time Scale</span>
+                            &nbsp;&nbsp;
+                            <select id="outputPTPCommonOtherConfigTimaScale" style="width:40%;margin-right: 13%;">
+                              <option value="0">auto</option>
+                              <option value="1">arb</option>
+                              <option value="2">ptp</option>
+                            </select>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="w-half float-l fa15x  b-radius padding-l t-right">
+                        <div class="w-full fa15x b-radius padding-b15"></div>
+                      </div>
+                    </div>
+                    <div class="bc-bg w-9h float-l fa15x  uba bc-border3  b-radius umar-t">
+                      <div class="float-l w-half ">
+                        <span class="umar-a8">端口选择</span>
+                        <select id="PTPCommonId" class="umar-a8" onchange="changePTPCommon()">
+                          <option value="1">端口1</option>
+                          <option value="2">端口2</option>
+                          <option value="3">端口3</option>
+                          <option value="4">端口4</option>
+                        </select>
+                      </div>
+                      <div class="w-47h float-l fa15x  b-radius padding-l t-right clear">
+                        <div class="w-full fa15x b-radius padding-b15">
+                          <div class="padding-a5 uba bc-border1 umar-t">
+                            <span>端口使能</span>
+                            &nbsp;&nbsp;
+                            <select id="outputPTPCommonConfigPTPstate" ng-model="PTPCommonConfig[0].outputPTPCommonConfigPTPstate" style="width:40%;margin-right: 13%;">
+                              <option value="0">disable</option>
+                              <option value="1">enable</option>
+                            </select>
+                          </div>
+                          <div class="padding-a5 uba bc-border1 umar-t">
+                            <span>最大客户端数</span>
+                            &nbsp;&nbsp;
+                            <input id="outputPTPCommonConfigMaxClients" ng-model="PTPCommonConfig[0].outputPTPCommonConfigMaxClients" type="text" style="width:40%;margin-right: 13%;"></div>
+                          <div class="padding-a5 uba bc-border1 umar-t">
+                            <span>Profile</span>
+                            &nbsp;&nbsp;
+                            <select class="selectq" id="outputPTPCommonConfigProfile" ng-model="PTPCommonConfig[0].outputPTPCommonConfigProfile" disabled="" style="width:40%;margin-right: 13%;">
+                              <option value="0">telecom2008</option>
+                              <option value="1">default</option>
+                              <option value="2">hybrid</option>
+                              <option value="3">itu-g8265-1</option>
+                              <option value="4">ethernet-default</option>
+                            </select>
+                          </div>
+                          <div class="padding-a5 uba bc-border1 umar-t">
+                            <span>Clock ID</span>
+                            &nbsp;&nbsp;
+                            <input id="outputPTPCommonConfigClockID" ng-model="PTPCommonConfig[0].outputPTPCommonConfigClockID" type="text" style="width:40%;margin-right: 13%;"></div>
+                          <div class="padding-a5 uba bc-border1 umar-t">
+                            <span>Domain</span>
+                            &nbsp;&nbsp;
+                            <input id="outputPTPCommonConfigDomain" ng-model="PTPCommonConfig[0].outputPTPCommonConfigDomain" type="text" style="width:40%;margin-right: 13%;"></div>
+                          <div class="padding-a5 uba bc-border1 umar-t">
+                            <span>Sync Limit</span>
+                            &nbsp;&nbsp;
+                            <input id="outputPTPCommonConfigSyncLimit" ng-model="PTPCommonConfig[0].outputPTPCommonConfigSyncLimit" type="text" style="width:40%;margin-right: 13%;"></div>
+                          <div class="padding-a5 uba bc-border1 umar-t">
+                            <span>Delay Limit</span>
+                            &nbsp;&nbsp;
+                            <input id="outputPTPCommonConfigDelayLimit" ng-model="PTPCommonConfig[0].outputPTPCommonConfigDelayLimit" type="text" style="width:40%;margin-right: 13%;"></div>
+                          <div class="padding-a5 uba bc-border1 umar-t">
+                            <span>Two Step</span>
+                            &nbsp;&nbsp;
+                            <select id="outputPTPCommonConfigTwoStep" ng-model="PTPCommonConfig[0].outputPTPCommonConfigTwoStep" style="width:40%;margin-right: 13%;">
+                              <option value="0">disable</option>
+                              <option value="1">enable</option>
+                            </select>
+                          </div>
+                          <div class="padding-a5 uba bc-border1 umar-t">
+                            <span>管理寻址模式</span>
+                            &nbsp;&nbsp;
+                            <select id="outputPTPCommonConfigMgmtAddrMode" ng-model="PTPCommonConfig[0].outputPTPCommonConfigMgmtAddrMode" style="width:40%;margin-right: 13%;">
+                              <option value="0">unicast</option>
+                              <option value="1">Multicast</option>
+                            </select>
+                          </div>
+                          <div class="padding-a5 uba bc-border1 umar-t">
+                            <span>抖动算法</span>
+                            &nbsp;&nbsp;
+                            <select id="outputPTPCommonConfigDither" ng-model="PTPCommonConfig[0].outputPTPCommonConfigDither" style="width:40%;margin-right: 13%;">
+                              <option value="0">disable</option>
+                              <option value="1">enable</option>
+                            </select>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="w-half float-l fa15x  b-radius padding-l padding-r padding-b15 t-right">
+                        <div class="w-full fa15x b-radius padding-b15">
+                          <div class="padding-a5 uba bc-border1 umar-t">
+                            <span>服务模块</span>
+                            &nbsp;&nbsp;
+                            <select class="" id="outputPTPCommonConfigServiceMode" ng-model="PTPCommonConfig[0].outputPTPCommonConfigServiceMode"  style="width:40%;margin-right: 13%;">
+                              <option value="0">ptp-gm</option>
+                              <option value="2">ntp-server</option>
+                            </select>
+                          </div>
+                          <div class="padding-a5 uba bc-border1 umar-t">
+                            <span>Unicast Negotiation</span>
+                            &nbsp;&nbsp;
+                            <select id="outputPTPCommonConfigUnicastNegotiate" ng-model="PTPCommonConfig[0].outputPTPCommonConfigUnicastNegotiate" style="width:40%;margin-right: 13%;">
+                              <option value="0">disable</option>
+                              <option value="1">enable</option>
+                            </select>
+                          </div>
+                          <div class="padding-a5 uba bc-border1 umar-t">
+                            <span>优先级1</span>
+                            &nbsp;&nbsp;
+                            <input id="outputPTPCommonConfigPriority1" ng-model="PTPCommonConfig[0].outputPTPCommonConfigPriority1" type="text" style="width:40%;margin-right: 13%;"></div>
+                          <div class="padding-a5 uba bc-border1 umar-t">
+                            <span>优先级2</span>
+                            &nbsp;&nbsp;
+                            <input id="outputPTPCommonConfigPriority2" ng-model="PTPCommonConfig[0].outputPTPCommonConfigPriority2" type="text" style="width:40%;margin-right: 13%;"></div>
+                          <div class="padding-a5 uba bc-border1 umar-t">
+                            <span>DSCP</span>
+                            &nbsp;&nbsp;
+                            <input disabled="" id="outputPTPCommonConfigDSCP" ng-model="PTPCommonConfig[0].outputPTPCommonConfigDSCP" type="text" style="width:40%;margin-right: 13%;"></div>
+                          <div class="padding-a5 uba bc-border1 umar-t">
+                            <span>DSCP使能</span>
+                            &nbsp;&nbsp;
+                            <select class="selectq" id="outputPTPCommonConfigDSCPstate" ng-model="PTPCommonConfig[0].outputPTPCommonConfigDSCPstate" disabled="" style="width:40%;margin-right: 13%;">
+                              <option value="0">disable</option>
+                              <option value="1">enable</option>
+                            </select>
+                          </div>
+                          <div class="padding-a5 uba bc-border1 umar-t">
+                            <span>Announce Limit</span>
+                            &nbsp;&nbsp;
+                            <input id="outputPTPCommonConfigAnnounceLimit" ng-model="PTPCommonConfig[0].outputPTPCommonConfigAnnounceLimit" type="text" style="width:40%;margin-right: 13%;"></div>
+                          <div class="padding-a5 uba bc-border1 umar-t">
+                            <span>TTL</span>
+                            &nbsp;&nbsp;
+                            <input disabled="" id="outputPTPCommonConfigTTL" ng-model="PTPCommonConfig[0].outputPTPCommonConfigTTL" type="text" style="width:40%;margin-right: 13%;"></div>
+                          <div class="padding-a5 uba bc-border1 umar-t">
+                            <span>Alternate Master</span>
+                            &nbsp;&nbsp;
+                            <select id="outputPTPCommonConfigAlternateMaster" ng-model="PTPCommonConfig[0].outputPTPCommonConfigAlternateMaster" style="width:40%;margin-right: 13%;">
+                              <option value="0">disable</option>
+                              <option value="1">enable</option>
+                            </select>
+                          </div>
+                          <div class="padding-a5 uba bc-border1 umar-t">
+                            <span>Unicast Lease Duration</span>
+                            <input id="outputPTPCommonConfigUnicastLeaseDuration" ng-model="PTPCommonConfig[0].outputPTPCommonConfigUnicastLeaseDuration" type="text" style="width:40%;margin-right: 13%;"></div>
+                        </div>
+                      </div>
+                      <div class="modal-footer" style="padding:0;border-top:0;text-align: left;position: absolute;bottom:0%;left: 44%;">
+                        <button id="PTPCommmonSub" type="button" class="btn btn-primary" style="width: 70px;margin-left: 20px;">设置</button>
+                        <button type="button" class="btn btn-danger" style="width: 70px;margin-left: 20px;" data-dismiss="modal">退出</button>
+                        <span id="mesSub" class="padding-a red fa12x" style="margin-top:10px;"></span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="tab-panel" ng-show="vm.activeTab == 2">
+                  <div class="container-fluid umar-a h-8h padding-a">
+                    <div class="bc-bg w-9h float-l fa15x  uba bc-border3  b-radius padding-l padding-r padding-b15 ">
+                      <div class="float-l w-half ">
+                        <span class="umar-a8">端口选择</span>
+                        <select id="PTPMulticastId" class="umar-a8" onchange="changePTPMulticast()">
+                          <option value="1">端口1</option>
+                          <option value="2">端口2</option>
+                          <option value="3">端口3</option>
+                          <option value="4">端口4</option>
+                        </select>
+                      </div>
+                      <div class="w-47h float-l fa15x  b-radius padding-l padding-r padding-b15 t-right clear">
+                        <div class="w-full fa15x b-radius padding-b15">
+                          <div class="padding-a5 uba bc-border1 umar-t">
+                            <span>VLAN ID</span>
+                            &nbsp;&nbsp;
+                            <input id="outputPTPMulticastVlanID" ng-model="PTPCommonConfig[0].outputPTPMulticastVlanID" type="text" style="width:40%;margin-right: 13%;"></div>
+                          <div class="padding-a5 uba bc-border1 umar-t">
+                            <span>Sync Interval</span>
+                            &nbsp;&nbsp;
+                            <input id="outputPTPMulticastSyncIntv" ng-model="PTPCommonConfig[0].outputPTPMulticastSyncIntv" type="text" style="width:40%;margin-right: 13%;"></div>
+                          <div class="padding-a5 uba bc-border1 umar-t">
+                            <span>Announce Interval</span>
+                            &nbsp;&nbsp;
+                            <input id="outputPTPMulticastAnnounceIntv" ng-model="PTPCommonConfig[0].outputPTPMulticastAnnounceIntv" type="text" style="width:40%;margin-right: 13%;"></div>
+                          <div class="padding-a5 uba bc-border1 umar-t">
+                            <span>Delay Interval</span>
+                            &nbsp;&nbsp;
+                            <input id="outputPTPMulticastDelayIntv" ng-model="PTPCommonConfig[0].outputPTPMulticastDelayIntv" type="text" style="width:40%;margin-right: 13%;"></div>
+                          <div class="padding-a5 uba bc-border1 umar-t">
+                            <span>Announce Timeout</span>
+                            &nbsp;&nbsp;
+                            <input id="outputPTPMulticastAnnounceTimeout" ng-model="PTPCommonConfig[0].outputPTPMulticastAnnounceTimeout" type="text" style="width:40%;margin-right: 13%;"></div>
+                          <div class="padding-a5 uba bc-border1 umar-t">
+                            <span>Client Timeout</span>
+                            &nbsp;&nbsp;
+                            <input id="outputPTPMulticastClientTimeout" ng-model="PTPCommonConfig[0].outputPTPMulticastClientTimeout" type="text" style="width:40%;margin-right: 13%;"></div>
+                        </div>
+                      </div>
+                      <div class="modal-footer" style="padding:0;border-top:0;text-align: left;position: absolute;bottom:0%;left: 44%;">
+                        <button id="PTPMulticastSub" type="button" class="btn btn-primary" style="width: 70px;margin-left: 20px;">设置</button>
+                        <button type="button" class="btn btn-danger" style="width: 70px;margin-left: 20px;" data-dismiss="modal">退出</button>
+                        <span id="mesSub" class="padding-a red fa12x" style="margin-top:10px;"></span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="tab-panel" ng-show="vm.activeTab == 3">
+                  <div class="container-fluid umar-a h-8h padding-a">
+                    <div class="bc-bg w-9h float-l fa15x  uba bc-border3  b-radius padding-l padding-r padding-b15 ">
+                      <div class="float-l w-half ">
+                        <span class="umar-a8">端口选择</span>
+                        <select id="PTPSynceId" class="umar-a8" onchange="changePTPSynce()">
+                          <option value="1">端口1</option>
+                          <option value="2">端口2</option>
+                          <option value="3">端口3</option>
+                          <option value="4">端口4</option>
+                        </select>
+                      </div>
+                      <div class="w-47h float-l fa15x  b-radius padding-l padding-r padding-b15 t-right clear">
+                        <div class="w-full fa15x b-radius padding-b15">
+                          <div class="padding-a5">
+                            <span>ESMC模式使能</span>
+                            <select id="outputPTPSynceESMCstate" ng-model="PTPCommonConfig[0].outputPTPSynceESMCstate" style="width:194px;height:25px;">
+                              <option value="0">disable</option>
+                              <option value="1">enable</option>
+                            </select>
+                            &nbsp;&nbsp;
+                          </div>
+                          <div class="padding-a5">
+                            <span>SynceQL模式使能</span>
+                            <select id="outputPTPSynceQLstate" ng-model="PTPCommonConfig[0].outputPTPSynceQLstate" style="width:194px;height:25px;">
+                              <option value="0">disable</option>
+                              <option value="1">enable</option>
+                            </select>
+                            &nbsp;&nbsp;
+                          </div>
+                          <div class="padding-a5">
+                            <span>SynceOutQLmode</span>
+                            <select id="outputPTPSynceOutQLmode" ng-model="PTPCommonConfig[0].outputPTPSynceOutQLmode" style="width:194px;height:25px;">
+                              <option value="0">unidirectional</option>
+                              <option value="1">bidirectional</option>
+                            </select>
+                            &nbsp;&nbsp;
+                          </div>
+                        </div>
+                      </div>
+                      <div class="modal-footer" style="padding:0;border-top:0;text-align: left;position: absolute;bottom:0%;left: 44%;">
+                        <button id="SyncESub" type="button" class="btn btn-primary" style="width: 70px;margin-left: 20px;">设置</button>
+                        <button type="button" class="btn btn-danger" style="width: 70px;margin-left: 20px;" data-dismiss="modal">退出</button>
+                        <span id="mesSub" class="padding-a red fa12x" style="margin-top:10px;"></span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="tab-panel" ng-show="vm.activeTab == 4">
+                  <div class="container-fluid umar-a h-8h padding-a">
+                    <div class="bc-bg w-9h float-l fa15x  uba bc-border3  b-radius padding-l padding-r padding-b15 ">
+                      <div class="float-l w-full clear ">
+                        <span class="umar-a8">端口选择</span>
+                        <select id="PTPNetworkId" class="umar-a8" onchange="changePTPNetwork()">
+                          <option value="1">端口1</option>
+                          <option value="2">端口2</option>
+                          <option value="3">端口3</option>
+                          <option value="4">端口4</option>
+                        </select>
+                      </div>
+                      <div class="w-47h float-l fa15x  b-radius padding-l t-right ">
+                        <div class="w-full fa15x b-radius padding-b15">
+                          <div class="padding-a5">
+                            <span>IP地址</span>
+                            &nbsp;&nbsp;
+                            <input id="ipAddress" ng-model="PTPCommonConfig[0].ipAddress" type="text" style="width:194px;margin-right: 3%;"></div>
+                          <div class="padding-a5">
+                            <span>掩码</span>
+                            &nbsp;&nbsp;
+                            <input id="maskAddress" ng-model="PTPCommonConfig[0].maskAddress" type="text" style="width:194px;margin-right: 3%;"></div>
+                          <div class="padding-a5">
+                            <span>网关</span>
+                            &nbsp;&nbsp;
+                            <input id="gatewayAddress" ng-model="PTPCommonConfig[0].gatewayAddress" type="text" style="width:194px;margin-right: 3%;"></div>
+                          <div class="padding-a5">
+                            <span>IP端口状态</span>
+                            <select id="outputPTPNetworkConfigIpState" ng-model="PTPCommonConfig[0].outputPTPNetworkConfigIpState" style="width:194px;height:25px;">
+                              <option value="0">disable</option>
+                              <option value="1">enable</option>
+                            </select>
+                            &nbsp;&nbsp;
+                          </div>
+                        </div>
+                      </div>
+                      <div class="w-47h float-l fa15x  b-radius padding-l t-right">
+                        <div class="w-full fa15x b-radius padding-b15">
+                          <div class="padding-a5">
+                            <span>Vlan模式使能</span>
+                            <select id="outputPTPNetworkConfigVlanMode" ng-model="PTPCommonConfig[0].outputPTPNetworkConfigVlanMode" style="width:194px;height:25px;">
+                              <option value="0">disable</option>
+                              <option value="1">enable</option>
+                            </select>
+                            &nbsp;&nbsp;
+                          </div>
+                          <div class="padding-a5">
+                            <span>AutoNeg使能</span>
+                            <select id="outputPTPNetworkConfigAutoNegState" ng-model="PTPCommonConfig[0].outputPTPNetworkConfigAutoNegState" style="width:194px;height:25px;">
+                              <option value="0">disable</option>
+                              <option value="1">enable</option>
+                            </select>
+                            &nbsp;&nbsp;
+                          </div>
+                          <div class="padding-a5">
+                            <span>双工</span>
+                            <select id="outputPTPNetworkConfigDuplex" ng-model="PTPCommonConfig[0].outputPTPNetworkConfigDuplex" style="width:194px;height:25px;">
+                              <option value="0">full</option>
+                              <option value="1">half</option>
+                            </select>
+                            &nbsp;&nbsp;
+                          </div>
+                          <div class="padding-a5">
+                            <span>速率</span>
+                            <select id="outputPTPNetworkConfigSpeed" ng-model="PTPCommonConfig[0].outputPTPNetworkConfigSpeed" style="width:194px;height:25px;">
+                              <option value="0">all</option>
+                              <option value="1">100M</option>
+                              <option value="2">1000M</option>
+                            </select>
+                            &nbsp;&nbsp;
+                          </div>
+                        </div>
+                      </div>
+                      <div class="modal-footer" style="padding:0;border-top:0;text-align: left;position: absolute;bottom:0%;left: 44%;">
+                        <button id="NetworkSub" type="button" class="btn btn-primary" style="width: 70px;margin-left: 20px;">设置</button>
+                        <button type="button" class="btn btn-danger" style="width: 70px;margin-left: 20px;" data-dismiss="modal">退出</button>
+                        <span id="mesSub" class="padding-a red fa12x" style="margin-top:10px;"></span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="tab-panel" ng-show="vm.activeTab == 5">
+                  <div class="container-fluid umar-a h-8h padding-a">
+                    <div class="bc-bg w-9h float-l fa15x  uba bc-border3  b-radius umar-t">
+                      <div class="float-l w-full clear">
+                        <span class="umar-a8">端口选择</span>
+                        <select id="PTPStatusId" class="umar-a8" onchange="changePTPStatus()">
+                          <option value="1">端口1</option>
+                          <option value="2">端口2</option>
+                          <option value="3">端口3</option>
+                          <option value="4">端口4</option>
+                        </select>
+                      </div>
+                      <div class="w-47h float-l fa15x  b-radius padding-l t-right ">
+                        <div class="w-full fa15x b-radius padding-b15">
+                          <div class="padding-a5 uba bc-border1 umar-t">
+                            <span>EthMode</span>
+                            &nbsp;&nbsp;
+                            <input id="outputPTPSynceStatusEthMode" ng-model="PTPCommonConfig[0].outputPTPSynceStatusEthMode" disabled="disabled" type="text" style="width:40%;margin-right: 13%;"></div>
+                          <div class="padding-a5 uba bc-border1 umar-t">
+                            <span>ESMC模式使能</span>
+                            &nbsp;&nbsp;
+                            <input id="outputPTPSynceStatusESMCstatus" ng-model="PTPCommonConfig[0].outputPTPSynceStatusESMCstatus" disabled="disabled" type="text" style="width:40%;margin-right: 13%;"></div>
+                          <div class="padding-a5 uba bc-border1 umar-t">
+                            <span>TXssm</span>
+                            &nbsp;&nbsp;
+                            <input id="outputPTPSynceStatusTXssm" ng-model="PTPCommonConfig[0].outputPTPSynceStatusTXssm" type="text" disabled="disabled" style="width:40%;margin-right: 13%;"></div>
+                          <div class="padding-a5 uba bc-border1 umar-t">
+                            <span>PTP端口使能</span>
+                            &nbsp;&nbsp;
+                            <input id="outputPTPStatusPortEnabled" ng-model="PTPCommonConfig[0].outputPTPStatusPortEnabled" disabled="disabled" type="text" style="width:40%;margin-right: 13%;"></div>
+                          <div class="padding-a5 uba bc-border1 umar-t">
+                            <span>PTP时钟ID</span>
+                            &nbsp;&nbsp;
+                            <input id="outputPTPStatusClockID" ng-model="PTPCommonConfig[0].outputPTPStatusClockID" disabled="disabled" type="text" style="width:40%;margin-right: 13%;"></div>
+                          <div class="padding-a5 uba bc-border1 umar-t">
+                            <span>PTP配置文件</span>
+                            &nbsp;&nbsp;
+                            <input id="outputPTPStatusProfile" ng-model="PTPCommonConfig[0].outputPTPStatusProfile" type="text" disabled="disabled" style="width:40%;margin-right: 13%;"></div>
+                        </div>
+                      </div>
+                      <div class="w-47h float-l fa15x  b-radius padding-l t-right">
+                        <div class="w-full fa15x b-radius padding-b15">
+                          <div class="padding-a5 uba bc-border1 umar-t">
+                            <span>PTP端口状态</span>
+                            &nbsp;&nbsp;
+                            <input id="outputPTPStatusPortState" ng-model="PTPCommonConfig[0].outputPTPStatusPortState" type="text" disabled="disabled" style="width:40%;margin-right: 13%;"></div>
+                          <div class="padding-a5 uba bc-border1 umar-t">
+                            <span>PTP时钟等级</span>
+                            &nbsp;&nbsp;
+                            <input id="outputPTPStatusClockClass" ng-model="PTPCommonConfig[0].outputPTPStatusClockClass" type="text" disabled="disabled" style="width:40%;margin-right: 13%;"></div>
+                          <div class="padding-a5 uba bc-border1 umar-t">
+                            <span>PTP时钟精度</span>
+                            &nbsp;&nbsp;
+                            <input id="outputPTPStatusClockAccuracy" ng-model="PTPCommonConfig[0].outputPTPStatusClockAccuracy" type="text" disabled="disabled" style="width:40%;margin-right: 13%;"></div>
+                          <div class="padding-a5 uba bc-border1 umar-t">
+                            <span>PTP时钟</span>
+                            &nbsp;&nbsp;
+                            <input id="outputPTPStatusTimescale" ng-model="PTPCommonConfig[0].outputPTPStatusTimescale" disabled="disabled" type="text" style="width:40%;margin-right: 13%;"></div>
+                          <div class="padding-a5 uba bc-border1 umar-t">
+                            <span>PTP客户端数</span>
+                            &nbsp;&nbsp;
+                            <input id="outputPTPStatusClientNum" ng-model="PTPCommonConfig[0].outputPTPStatusClientNum" type="text" disabled="disabled" style="width:40%;margin-right: 13%;"></div>
+                          <div class="padding-a5 uba bc-border1 umar-t">
+                            <span>PTP客户端载入</span>
+                            &nbsp;&nbsp;
+                            <input id="outputPTPStatusClientLoad" ng-model="PTPCommonConfig[0].outputPTPStatusClientLoad" type="text" disabled="disabled" style="width:40%;margin-right: 13%;"></div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="bc-bg w-9h float-l fa15x  uba bc-border3  b-radius umar-t">
+                      <div class="w-47h float-l fa15x  b-radius padding-l t-right ">
+                        <div class="w-full fa15x b-radius padding-b15">
+                          <div class="padding-a5 uba bc-border1 umar-t">
+                            <span>PTP时钟状态</span>
+                            &nbsp;&nbsp;
+                            <input id="outputPTPclockState" ng-model="PTPCommonConfig[0].outputPTPclockState" disabled="disabled" type="text" style="width:40%;margin-right: 13%;"></div>
+                          <div class="padding-a5 uba bc-border1 umar-t">
+                            <span>当前时间</span>
+                            &nbsp;&nbsp;
+                            <input id="outputPTPclockCurrentTime" ng-model="PTPCommonConfig[0].outputPTPclockCurrentTime" disabled="disabled" type="text" style="width:40%;margin-right: 13%;"></div>
+                          <div class="padding-a5 uba bc-border1 umar-t">
+                            <span>运行时间</span>
+                            &nbsp;&nbsp;
+                            <input id="outputPTPclockRunningTime" ng-model="PTPCommonConfig[0].outputPTPclockRunningTime" type="text" disabled="disabled" style="width:40%;margin-right: 13%;"></div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="tab-panel" ng-show="vm.activeTab == 6">
+                  <div class="container-fluid umar-a h-8h padding-a">
+                    <div class="bc-bg w-9h float-l fa15x  uba bc-border3  b-radius umar-t">
+                      <div class="float-l  w-full padding-a">
+                        <span class="umar-a8">
+                          PTP -
+                          <a id="outputPTPrxAnnounceMessagePortIndex"></a>
+                        </span>
+                      </div>
+                      <div class="w-47h float-l fa15x  b-radius padding-l t-right ">
+                        <div class="w-full fa15x b-radius padding-b15">
+                          <div class="padding-a5 uba bc-border1 umar-t">
+                            <span>ClockID</span>
+                            &nbsp;&nbsp;
+                            <input id="outputPTPrxAnnounceMessageClockID" ng-model="PTPCommonConfig[0].outputPTPrxAnnounceMessageClockID" disabled="disabled" type="text" style="width:40%;margin-right: 13%;"></div>
+                          <div class="padding-a5 uba bc-border1 umar-t">
+                            <span>ClockClass</span>
+                            &nbsp;&nbsp;
+                            <input id="outputPTPrxAnnounceMessageClockClass" ng-model="PTPCommonConfig[0].outputPTPrxAnnounceMessageClockClass" disabled="disabled" type="text" style="width:40%;margin-right: 13%;"></div>
+                          <div class="padding-a5 uba bc-border1 umar-t">
+                            <span>ClockAccuracy</span>
+                            &nbsp;&nbsp;
+                            <input id="outputPTPrxAnnounceMessageClockAccuracy" ng-model="PTPCommonConfig[0].outputPTPrxAnnounceMessageClockAccuracy" type="text" disabled="disabled" style="width:40%;margin-right: 13%;"></div>
+                          <div class="padding-a5 uba bc-border1 umar-t">
+                            <span>ScaledLogVariance</span>
+                            &nbsp;&nbsp;
+                            <input id="outputPTPrxAnnounceMessageOffsetScaledLogVariance" ng-model="PTPCommonConfig[0].outputPTPrxAnnounceMessageOffsetScaledLogVariance" disabled="disabled" type="text" style="width:40%;margin-right: 13%;"></div>
+                        </div>
+                      </div>
+                      <div class="w-47h float-l fa15x  b-radius padding-l t-right">
+                        <div class="w-full fa15x b-radius padding-b15">
+                          <div class="padding-a5 uba bc-border1 umar-t">
+                            <span>Priority1</span>
+                            &nbsp;&nbsp;
+                            <input id="outputPTPrxAnnounceMessagePriority1" ng-model="PTPCommonConfig[0].outputPTPrxAnnounceMessagePriority1" type="text" disabled="disabled" style="width:40%;margin-right: 13%;"></div>
+                          <div class="padding-a5 uba bc-border1 umar-t">
+                            <span>Priority2</span>
+                            &nbsp;&nbsp;
+                            <input id="outputPTPrxAnnounceMessagePriority2" ng-model="PTPCommonConfig[0].outputPTPrxAnnounceMessagePriority2" type="text" disabled="disabled" style="width:40%;margin-right: 13%;"></div>
+                          <div class="padding-a5 uba bc-border1 umar-t">
+                            <span>TimeSource</span>
+                            &nbsp;&nbsp;
+                            <input id="outputPTPrxAnnounceMessageTimeSource" ng-model="PTPCommonConfig[0].outputPTPrxAnnounceMessageTimeSource" type="text" disabled="disabled" style="width:40%;margin-right: 13%;"></div>
+                          <div class="padding-a5 uba bc-border1 umar-t">
+                            <span>CurrUtcOffset</span>
+                            &nbsp;&nbsp;
+                            <input id="outputPTPrxAnnounceMessageCurrUtcOffset" ng-model="PTPCommonConfig[0].outputPTPrxAnnounceMessageCurrUtcOffset" disabled="disabled" type="text" style="width:40%;margin-right: 13%;"></div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="tab-panel" ng-show="vm.activeTab == 7">
+                  <div class="container-fluid umar-a h-8h padding-a">
+                    <div class="float-l w-half ">
+                      <span class="umar-a8">端口选择</span>
+                      <select id="MD5keyListportId" class="umar-a8" onchange="changeMD5keyListCCport()">
+                        <option value="1">端口1</option>
+                        <option value="2">端口2</option>
+                        <option value="3">端口3</option>
+                        <option value="4">端口4</option>
+                      </select>
+                    </div>
+                    <div class="float-l w-half ">
+                      <span class="umar-a8">MD5使能</span>
+                      <select id="outputPTPntpAuthenticaConfigMD5State" ng-model="PTPCommonConfig[0].outputPTPNetworkConfigSpeed" class="umar-a8">
+                        <option value="0">disable</option>
+                        <option value="1">enable</option>
+                      </select>
+                    </div>
+                    <div class="w-full fa15x  b-radius padding-l padding-r padding-b15 t-middle clear h-9h">
+                      <div class="fa15x  uba bc-border3 b-radius padding-a bc-bg" style="overflow: auto;height:270px">
+                        <div class="t-left padding-a5">
+                          MD5时标:
+                          <input id="MD5time" type="text" ng-model="PTPCommonConfig[0].outputPTPNetworkConfigSpeed" disabled="disabled" style="width:40%;margin-right: 13%;"></div>
+                        <table id="" class="display w-full h-full bc-bg" border="1" cellspacing="0">
+                          <thead>
+                            <tr>
+                              <th class="t-middle">ID</th>
+                              <th class="t-middle">MD5key</th>
+                            </tr>
+                          </thead>
+                          <tbody id="loadMD5keyList"></tbody>
+                        </table>
+                      </div>
+                      <div class="w-full fa15x  uba bc-border3 b-radius bc-bg t-left" style="height:90px;margin-top:10px;">
+                        <span style="position: relative;top: -5px;left: 10px;background: #fff;">AuthenticaKeys Autokey配置</span>
+                        &nbsp;&nbsp;
+                        <br>    
+                        <div class="padding-a5">
+                          <li class="w-full float-l" style="padding: 4px;">
+                            <span>Autokey :</span>
+                            <input id="outputPTPntpAuthenticaKeysAutokey" ng-model="PTPCommonConfig[0].outputPTPNetworkConfigSpeed" disabled="true" type="text" style="width:90%;"></li>
+                        </div>
+                        <div class="padding-a5">
+                          <span class="umar-a8">Autokey使能 :</span>
+                          <select id="outputPTPntpAuthenticaConfigAutokeyState" onchange="changeMD5keyListportStat()">
+                            <option value="0">disable</option>
+                            <option value="1">enable</option>
+                          </select>
+                          <span class="umar-a8">Autokey时标 :</span>
+                          <input id="Autokeytime" type="text" disabled="disabled" style="width:40%;margin-right: 13%;"></div>
+                      </div>
+                    </div>
+                    <div class="modal-footer" style="padding:0;border-top:0;text-align: left;position: absolute;bottom:3%;left: 44%;">
+                      <button id="MD5keySub" type="button" class="btn btn-primary" style="width: 70px;margin-left: 20px;">设置</button>
+                      <button type="button" class="btn btn-danger" style="width: 70px;margin-left: 20px;" data-dismiss="modal">退出</button>
+                    </div>
+                  </div>
+                </div>
+                <div class="tab-panel" ng-show="vm.activeTab == 8">
+                  <div class="container-fluid umar-a h-8h padding-a">
+                    <div class="w-full h-9h fa15x">
+                      <div class="float-l w-half ">
+                        <span class="umar-a8">端口选择</span>
+                        <select id="PTPntpWhitelistportId" class="umar-a8" onchange="changePTPntpWhitelistport()">
+                          <option value="1">端口1</option>
+                          <option value="2">端口2</option>
+                          <option value="3">端口3</option>
+                          <option value="4">端口4</option>
+                        </select>
+                      </div>
+                      <div class="float-l w-half ">
+                        <span class="umar-a8">ntpList 使能</span>
+                        <select id="outputPTPntpListState" class="umar-a8">
+                          <option value="0">disable</option>
+                          <option value="1">打开白名单</option>
+                          <option value="2">打开黑名单</option>
+                        </select>
+                        <button id="WhitelistStateSub" type="button" class="btn-primary" style="width: 70px;">设置</button>
+                      </div>
+                      <div class="w-9h fa15x  uba bc-border3 b-radius padding-a bc-bg" style="overflow: auto;height:270px">
+                        <table id="" width="100%" class="list" border="1" cellpadding="0" cellspacing="1" bgcolor="#cccccc">
+                          <thead>
+                            <tr>
+                              <th class="t-middle">ID</th>
+                              <th class="t-middle">Start</th>
+                              <th class="t-middle">End</th>
+                              <th class="t-middle">操作</th>
+                            </tr>
+                          </thead>
+                          <tbody id="outputPTPntpWhitelist"></tbody>
+                        </table>
+                      </div>
+                      <div class="w-9h fa15x  uba bc-border3 b-radius padding-a bc-bg umar-t" style="height:90px">
+                        <input type="text" style="width:60px;display:none;" id="outputPTPntpWhitelistAddrportC">    
+                        <table id="" class="display w-full h-full" cellspacing="0">
+                          <tbody>
+                            <tr class="t-middle padding-a5 uba bc-border1 b-radius" style="height:35px;">
+                              <td>
+                                <input type="text" placeholder="请输入IP" style="width:180px;" id="outputPTPntpWhitelistAddr">    
+                                <input type="text" placeholder="请输入IP" style="width:180px;" id="outputPTPntpWhitelistAddr2"></td>
+                            </tr>
+                          </tbody>
+                        </table>
+                        <div class="modal-footer" style="padding:0;border-top:0;text-align: left;position: absolute;bottom:4%;left: 44%;">
+                          <button id="addntpWhite" type="button" class="btn btn-primary" style="width: 70px;margin-left: 20px;">创建</button>
+                          <button id="editentpWhite" type="button" class="btn btn-primary" style="width: 70px;margin-left: 20px;">提交</button>
+                          <button id="activentpWhite" type="button" class="btn btn-danger" style="width: 70px;margin-left: 20px;">激活</button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="tab-panel" ng-show="vm.activeTab == 9">
+                  <div class="container-fluid umar-a h-8h padding-a">
+                    <div class="w-full h-9h fa15x">
+                      <div class="float-l w-half ">
+                        <span class="umar-a8">端口选择</span>
+                        <select id="PTPntpBlacklistportId" class="umar-a8" onchange="changePTPntpBlacklistport()">
+                          <option value="1">端口1</option>
+                          <option value="2">端口2</option>
+                          <option value="3">端口3</option>
+                          <option value="4">端口4</option>
+                        </select>
+                      </div>
+                      <div class="float-l w-half ">
+                        <span class="umar-a8">ntpList 使能</span>
+                        <select id="outputPTPntpListState2" class="umar-a8">
+                          <option value="0">disable</option>
+                          <option value="1">打开白名单</option>
+                          <option value="2">打开黑名单</option>
+                        </select>
+                        <button id="BlacklistStateSub" type="button" class="btn-primary" style="width: 70px;">设置</button>
+                      </div>
+                      <div class="w-9h fa15x  uba bc-border3 b-radius padding-a bc-bg" style="overflow: auto;height:270px">
+                        <table id="" width="100%" class="list" border="1" cellpadding="0" cellspacing="1" bgcolor="#cccccc">
+                          <thead>
+                            <tr>
+                              <th class="t-middle">ID</th>
+                              <th class="t-middle">Start</th>
+                              <th class="t-middle">End</th>
+                              <th class="t-middle">操作</th>
+                            </tr>
+                          </thead>
+                          <tbody id="outputPTPntpBlacklist"></tbody>
+                        </table>
+                      </div>
+                      <div class="w-9h fa15x  uba bc-border3 b-radius padding-a bc-bg umar-t" style="height:90px">
+                        <input type="text" style="width:60px;display:none;" id="outputPTPntpBlacklistAddrportC">    
+                        <table id="" class="display w-full h-full" cellspacing="0">
+                          <tbody>
+                            <tr class="t-middle padding-a5 uba bc-border1 b-radius" style="height:35px;">
+                              <td>
+                                <input type="text" placeholder="请输入IP" style="width:180px;" id="outputPTPntpBlacklistAddr">    
+                                <input type="text" placeholder="请输入IP" style="width:180px;" id="outputPTPntpBlacklistAddr2"></td>
+                            </tr>
+                          </tbody>
+                        </table>
+                        <div class="modal-footer" style="padding:0;border-top:0;text-align: left;position: absolute;bottom:4%;left: 44%;">
+                          <button id="addntpBlack" type="button" class="btn btn-primary" style="width: 70px;margin-left: 20px;">创建</button>
+                          <button id="editentpBlack" type="button" class="btn btn-primary" style="width: 70px;margin-left: 20px;">提交</button>
+                          <button id="activentpBlack" type="button" class="btn btn-danger" style="width: 70px;margin-left: 20px;">激活</button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>

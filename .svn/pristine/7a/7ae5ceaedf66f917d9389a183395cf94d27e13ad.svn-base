@@ -1,0 +1,94 @@
+<div class="row scrollY" >
+    <div class="col-md-12">
+        <h3>{{deviceTitle}}</h3>
+        <div class="boxH"></div>
+        <form class="form-horizontal formBiao">
+            <div class="form-group">
+                <label for="inputEmail3" class="col-sm-3 col-sm-offset-1 control-label">区域选择: </label>
+                <div class="col-sm-2 ">
+                    <select ng-model="deviceModel.parentId" class="form-control input-sm">
+                        <option value="1" >请选择</option>
+                        <option value="{{m.id}}" deviceManageDirective ng-repeat="m in areaData">{{m.name}}</option>
+                    </select>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="inputEmail3" class="col-sm-3 col-sm-offset-1 control-label">网元类型: </label>
+                <div class="col-sm-2 ">
+                    <select  class="form-control input-sm" ng-model="deviceModel.deviceType">
+                        <option value="SM2000">SM2000</option>';
+                    </select>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="inputEmail3"  class="col-sm-3 col-sm-offset-1 control-label">网元与网管连接方式: </label>
+                <div class="col-sm-2 ">
+                    <select class="form-control input-sm">
+                        <option value="UDP">UDP</option>';
+                    </select>
+                </div>
+            </div>
+            <div class="form-group" >
+                <label for="inputEmail3" class="col-sm-3 col-sm-offset-1 control-label">网元名称: </label>
+                <div class="col-sm-5 ">
+                    <input type="text" class="form-control" ng-model="deviceModel.name" >
+                </div>
+            </div>
+            <div class="form-group" >
+                <label for="inputEmail3" class="col-sm-3 col-sm-offset-1 control-label">网元本地名称: </label>
+                <div class="col-sm-5 ">
+                    <input type="text" class="form-control" ng-model="deviceModel.aliasName" >
+                </div>
+            </div>
+            <div class="form-group" >
+                <label for="inputEmail3" class="col-sm-3 col-sm-offset-1 control-label">网元IP: </label>
+                <div class="col-sm-5 ">
+                    <input type="text" class="form-control" ng-disabled="deviceTitle === '修改'" ng-model="deviceModel.ip" >
+                </div>
+            </div>
+            <div class="form-group" >
+                <label for="inputEmail3" class="col-sm-3 col-sm-offset-1 control-label">机架友好名称: </label>
+                <div class="col-sm-5 ">
+                    <input type="text" class="form-control" ng-model="deviceModel.frameUseLabel" >
+                </div>
+            </div>
+            <div class="form-group" >
+                <label for="inputEmail3" class="col-sm-3 col-sm-offset-1 control-label">机架本地名称: </label>
+                <div class="col-sm-5 ">
+                    <input type="text" class="form-control" ng-model="deviceModel.frameAliasLabel" >
+                </div>
+            </div>
+            <div class="form-group" >
+                <label for="inputEmail3" class="col-sm-3 col-sm-offset-1 control-label">机架标识符: </label>
+                <div class="col-sm-5 ">
+                    <input type="text" class="form-control" ng-model="deviceModel.frameName" >
+                </div>
+            </div>
+            <div class="form-group" >
+                <label for="inputEmail3" class="col-sm-3 col-sm-offset-1 control-label">网元物理位置: </label>
+                <div class="col-sm-5 ">
+                    <input type="text" class="form-control" ng-model="deviceModel.location" >
+                </div>
+            </div>
+            <div class="form-group" >
+                <label for="inputEmail3" class="col-sm-3 col-sm-offset-1 control-label">网元供应商名称: </label>
+                <div class="col-sm-5 ">
+                    <input type="text" class="form-control" ng-model="deviceModel.owner" >
+                </div>
+            </div>
+            <div class="form-group" >
+                <label for="inputEmail3" class="col-sm-3 col-sm-offset-1 control-label">网元描述: </label>
+                <div class="col-sm-5 ">
+                    <input type="text" class="form-control" ng-model="deviceModel.description" >
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-sm-offset-5 col-sm-4">
+                    <input type="button" class="btn btn-warning btn-md" value="返回" ng-click="backDevice()">
+                    <input type="button" class="btn btn-warning btn-md" ng-disabled="disabledFlag" value="确认" ng-click="deviceManageSub(deviceModel)">
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

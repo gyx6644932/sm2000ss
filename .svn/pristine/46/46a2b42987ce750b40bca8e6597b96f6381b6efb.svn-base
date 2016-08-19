@@ -1,0 +1,19 @@
+var routerApp = angular.module('myApp', ['ui.router', "treeControl", 'ngDialog', "ngTip", 'chieffancypants.loadingBar', 'ngAnimate', "angularFileUpload", "uiSwitch"]);
+
+routerApp.config(['$stateProvider', '$urlRouterProvider', "cfpLoadingBarProvider",function($stateProvider, $urlRouterProvider, cfpLoadingBarProvider) {
+    $urlRouterProvider.otherwise('/login');
+    cfpLoadingBarProvider.includeSpinner = true; // LOADING加载用的参数
+    //$urlRouterProvider.when("", "/login");
+}]);
+
+routerApp.run(['$rootScope','$window','$state', '$log',"$templateCache", '$timeout',function($rootScope,$window, $state, $log, $templateCache,$timeout){
+    $rootScope.isLogin = false;
+    $rootScope.alarmLevelArray = [];
+    $rootScope.$on('$stateChangeSuccess', function(event, toState, toParams, fromState, fromParams){
+        $templateCache.removeAll();   
+    });
+    $rootScope.$on('$stateChangeStart', function(event, toState, toParams, fromState, fromParams){
+    });
+}]);
+
+

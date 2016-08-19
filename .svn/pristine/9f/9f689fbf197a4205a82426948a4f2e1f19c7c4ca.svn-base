@@ -1,0 +1,7 @@
+<div>
+	<div class="login">
+		用户名：<input class="user" type="text"><br/>
+		密码 ：<input class="pas" type="password"><br/>
+		<input class="loginIn" type="button" value="登录" ng-click="loginin()" />
+	</div>
+</div>

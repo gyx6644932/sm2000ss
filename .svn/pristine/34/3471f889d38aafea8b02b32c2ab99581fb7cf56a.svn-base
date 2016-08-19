@@ -1,0 +1,10 @@
+<div class="left" >
+    <div class="leftViet view">
+        <div ng-include="'template/twoMenu.html'" style="height: 100%;width:100%;"></div>
+    </div>
+</div>
+<div class="right">
+    <div class="rightView view" ui-view>
+
+    </div>
+</div>

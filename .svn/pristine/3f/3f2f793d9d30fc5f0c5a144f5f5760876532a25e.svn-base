@@ -1,0 +1,18 @@
+;(function(app){
+	app.config(['$stateProvider', '$urlRouterProvider',function($stateProvider, $urlRouterProvider) {
+    	$stateProvider
+        .state('index.authority', {
+            url: '/userManage',
+            views: {
+                'center@index': {
+                    templateUrl: 'template/authority/authority.html',
+                    controller : "authorityCtrl"
+            }
+        })
+        .state('index.authority.userManage', {//安全
+            url: '/safeLog',
+            templateUrl: 'template/log/safeLog.html',
+            controller : "safeLogCtrl"
+        })
+	}]);
+})(routerApp)

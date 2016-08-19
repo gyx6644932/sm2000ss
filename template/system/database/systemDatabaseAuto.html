@@ -1,0 +1,41 @@
+<div class="content-s">
+    <div class="row">
+        <div class="col-md-12 querySeach">
+            <h3 translate="BACKUP_ARCHIVE_POLICY">备份/归档策略</h3>
+            <div class="boxH"></div>
+            <div>
+                <button class="btn btn-warning btn-md pull-right" translate="ADD" ng-click="databaseAutoAdd()" style="margin-top: 20px;">添加</button>
+            </div>
+        </div>
+    </div>
+    <div class="row tableTs" >
+        <div class="col-md-12">
+            <table class="table table-bordered table-hover table-condensed">
+                <thead>
+                    <tr>
+						<th class="t-middle" translate="TABLE_NAME">表名</th>
+						<th class="t-middle" translate="SUBCLASS">子类</th>
+						<th class="t-middle" translate="MAX_DATA_VOLUME">最大数据量</th>
+						<th class="t-middle" translate="MAX_STORAGE_MONTH">最大存储月数</th>
+						<th class="t-middle" translate="TYPE">类型</th>
+						<th class="text-center" translate="OPERATION">操作</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="item in databaseAutoList">
+                        <td>{{item.tableName}}</td>
+                        <td>{{item.subType}}</td>
+                        <td>{{item.maxSize}}</td>
+                        <td>{{item.maxMonth}}</td>
+                        <td>{{item.backupStrategy === 0 ? "归档" : '备份'}}</td>
+                        <td  class="text-center">
+                            <span title="edit" ng-click="databaseAutoAdd(item)" class="glyphicon glyphicon-cog editBtn" style=""></span> | 
+                            <span title="delete" ng-click="databaseAutoDel(item)" class="glyphicon glyphicon-trash deleteBtn" style=""></span>
+                        </td>
+                    </tr>
+                    <tr ng-if="databaseAutoList.length == 0"><td colspan="6" class="textCenter"><span translate="NULL_DATA">暂无数据！</span></td></tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

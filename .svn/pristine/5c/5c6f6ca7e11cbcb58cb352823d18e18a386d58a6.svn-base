@@ -1,0 +1,103 @@
+<div class="device-tuopu">
+	<div class="deviceTuopu-top">
+		<div class="deviceTuopuTop-left dtt">
+			<div class="device-con">
+				<div id="container">
+					<div class="container-title">
+						<span class="glyphicon glyphicon-map-marker" aria-hidden="true"></span>
+					设备拓扑图
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="deviceTuopuTop-right dtt">
+			<div class="device-con">
+				<div class="deviceTuopuTop-ll">
+					<div class="deviceTuopuTop-ll-1" >
+						<div class="col-md-12 dtt-ll dtt-ll-1">设备时间:</div>
+						<div class="col-md-12 dtt-ll dtt-ll-1">设备名称:</div>
+						<div class="col-md-12 dtt-ll dtt-ll-1">参考源模式:</div>
+						<div class="col-md-12 dtt-ll dtt-ll-1">当前参考源:</div>
+						<div class="col-md-12 dtt-ll dtt-ll-1">时钟状态:</div>
+						<div class="col-md-12 dtt-ll dtt-ll-1">钟卡1状态:</div>
+						<div class="col-md-12 dtt-ll dtt-ll-1">钟卡2状态:</div>
+						<div class="col-md-12 dtt-ll dtt-ll-1">Alarm:</div>
+						<div class="col-md-12 dtt-ll">
+							<button type="button"  class="btn btn-info btn-xs" aria-label="Left Align">
+						  		<span ria-hidden="true" class="glyphicon glyphicon-eye-open">
+							  	</span>
+							  	查看参考源
+							</button>
+						</div>
+					</div>
+				</div>
+				<div class="deviceTuopuTop-rr">
+					<div class="deviceTuopuTop-ll-1" >
+						<div class="col-md-12 dtt-ll" style="color:red;">{{mcTime  | date:"yyyy-MM-dd HH:mm:ss"}}</div>
+						<div class="col-md-12 dtt-ll">{{systemName}}</div>
+						<div class="col-md-12 dtt-ll">{{refMode}}</div>
+						<div class="col-md-12 dtt-ll">{{refInput}}</div>
+						<div class="col-md-12 dtt-ll">{{clockStatus}}</div>
+						<div class="col-md-12 dtt-ll">{{ccstate1}}</div>
+						<div class="col-md-12 dtt-ll">{{ccstate2}}</div>
+						<div class="col-md-12 dtt-ll">{{activeAlarms}}次</div>
+						<div class="col-md-12 dtt-ll">
+							<button type="button" class="btn btn-info btn-xs" aria-label="Left Align">
+						  		<span ria-hidden="true" class="glyphicon glyphicon-eye-open">
+							  	</span>
+							  	查看告警
+							</button>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="deviceTuopu-down">
+		<div class="deviceTuopuDown-left dtt">
+			<div class="device-con">
+				    <div class="row">
+				        <div class="col-md-12 querySeach">
+				            <div>
+				                <label class="control-label">机框:</label>
+				                <select ng-model="actAlarmFrameM" ng-change="framesChange(actAlarmFrameM)" class="form-inline input-sm" style="height: 26px;">
+				                    <option value="0">主机框</option>';
+				                    <option value="1">1</option>';
+				                </select>
+				            </div>
+				        </div>
+				    </div>
+				    <div class="row tableTs" style=" height: 90%;overflow: auto;">
+				        <div class="col-md-12">
+				            <table class="table table-bordered table-hover table-condensed">
+				                <thead>
+				                    <tr>
+				                        <th>槽位号</th>
+				                        <th>I/O类型</th>
+				                        <th>信号类型</th>
+				                        <th>冗余使能</th>
+				                        <th>主卡</th>
+				                    </tr>
+				                </thead>
+				                <tbody>
+				                    <tr ng-repeat="item in frameInfoList">
+				                        <td>{{item.ioStatusSlotID}}</td>
+										<td>{{item.ioType}}</td>
+										<td>{{item.ioSignal}}</td>
+										<td>{{item.ioStatusRedundancy}}</td>
+										<td>{{item.ioStatusActive}}</td>
+				                    </tr>
+				                    <tr ng-if="alarmFilterList.length == 0"><td colspan="6" class="textCenter"><span>暂无数据！</span></td></tr>
+				                </tbody>
+				            </table>
+				        </div>
+				    </div>
+			</div>
+		</div>
+		<div class="deviceTuopuDown-right dtt">
+			<div class="device-con">
+				
+			</div>
+		</div>
+	</div>
+</div>

@@ -1,0 +1,68 @@
+    <div class="content-s">
+      <div class="row tableTs" >
+        <div class="container-fluid umar-a h-8h padding-a" style="margin-top:10px;">
+          <div class="bc-bg w-9h float-l fa15x  uba bc-border3  b-radius padding-l padding-r padding-b15 ">
+
+            <div class="float-l w-half ">
+              <span class="umar-a8">选择</span>
+              <select id="ntpStatePortId" class="umar-a8" onchange="changeNtpStatePortId()">
+                <option value="1">端口1</option>
+                <option value="2">端口2</option>
+              </select>
+            </div>
+            <div class="w-47h float-l fa15x  b-radius padding-l padding-r padding-b15 t-right clear">
+              <div class="padding-a5 uba bc-border1 umar-t15">
+                <span >NTP使能</span>
+                &nbsp;&nbsp;
+                <select id="ntpState"  style="width:30%;margin-right: 13%;">
+                  <option value="0">disable</option>
+                  <option value="1">enable</option>
+                </select>
+                &nbsp;&nbsp;
+              </div>
+              <div class="padding-a5 uba bc-border1 umar-t15">
+                <span >DSCP使能</span>
+                &nbsp;&nbsp;
+                <select id="ntpDSCPState"  style="width:30%;margin-right: 13%;">
+                  <option value="0">disable</option>
+                  <option value="1">enable</option>
+                </select>
+                &nbsp;&nbsp;
+              </div>
+              <div class="padding-a5 uba bc-border1 umar-t15">
+                <span >DSCP</span>
+                &nbsp;&nbsp;
+                <input id="ntpDSCP" type="text" style="width:30%;margin-right: 13%;"/>    
+                &nbsp;&nbsp;
+              </div>
+              <div class="padding-a5 uba bc-border1 umar-t15">
+                <span >TTL</span>
+                &nbsp;&nbsp;
+                <input id="ntpTTL" type="text" style="width:30%;margin-right: 13%;"/>    
+                &nbsp;&nbsp;
+              </div>
+              <div class="padding-a5 uba bc-border1 umar-t15">
+                <span >VLAN ID</span>
+                &nbsp;&nbsp;
+                <input id="ntpVlanID" type="text" style="width:30%;margin-right: 13%;"/>    
+                &nbsp;&nbsp;
+              </div>
+              <div class="padding-a5 uba bc-border1 umar-t15">
+                <span >Packet Limit</span>
+                &nbsp;&nbsp;
+                <input id="ntpPacketLimit" disabled="disabled" type="text" style="width:30%;margin-right: 13%;"/>    
+                &nbsp;&nbsp;
+              </div>
+            </div>
+          </div>
+          <div class="modal-footer" style="border-top:0;text-align: left;position: absolute;bottom: 0%;left: 48%;">
+            <button id="NTPSub" type="button" class="btn btn-primary" style="width: 70px;margin-left: 20px;">设置</button>
+            <button type="button" class="btn btn-danger" style="width: 70px;margin-left: 20px;" data-dismiss="modal">退出</button>
+            <span id="mesSub" class="padding-a red fa12x" style="margin-top:10px;"></span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div style="float: right;">
+      <tm-pagination conf="paginationConf"></tm-pagination>
+    </div>

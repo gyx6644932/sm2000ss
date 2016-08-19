@@ -1,0 +1,11 @@
+;(function(app){
+	app.controller('indexCtrl', ['$scope','$rootScope','$http','$state',function($scope,$rootScope,$http,$state){
+	    // if($rootScope.isLogin == false){
+	    //     $state.go('login');
+	    // }
+		$scope.$on("otherSoundUrlMsg",function (event, msg) {//接收到来自子childCtr1的信息后再广播给所有子controller
+	        $scope.$broadcast("otherSoundUrl", msg);//给所有子controller广播
+	    });
+
+	}]);
+})(routerApp)

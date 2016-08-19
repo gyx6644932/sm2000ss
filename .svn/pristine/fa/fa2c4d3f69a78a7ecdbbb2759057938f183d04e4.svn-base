@@ -1,0 +1,26 @@
+;(function(app){
+    app.config(['$stateProvider', '$urlRouterProvider',function($stateProvider, $urlRouterProvider) {
+        $stateProvider
+        .state('index', {
+            url: '/index',
+            views: {
+                '': {
+                    templateUrl: 'template/index.html',
+                    controller : 'indexCtrl'
+                },
+                'topbar@index': {
+                    templateUrl: 'template/topbar.html',
+                    controller:'topbarCtrl'
+                }
+                ,'center@index': {
+                    templateUrl: 'template/tuopu.html',
+                    controller:'tuopuCtrl'
+                },
+                'footer@index': {
+                    templateUrl: 'template/footer.html'
+                }
+            }
+        })
+        
+    }]);
+})(routerApp)

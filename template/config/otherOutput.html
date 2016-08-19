@@ -1,0 +1,48 @@
+    <div class="content-s">
+      <div class="row tableTs" >
+        <div class="container-fluid umar-a h-8h padding-a" style="margin-top:10px;">
+          <div class="w-47h float-l fa15x  b-radius padding-l padding-r padding-b15 t-middle">
+            <div class="w-9h fa15x  uba bc-border3 b-radius padding-a bc-bg" >
+              <div class="padding-a5 uba bc-border1 umar-t15">
+                <span >Reference Mode:</span>
+                &nbsp;&nbsp;
+                <select id="refModeConfig"  style="width:156px;">
+                  <option value="0">time</option>
+                  <option value="1">frequency</option>
+                </select>
+              </div>
+              <div class="padding-a5 uba bc-border1 umar-t15">
+                <span >Reference Criteria:</span>
+                &nbsp;&nbsp;
+                <select id="refCriteriaConfig"  style="width:156px;">
+                  <option value="1">Priority</option>
+                  <option value="2">ssm</option>
+                </select>
+              </div>
+            </div>
+          </div>
+          <div class="w-47h float-l fa15x  b-radius padding-l padding-r padding-b15 t-middle">
+            <div class="w-9h fa15x  uba bc-border3 b-radius padding-a bc-bg" >
+              <div class="padding-a5 uba bc-border1 umar-t15">
+                <span >系统时间:</span>
+                &nbsp;&nbsp;
+                <input id="systemTime" type="text" style="width:45%;margin-right: 20%;"/>    
+              </div>
+              <div class="padding-a5 uba bc-border1 umar-t15">
+                <span >闰秒设置:</span>
+                &nbsp;&nbsp;
+                <input id="leapSecond" type="text" style="width:45%;margin-right: 20%;"/>    
+              </div>
+            </div>
+          </div>
+          <div class="modal-footer" style="border-top:0;text-align: left;position: absolute;bottom: 2%;left: 44%;">
+            <button id="otherSub" type="button" class="btn btn-primary" style="width: 70px;margin-left: 20px;">设置</button>
+            <button type="button" class="btn btn-danger" style="width: 70px;margin-left: 20px;" data-dismiss="modal">退出</button>
+            <span id="mesSub" class="padding-a red fa12x" style="margin-top:10px;"></span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div style="float: right;">
+      <tm-pagination conf="paginationConf"></tm-pagination>
+    </div>

@@ -1,0 +1,106 @@
+[{
+    "name":"拓扑图",
+    "url":"index",
+    "id" : 8,
+    "parentId": null
+},{
+    "name":"配置管理",
+    "url":"index.config",
+    "id" : 7,
+    "parentId": null,
+    "subMenu" : [
+        {"id" : 711, "parentId" : 7 , "url": "", "name": "PPT", "subMenu" : [
+            {"id" : 7111, "parentId" : 711 , "url": "", "name": "用户1"},
+            {"id" : 7112, "parentId" : 711 , "url": "", "name": "用户2"}
+        ]},
+        {"id" : 712, "parentId" : 7 , "url": "", "name": "NTP", "subMenu" : [
+            {"id" : 7121, "parentId" : 712 , "url": "", "name": "用户3"},
+            {"id" : 7122, "parentId" : 712 , "url": "", "name": "用户4"},
+            {"id" : 7123, "parentId" : 712 , "url": "", "name": "用户3"},
+            {"id" : 7124, "parentId" : 712 , "url": "", "name": "用户4"}
+        ]}
+    ]
+},{
+    "name":"权限管理",
+    "url":"index.authority",
+    "id" : 1,
+    "parentId": null,
+    "subMenu" : [
+        {"id" : 11, "parentId" : 1 , "url": "", "name": "用户管理", "subMenu" : []},
+        {"id" : 12, "parentId" : 1 , "url": "", "name": "菜单管理", "subMenu" : []},
+        {"id" : 13, "parentId" : 1 , "url": "", "name": "角色管理", "subMenu" : []},
+        {"id" : 14, "parentId" : 1 , "url": "", "name": "设备权限", "subMenu" : []}
+    ]
+},{
+    "name":"系统管理",
+    "url":"index.system",
+    "id" : 2,
+    "subMenu" : [
+        {"id" : 23, "parentId" : 2 , "url": "index.system.map", "name": "地图定制", "subMenu" : []},
+        {"id" : 21, "parentId" : 2 , "url": "index.system.databaseManual", "name": "数据库管理", "subMenu" : [
+            {"id" : 212, "parentId" : 21 , "url": "index.system.databaseManual", "name": "手动备份/归档"},
+            {"id" : 211, "parentId" : 21 , "url": "index.system.databaseAuto", "name": "备份/归档策略"},
+            {"id" : 213, "parentId" : 21 , "url": "index.system.databaseRecord", "name": "备份/归档记录"}
+        ]},
+        {"id" : 22, "parentId" : 2 , "url": "index.system.hardVersionMessage", "name": "网管软硬件信息", "subMenu" : [
+            {"id" : 223, "parentId" : 22 , "url": "index.system.hardVersionMessage", "name": "硬件版本信息"},
+            {"id" : 222, "parentId" : 22 , "url": "index.system.softVersionMessage", "name": "软件版本信息"},
+            {"id" : 224, "parentId" : 22 , "url": "index.system.processMessage", "name": "软件进程信息"}
+        ]}
+    ]
+},{
+    "name":"设备管理",
+    "url":"index.device",
+    "id" : 3,
+    "parentId": null,
+    "subMenu" : [
+        {"id" : 30, "parentId" : 3 , "url": "index.device.areaManage", "name": "区域管理", "subMenu" : []},
+        {"id" : 31, "parentId" : 3 , "url": "index.device.deviceManage", "name": "设备管理", "subMenu" : []},
+        {"id" : 33, "parentId" : 3 , "url": "", "name": "拓扑图管理", "subMenu" : []},
+        {"id" : 33, "parentId" : 3 , "url": "", "name": "设备状态同步", "subMenu" : []},
+        {"id" : 34, "parentId" : 3 , "url": "", "name": "网元自动发现", "subMenu" : []}
+    ]
+},{
+    "name":"日志管理",
+    "url":"index.log",
+    "id" : 4,
+    "parentId": null,
+    "subMenu" : [
+        {"id" : 44, "parentId" : 4 , "url": "index.log.performanceLog", "name": "性能日志", "subMenu" : []},
+        {"id" : 42, "parentId" : 4 , "url": "index.log.safeLog", "name": "安全日志", "subMenu" : []},
+        {"id" : 43, "parentId" : 4 , "url": "index.log.networkLog", "name": "网管日志", "subMenu" : []},
+        {"id" : 45, "parentId" : 4 , "url": "index.log.operationLog", "name": "操作日志", "subMenu" : []},
+        {"id" : 46, "parentId" : 4 , "url": "index.log.systemLog", "name": "系统日志", "subMenu" : []},
+        {"id" : 41, "parentId" : 4 , "url": "index.log.alarmLog", "name": "告警日志", "subMenu" : []}
+    ]
+},{
+    "name":"性能管理",
+    "url":"index.performance",
+    "id" : 5,
+    "parentId": null,
+    "subMenu" : [
+        {"id" : 51, "parentId" : 5 , "url": "", "name": "监测参数配置", "subMenu" : []},
+        {"id" : 52, "parentId" : 5 , "url": "", "name": "性能监测", "subMenu" : []},
+        {"id" : 53, "parentId" : 5 , "url": "", "name": "性能曲线", "subMenu" : []},
+        {"id" : 54, "parentId" : 5 , "url": "", "name": "性能日志", "subMenu" : []}
+    ]
+},{
+    "name":"告警管理",
+    "url":"index.alarm",
+    "id" : 6,
+    "parentId": null,
+    "subMenu" : [
+        {"id" : 61, "parentId" : 6 , "url": "", "name": "告警过滤", "subMenu" : []},
+        {"id" : 62, "parentId" : 6 , "url": "", "name": "前传规则", "subMenu" : []},
+        {"id" : 63, "parentId" : 6 , "url": "", "name": "告警监测", "subMenu" : []},
+        {"id" : 64, "parentId" : 6 , "url": "", "name": "实时告警", "subMenu" : []}
+    ]
+},{
+    "name":"其它",
+    "url":"index.other",
+    "id" : 10,
+    "parentId": null,
+    "subMenu" : [
+        {"id" : 100, "parentId" : 10 , "url": "index.other.sound", "name": "声音", "subMenu" : []}
+    ]
+}]

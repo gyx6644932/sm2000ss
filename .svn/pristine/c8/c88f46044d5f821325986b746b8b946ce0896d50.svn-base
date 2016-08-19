@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="css/tree-control.css">
+    <link rel="stylesheet" type="text/css" href="css/tree-control-attribute.css">
+    <link rel="stylesheet" type="text/css" href="css/jsPlumbToolkit-defaults.css">
+    <link rel="stylesheet" type="text/css" href="css/jsPlumbToolkit-demo.css">
+    <link rel="stylesheet" type="text/css" href="css/demo.css">
+    <link rel="stylesheet" type="text/css" href="css/ngDialog.min.css">
+    <link rel="stylesheet" type="text/css" href="css/ngDialog-theme-default.min.css">
+    <link rel="stylesheet" type="text/css" href="css/ngDialog-theme-plain.min.css">
+    <link rel="stylesheet" type="text/css" href="css/ngDialog-theme-flat.css">
+    <link rel="stylesheet" type="text/css" href="css/loading-bar.css">
+    <link rel="stylesheet" type="text/css" href="css/angular-ui-switch.css"/>
+    <link rel="stylesheet" type="text/css" href="css/index.css">
+    <!-- <link rel="stylesheet" type="text/css" href="v1/css/all.min.css"> -->
+</head>
+<body ng-app="myApp">
+    <div ui-view class="index"></div>
+    <ng-tip ></ng-tip>
+    <script src="js/angular-1.3.0.js"></script>
+    <script src="js/angular-ui-router.js"></script>
+    <script src="js/ui-bootstrap-tpls.0.11.2.js"></script>
+    <script src="js/angular-tree-control.js"></script>
+    <script src="js/angular-animate.min.js"></script>
+    <script src="js/ngDialog.min.js"></script>
+    <script src="js/ngTip.js"></script>
+    <script src="js/loading-bar.js"></script>
+    <script src="js/DatePicker/WdatePicker.js"></script>
+    <script src="js/angular-file-upload.min.js"></script>
+    <script src="js/angular-ui-switch.js"></script>
+
+    <script src="js/JSPlumb/lib/jsBezier-0.7.js"></script>
+    <script src="js/JSPlumb/lib/mottle-0.7.1.js"></script>
+    <script src="js/JSPlumb/lib/biltong-0.2.js"></script>
+    <script src="js/JSPlumb/lib/katavorio-0.13.0.js"></script>
+    <script src="js/JSPlumb/util.js"></script>
+    <script src="js/JSPlumb/browser-util.js"></script>
+    <script src="js/JSPlumb/jsPlumb.js"></script>
+    <script src="js/JSPlumb/dom-adapter.js"></script>
+    <script src="js/JSPlumb/overlay-component.js"></script>
+    <script src="js/JSPlumb/endpoint.js"></script>
+    <script src="js/JSPlumb/connection.js"></script>
+    <script src="js/JSPlumb/anchors.js"></script>
+    <script src="js/JSPlumb/defaults.js"></script>
+    <script src="js/JSPlumb/connectors-bezier.js"></script>
+    <script src="js/JSPlumb/connectors-statemachine.js"></script>
+    <script src="js/JSPlumb/connectors-flowchart.js"></script>
+    <script src="js/JSPlumb/renderers-svg.js"></script>
+    <script src="js/JSPlumb/base-library-adapter.js"></script>
+    <script src="js/JSPlumb/dom.jsPlumb.js"></script>
+    
+    <script src="app.js"></script>
+    <script src="js/service.js"></script>
+    <script src="js/directive.js"></script>
+    <script src="js/verify.js"></script>
+    <script src="router/loginRouter.js"></script>
+    <script src="router/indexRouter.js"></script>
+    <script src="router/authorityRouter.js"></script>
+    <script src="router/systemRouter.js"></script>
+    <script src="router/alarmRouter.js"></script>
+    <script src="router/deviceRouter.js"></script>
+    <script src="router/logRouter.js"></script>
+    <script src="router/performanceRouter.js"></script>
+    <script src="router/configRouter.js"></script>
+    <script src="router/otherRouter.js"></script>
+
+
+    <script src="controller/indexCtrl.js"></script>
+    <script src="controller/loginCtrl.js"></script>
+    <script src="controller/tuopuCtrl.js"></script>
+    <script src="controller/topbarCtrl.js"></script>
+    <script src="controller/twoMenuCtrl.js"></script>
+    <script src="controller/authorityCtrl.js"></script>
+    <script src="controller/alarmCtrl.js"></script>
+
+
+    <script src="controller/log/safeLogCtrl.js"></script>
+    <script src="controller/log/alarmLogCtrl.js"></script>
+    <script src="controller/log/networkLogCtrl.js"></script>
+    <script src="controller/log/operationLogCtrl.js"></script>
+    <script src="controller/log/performanceLogCtrl.js"></script>
+    <script src="controller/log/systemLogCtrl.js"></script>
+
+    <script src="controller/system/database/systemDatabaseAutoCtrl.js"></script>
+    <script src="controller/system/database/systemDatabasManualCtrl.js"></script>
+    <script src="controller/system/database/systemDatabasRecordCtrl.js"></script>
+    <script src="controller/system/database/databaseAutoAddEditCtrl.js"></script>
+    <script src="controller/system/softHard/processMessageCtrl.js"></script>
+    <script src="controller/system/map/mapCtrl.js"></script>
+    <script src="controller/system/map/mapAddCtrl.js"></script>
+
+    <script src="controller/device/deviceManageCtrl.js"></script>
+    <script src="controller/device/deviceManageEditAdd.js"></script>
+    <script src="controller/device/areaManageCtrl.js"></script>
+    <script src="controller/device/areaManageAddCtrl.js"></script>
+    
+    <script src="controller/other/otherSoundCtrl.js"></script>
+    <script src="controller/performanceCtrl.js"></script>
+    <script src="controller/configCtrl.js"></script>
+    <!-- <script type="text/javascript" src="v1/js/all.min.js"></script> -->
+</body>
+</html>

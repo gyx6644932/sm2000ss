@@ -1,0 +1,54 @@
+
+    <div class="content-s">
+		    <div class="row">
+		        <div class="col-md-12 querySeach">
+		            <h3>用户管理</h3>
+		            <div class="boxH"></div>
+		            <div>
+		                用户名称:<input type="text" ng-model="seachMod.secuLogUser" >
+		                角色:<input type="text" ng-model="seachMod.secuLogDesc" >
+		                <input type="button" class="btn btn-warning btn-md" value="搜索" ng-click="seach(seachMod)" style="">
+		            </div>
+		            <br>
+		        </div>
+		    </div>
+		    <div class="row tableTs" >
+		        <div class="col-md-12">
+		            <table class="table table-bordered table-hover table-condensed">
+		                <thead>
+		                    <tr>
+		                        <th class="t-middle" style="width:35%">用户名称</th>
+		                        <th class="t-middle" style="width:35%">角色</th>
+		                        <th class="t-middle" style="width:30%">删除</th>
+		                    </tr>
+		                </thead>
+		                <tbody>
+		                    <tr >
+		                        <td>123<!-- {{item.timestamp | date:"yyyy-MM-dd HH:mm:ss"}} --></td>
+		                        <td>435<!-- {{item.secuLogDesc}} --></td>
+                        <td class="text-center">
+                            <span title="删除" ng-click="areaMangeDel(item)" class="glyphicon glyphicon-trash deleteBtn" style=""></span>
+                        </td>
+		                    </tr>
+		                    <tr >
+		                        <td>123<!-- {{item.timestamp | date:"yyyy-MM-dd HH:mm:ss"}} --></td>
+		                        <td>435<!-- {{item.secuLogDesc}} --></td>
+                        <td class="text-center">
+                            <span title="删除" ng-click="areaMangeDel(item)" class="glyphicon glyphicon-trash deleteBtn" style=""></span>
+                        </td>
+		                    </tr>
+		                    <tr >
+		                        <td>123<!-- {{item.timestamp | date:"yyyy-MM-dd HH:mm:ss"}} --></td>
+		                        <td>435<!-- {{item.secuLogDesc}} --></td>
+                        <td class="text-center">
+                            <span title="删除" ng-click="areaMangeDel(item)" class="glyphicon glyphicon-trash deleteBtn" style=""></span>
+                        </td>
+		                    </tr>
+		                </tbody>
+		            </table>
+		        </div>
+		    </div>
+		</div>
+		<div style="float: right;">
+			<tm-pagination conf="paginationConf"></tm-pagination>
+		</div>
